@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//routes for google auth
+Route::get('/google',[AuthController::class, 'redirectToGoogle'] );
+Route::get('/google/callback',[AuthController::class, 'handdleGoogleCallBack'] );
