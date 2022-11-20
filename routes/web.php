@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommunityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,15 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    //dashboard routes
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
+    //community routes
+    Route::get('/community/{community_id}',[CommunityController::class, 'viewCommunity'] );
+    Route::get('/community/create',[CommunityController::class, 'createCommunity'] );
+    Route::post('/community/create',[CommunityController::class, 'postCreateCommunity'] );
+    Route::get('/community/edit/{community_id}',[CommunityController::class, 'editCommunity'] );
+    Route::post('/community/edit/{community_id}',[CommunityController::class, 'postEditCommunity'] );
 });
 
 //routes for google auth
