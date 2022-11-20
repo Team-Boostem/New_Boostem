@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('logout', function (){
+    auth()->logout();
+    Session()->flush(); return Redirect::to('/');
+})->name('logout');
 
 Route::middleware([
     'auth:sanctum',
