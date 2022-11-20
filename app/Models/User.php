@@ -9,6 +9,19 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+// Import Str
+use Illuminate\Support\Str;
+
+function getUniqueUsername($username)
+{
+    $user = User::where('username', $username)->first();
+    if ($user) {
+        $username = $username . rand(1, 9);
+        return getUniqueUsername($username);
+    } else {
+        return $username;
+    }
+}
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -28,6 +41,20 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'google_id',
+        'username',
+        'contact',
+        'bio',
+        'about',
+        'dob',
+        'country',
+        'city',
+        'state',
+        'college',
+        'interests',
+        'skills',
+        'socials',
+        'profile_photo_path',
+        'cover_photo_path',
     ];
 
     /**
@@ -49,6 +76,10 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'id' => 'string',
+        'socials' => 'array',
+        'skills' => 'array',
+        'interests' => 'array',
     ];
 
     /**
@@ -57,6 +88,19 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $appends = [
-        'profile_photo_url',
+        //'profile_photo_url',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($user) {
+            //$user->id = (string) Str::uuid();
+            if (!$user->username) {
+                $email = explode('@', $user->email);
+                $username = $email[0];
+                $user->username = getUniqueUsername($username);
+            }
+        });
+    }
 }
