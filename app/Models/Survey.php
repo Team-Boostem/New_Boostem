@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Str;
 
-class Community extends Model
+class Survey extends Model
 {
     use HasFactory;
-
     public static function boot()
     {
         parent::boot();
