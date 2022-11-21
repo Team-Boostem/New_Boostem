@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\CustomResetPasswordNotification;
+use App\Notifications\CustomEmailVarificationNotification;
 // Import Str
 use Illuminate\Support\Str;
 
@@ -113,5 +114,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new CustomResetPasswordNotification($token));
+    }
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new CustomEmailVarificationNotification);
     }
 }
