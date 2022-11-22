@@ -3,7 +3,7 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
-{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-G59RKSQS1K"></script>
+    {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-G59RKSQS1K"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -30,18 +30,23 @@
                         <p>Login with google</p>
                     </a>
                 </div>
-                <p>or</p> 
+                <p>or</p>
                 <div class="login-form">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <x-jet-validation-errors class="mb-4" />
+                        @if ($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                <x-jet-validation-errors class="mb-4" />
+                            </div>
+                        @endif
                         <div class="form__group field">
-                            <input type="email"  name="email" :value="old('email')" required autofocus class="form__field" placeholder="Email"  id="email"/>
+                            <input type="email" name="email" :value="old('email')" required autofocus
+                                class="form__field" placeholder="Email" id="email" />
                             <label for="email" class="form__label">Email</label>
                         </div>
                         <div class="form__group field">
-                            <input type="password" name="password" required class="form__field" placeholder="password"  id="password"
-                                required />
+                            <input type="password" name="password" required class="form__field" placeholder="password"
+                                id="password" required />
                             <label for="password" class="form__label">Password</label>
                         </div>
 
@@ -52,10 +57,11 @@
                             </label>
                         </div>
                         @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+                            <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                href="{{ route('password.request') }}">
+                                {{ __('Forgot your password?') }}
+                            </a>
+                        @endif
                         <button>Submit</button>
                     </form>
                 </div>
