@@ -44,3 +44,6 @@ Route::middleware([
 //routes for google auth
 Route::get('/google',[AuthController::class, 'redirectToGoogle'] );
 Route::get('/google/callback',[AuthController::class, 'handdleGoogleCallBack'] );
+
+// test route
+Route::get('/test', function () {return view('pages/test');})->name('test');

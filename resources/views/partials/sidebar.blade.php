@@ -6,12 +6,13 @@
         <div class="navbar-nav theme-brand flex-row  text-center">
             <div class="nav-logo">
                 <div class="nav-item theme-logo">
-                    <a href="./index.html">
-                        <img src="{{ asset('assets/admin/src/assets/img/logo.svg') }}" class="navbar-logo" alt="logo">
+                    <a href="{{ route('dashboard') }}">
+                        {{-- <img src="{{ asset('public/img/e-cellLogo.png') }}" class="navbar-logo" alt="logo"> --}}
+                        <img src="{{ asset('public/icons/favicon.png') }}"  alt="logo">
                     </a>
                 </div>
                 <div class="nav-item theme-text">
-                    <a href="./index.html" class="nav-link"> E-CELL </a>
+                    <a href="{{ route('dashboard') }}" class="nav-link">Boostem </a>
                 </div>
             </div>
             <div class="nav-item sidebar-toggle">
