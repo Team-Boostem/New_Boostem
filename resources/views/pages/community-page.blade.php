@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    community-page.blade
-</body>
-</html>
+
+{{-- push title --}}
+@push('title')
+    <title>User Profile</title>
+@endpush
+
+{{-- push styles --}}
+@push('styles')
+@endpush
+
+{{-- push scripts --}}
+@push('scripts')
+@endpush
+
+{{-- extend and yield content --}}
+@extends('layouts/community-dashboard')
+@section('content')
+   hii
+@endsection
+

@@ -30,6 +30,7 @@ Route::middleware([
 ])->group(function () {
     //dashboard routes
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+    Route::get('/dashboard/community', function () {return view('pages/community-page');})->name('community.page');
 
     //community routes
     Route::get('/community/{community_id}',[CommunityController::class, 'viewCommunity'] );
