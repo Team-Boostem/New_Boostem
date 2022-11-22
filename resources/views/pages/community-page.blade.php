@@ -15,6 +15,8 @@
 {{-- extend and yield content --}}
 @extends('layouts/community-dashboard')
 @section('content')
-   hii
+  <div class="main-box">
+    hiiiiii
+  </div>
 @endsection
 

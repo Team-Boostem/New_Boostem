@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     //dashboard routes
-    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+    Route::get('/dashboard',[HomeController::class, 'index'] )->name('dashboard');
     Route::get('/dashboard/community', function () {return view('pages/community-page');})->name('community.page');
 
     //community routes

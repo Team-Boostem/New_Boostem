@@ -5,19 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/icons/logo.png') }}">
-        <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
-        <script src="{{ asset('public/cork/html/layouts/collapsible-menu/loader.js') }}"></script>
-        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-        <link href="{{ asset('public/cork/html/src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/light/plugins.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/dark/plugins.css') }}" rel="stylesheet" type="text/css" />
-        <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/icons/logo.png') }}">
+    <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/light/loader.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/dark/loader.css') }}" rel="stylesheet"
+        type="text/css" />
+    <script src="{{ asset('public/cork/html/layouts/collapsible-menu/loader.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="{{ asset('public/cork/html/src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/light/plugins.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/dark/plugins.css') }}" rel="stylesheet"
+        type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
     @stack('title')
     @include('partials.meta')
     @stack('styles')
+    <style>
+        .main-box {
+            box-sizing: border-box;
+            padding: 1.5rem 0rem;
+        }
+    </style>
 </head>
 
 <body class="layout-boxed">
