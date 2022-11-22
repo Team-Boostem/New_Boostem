@@ -97,11 +97,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         parent::boot();
         static::creating(function ($user) {
-            //$user->id = (string) Str::uuid();
+            $user->user_id = (string) Str::uuid();
             if (!$user->username) {
                 $email = explode('@', $user->email);
                 $username = $email[0];
                 $user->username = getUniqueUsername($username);
+            }
+            if (!$user->profile_photo_path) {
+                $user->profile_photo_path = 
+                    'public/icons/avtar/avtar' . rand(1, 6) . '.png';
+            }
+            if (!$user->cover_photo_path) {
+                $user->cover_photo_path =
+                'public/icons/banner/banner' . rand(1, 3) . '.png';
             }
         });
     }
