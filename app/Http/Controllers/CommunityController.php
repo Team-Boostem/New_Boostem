@@ -7,19 +7,20 @@ use Illuminate\Http\Request;
 class CommunityController extends Controller
 {
     public function viewCommunity(){
-        return view('community.community-page');
+        return view('pages.community.community-page');
     }
     public function createCommunity(){
-        return view('community.create-community');
+        return view('pages.community.create-community');
     }
     public function postCreateCommunity(){
-        return view('community.create-community');
+        return 'hii';
+        return view('pages.community.community-page');
     }
     public function editCommunity(){
-        return view('community.create-community');
+        return view('pages.community.create-community');
     }
     public function postEditCommunity(){
-        return view('community.create-community');
+        return view('pages.community.create-community');
     }
     
 }

@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('id');
             $table->primary('id');
             $table->string('name');
-            $table->string('community_name')->unique();
+            $table->string('username')->unique();
             $table->string('tagline');
             $table->string('email')->unique();
             $table->string('contact')->nullable();
             $table->string('website')->nullable();
-            $table->string('college')->nullable();
+            $table->string('organisation_college')->nullable();
             $table->string('country')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();

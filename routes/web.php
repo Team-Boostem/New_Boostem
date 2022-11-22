@@ -34,11 +34,11 @@ Route::middleware([
     Route::get('/dashboard/community', function () {return view('pages/community-page');})->name('community.page');
 
     //community routes
-    Route::get('/community/{community_id}',[CommunityController::class, 'viewCommunity'] );
-    Route::get('/community/create',[CommunityController::class, 'createCommunity'] );
-    Route::post('/community/create',[CommunityController::class, 'postCreateCommunity'] );
-    Route::get('/community/edit/{community_id}',[CommunityController::class, 'editCommunity'] );
-    Route::post('/community/edit/{community_id}',[CommunityController::class, 'postEditCommunity'] );
+    Route::get('/community/view/{community_id}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
+    Route::get('/community/create',[CommunityController::class, 'createCommunity'] )->name('create.community');
+    Route::post('/community/create',[CommunityController::class, 'postCreateCommunity'] )->name('post.create.community');
+    Route::get('/community/edit/{community_id}',[CommunityController::class, 'editCommunity'] )->name('edit.community');
+    Route::post('/community/edit/{community_id}',[CommunityController::class, 'postEditCommunity'] )->name('community.page')->name('edit.community');
 });
 
 //routes for google auth
