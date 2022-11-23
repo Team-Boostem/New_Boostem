@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Community | Boostem</title>
+    <title>Edit Community | Boostem</title>
     <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/icons/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('public/css/login.css') }}" />
@@ -41,8 +41,8 @@
         </div>
         <div class="right-com-reg">
             <div class="com-reg-content">
-                <form class="form-com-reg" method="POST" action="{{ $url }}">
-                    <h3>{{ $heading }}</h3>
+                <form class="form-com-reg" method="POST" action="{{ route('post.create.community') }}">
+                    <h3>Register your community</h3>
                     <p class="register-section-split">Genral info</p>
                     <div class="full-row-input">
                         <input class="input__reg" type="text" placeholder="Name of community *" name="name" required @isset($model) value="{{ $model->name }}" @else value="{{ old('name') }}" @endisset />

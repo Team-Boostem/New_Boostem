@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Community;
 
-class CommunityController extends Controller
-{
-    public function viewCommunity(){
-        return view('pages.community.community-page');
+class CommunityController extends Controller {
+    public function viewCommunity() {
+        return view( 'pages.community.community-page' );
     }
-    public function createCommunity(){
-        return view('pages.community.create-community');
+
+    public function createCommunity() {
+        $url= '/community/create';
+        $heading = 'Create your Community';
+        $result = compact( 'heading','url' );
+        return view( 'pages.community.create-community' )->with( $result );
     }
-    public function postCreateCommunity(Request $request){
-        //dd($request->all());
+
+    public function postCreateCommunity( Request $request ) {
+        //dd( $request->all() );
         $request->validate( [
             'name'=>'required',
             'username'=>'required|unique:communities,username',
@@ -45,11 +49,47 @@ class CommunityController extends Controller
         $request->session()->flash( 'message', 'category Inserted Successfully' );
         return redirect( '/dashboard' );
     }
-    public function editCommunity(){
-        return view('pages.community.create-community');
+
+    public function editCommunity( $community_id ) {
+
+        $model = Community::where( 'id', $community_id )->first();
+        if ( !is_null( $model ) ) {
+            $url = '/community/edit'.'/'.$community_id;
+            $heading = 'Edit your community';
+            $result = compact( 'model','heading', 'url' );
+            return view( 'pages.community.create-community' )->with( $result );
+        } else {
+            return redirect( 'admin/category' );
+        }
+
     }
-    public function postEditCommunity(){
-        return view('pages.community.create-community');
+
+    public function postEditCommunity( $community_id, Request $request ) {
+        $socials = array(
+            'linkedin' => $request->linkedin,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'twitter' => $request->twitter,
+        );
+        //get community from database where community_id is equal to $community_id
+        $community = Community::where( 'id', $community_id )->first();
+        //update community
+        $community->name = $request->name;
+        $community->username = $request->username;
+        $community->email = $request->email;
+        $community->tagline = $request->tagline;
+        $community->contact = $request->contact;
+        $community->website = $request->website;
+        $community->organisation_college = $request->organisation_college;
+        $community->description = $request->description;
+        $community->about = $request->about;
+        $community->socials = $request->socials;
+        $community->save();
+        //redirect to community page
+        return redirect( '/community/view/'.$community_id );
+
     }
-    
+
+
+
 }

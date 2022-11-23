@@ -18,7 +18,7 @@ return new class extends Migration
             $table->primary('id');
             $table->string('name');
             $table->string('username')->unique();
-            $table->string('tagline');
+            $table->string('tagline')->nullable();
             $table->string('email')->unique();
             $table->string('contact')->nullable();
             $table->string('website')->nullable();
