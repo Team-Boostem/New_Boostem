@@ -6,14 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Community | Boostem</title>
+    <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/icons/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('public/css/login.css') }}" />
 </head>
 
 <body>
-    {{-- <div class="notification">
-        <p>notification content</p>
+    @if ($errors->any())
+     <div class="notification" style="background-color: rgb(255, 83, 83); font-size:1rem">
+        <div>
+        @foreach ($errors->all() as $error)
+        <p>{{ $error }}</p>
+        @endforeach
+        </div>
         <button type="button" id="dismiss">DISMISS</button>
-    </div> --}}
+    </div> 
+    @endif
     <div class="community-registration-container">
         <div class="left-com-reg">
             <h1>Lorem ipsum dolor sit amet consectetur.</h1>
@@ -43,7 +51,10 @@
                         <input class="input__reg" type="text" placeholder="Unique username of community *" name="username" required @isset($model) value="{{ $model->username }}" @else value="{{ old('username') }}" @endisset />
                     </div>
                     <div class="full-row-input">
-                        <input class="input__reg" type="email" placeholder="Email *" name="email" required @isset($model) value="{{ $model->email }}" @else value="{{ old('email') }}" @endisset />
+                        <input class="input__reg" type="text" placeholder="Tagline of community" name="tagline" @isset($model) value="{{ $model->tagline }}" @else value="{{ old('tagline') }}" @endisset />
+                    </div>
+                    <div class="full-row-input">
+                        <input class="input__reg" type="email" placeholder="Email *" name="email"  @isset($model) value="{{ $model->email }}" @else value="{{ old('email') }}" @endisset />
                     </div>
                     <div class="half-row-input">
                         <input class="input__reg" type="text" placeholder="Organization/college" name="organisation_college" @isset($model) value="{{ $model->organisation_college }}" @else value="{{ old('organisation_college') }}" @endisset />
@@ -65,11 +76,11 @@
 
                     <p class="register-section-split">About</p>
                     <div class="full-row-input">
-                        <textarea name="description" class="input__reg" cols="30" rows="5">@if (isset($model)) {{ $model->description }} @elseif (old('name') !== null) {{ old('description') }} @else description of Community * (max 40 wordes) @endif
+                        <textarea name="description" class="input__reg" cols="30" rows="5"> @if (isset($model)) {{ $model->description }} @elseif (old('description') !== null) {{ old('description') }} @else description of Community * (max 40 wordes) @endif
                         </textarea>
                     </div>
                     <div class="full-row-input">
-                        <textarea name="about" class="input__reg" cols="30" rows="10">@if (isset($model)) {{ $model->description }} @elseif (old('name') !== null) {{ old('description') }} @else About your Community (max 350 wordes) @endif </textarea>
+                        <textarea name="about" class="input__reg" cols="30" rows="10">@if (isset($model)) {{ $model->about }} @elseif (old('about') !== null) {{ old('about') }} @else About your Community (max 350 wordes) @endif </textarea>
                     </div>
                     <div class="full-row-button">
                         <button type="submit">Submit</button>
@@ -78,7 +89,7 @@
             </div>
         </div>
     </div>
-
+    <script src="{{ asset('public/js/script.js') }}"></script>
 </body>
 
 </html>

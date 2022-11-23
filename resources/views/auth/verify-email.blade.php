@@ -79,7 +79,7 @@
                                 </form>
                                 <div class="col-12">
                                     <div class="mb-4">
-                                        <button class="btn btn-light w-100">logout</button>
+                                        <a href="{{ route('logout') }}"><button class="btn btn-light w-100">logout</button></a>
                                     </div>
                                 </div>
 

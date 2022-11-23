@@ -9,6 +9,10 @@ use Str;
 class Community extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'id' => 'string',
+        'socials' => 'array',
+    ];
 
     public static function boot()
     {

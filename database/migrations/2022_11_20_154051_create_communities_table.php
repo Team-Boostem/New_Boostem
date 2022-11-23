@@ -29,7 +29,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->longText('about')->nullable();
             $table->date('founded_at')->nullable();
-            $table->json('domains')->nullable();
+            $table->string('domains')->nullable();
             $table->json('tags')->nullable();
             $table->json('field')->nullable();
             $table->json('socials')->nullable();
