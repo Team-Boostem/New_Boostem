@@ -26,12 +26,12 @@ class CommunityController extends Controller {
             'description'=>'required',
         ] );
         //convert linkedin facebook and twitter to json
-        $socials = array(
+        $socials = [
             'linkedin' => $request->linkedin,
             'facebook' => $request->facebook,
             'instagram' => $request->instagram,
             'twitter' => $request->twitter,
-        );
+        ];
 
         $model = new Community();
         $model->name = $request->post( 'name' );
@@ -56,7 +56,14 @@ class CommunityController extends Controller {
         if ( !is_null( $model ) ) {
             $url = '/community/edit'.'/'.$community_id;
             $heading = 'Edit your community';
-            $result = compact( 'model','heading', 'url' );
+            $socials = $model->socials;
+            // $linkedin = isset($socials['linkedin']) ? $socials['linkedin'] : '';
+            // $facebook = isset($socials['facebook']) ? $socials['facebook'] : '';
+            // $instagram = isset($socials['instagram']) ? $socials['instagram'] : '';
+            // $twitter = isset($socials['twitter']) ? $socials['twitter'] : '';
+            //convert socials to array
+            // $result = compact( 'model','heading','url','linkedin','facebook','instagram','twitter' );
+            $result = compact( 'model','heading','url','socials' );
             return view( 'pages.community.create-community' )->with( $result );
         } else {
             return redirect( 'admin/category' );

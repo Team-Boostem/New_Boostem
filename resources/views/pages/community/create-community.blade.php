@@ -65,12 +65,12 @@
                         <input class="input__reg" type="text" placeholder="Website URL" name="website" @isset($model) value="{{ $model->website }}" @else value="{{ old('website') }}" @endisset />
                     </div>
                     <div class="half-row-input">
-                        <input class="input__reg" type="text" placeholder="Instagram profile URL" name="instagram" @isset($model) value="{{ $model->instagram }}" @else value="{{ old('instagram') }}" @endisset />
-                        <input class="input__reg" type="text" placeholder="linkedin profile URL" name="linkedin" @isset($model) value="{{ $model->linkedin }}" @else value="{{ old('linkedin') }}" @endisset />
+                        <input class="input__reg" type="text" placeholder="Instagram profile URL" name="instagram" @isset($socials['instagram']) value="{{ $socials['instagram'] }}" @else value="{{ old('instagram') }}" @endisset />
+                        <input class="input__reg" type="text" placeholder="linkedin profile URL" name="linkedin" @isset($socials['linkedin']) value="{{ $socials['linkedin'] }}" @else value="{{ old('linkedin') }}" @endisset />
                     </div>
                     <div class="half-row-input">
-                        <input class="input__reg" type="text" placeholder="Facebook profile URL" name="facebook" @isset($model) value="{{ $model->facebook }}" @else value="{{ old('facebook') }}" @endisset />
-                        <input class="input__reg" type="text" placeholder="Twitter profile URL" name="twitter" @isset($model) value="{{ $model->twitter }}" @else value="{{ old('twitter') }}" @endisset />
+                        <input class="input__reg" type="text" placeholder="Facebook profile URL" name="facebook" @isset($socials['facebook']) value="{{ $socials['facebook'] }}" @else value="{{ old('facebook') }}" @endisset />
+                        <input class="input__reg" type="text" placeholder="Twitter profile URL" name="twitter" @isset($socials['twitter']) value="{{ $socials['twitter'] }}" @else value="{{ old('twitter') }}" @endisset />
                     </div>
 
 

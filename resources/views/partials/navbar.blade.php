@@ -65,7 +65,7 @@
                     <div class="avatar-container">
                         <div class="avatar avatar-sm avatar-indicators ">
                             @auth
-                            <img alt="avatar" src="{{ Auth::user()->profile_photo_path }}" class="rounded-circle">
+                            <img alt="avatar" src="{{ url('/') }}/{{ Auth::user()->profile_photo_path }}" class="rounded-circle">
                             @endauth
                         </div>
                     </div>
