@@ -137,7 +137,7 @@
                 {{-- <img src="{{ asset('public/icons/banner/banner1.png') }}" alt=""> --}}
                 <div class="logo-holder">
                     @isset($community->logo_photo_path)
-                        <img src="{{ $community->logo_photo_path }}" alt="">
+                        <img src="{{ url('/') }}/{{ $community->logo_photo_path }}" alt="">
                         @else<img src="{{ asset('public/icons/avtar/avtar1.png') }}" alt="">
                     @endisset
                     

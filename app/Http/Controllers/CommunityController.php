@@ -7,20 +7,19 @@ use App\Models\Community;
 use Auth;
 
 class CommunityController extends Controller {
+
     public function viewCommunity( $community_id ) {
-        //get community data where id = $community_id
+
         $community = Community::where( 'id', $community_id )->first();
+
         if ( $community ) {
-            //return view with community data
-            return view( 'pages.community.community-page', [ 'community' => $community ] );
+            $socials = $community->socials;
+            $result = compact( 'community', 'socials' );
+            return view( 'pages.community.community-page', )->with( $result );
         } else {
-            //return error
-            return view( 'pages/error' );
+            return view( 'pages.error' );
         }
-        $socials = $community->socials;
-        $result = compact( 'community', 'socials' );
-        //return view with community data
-        return view( 'pages.community.community-page', )->with( $result );
+
     }
 
     public function createCommunity() {
@@ -57,7 +56,7 @@ class CommunityController extends Controller {
         $model->description = $request->post( 'description' );
         $model->about = $request->post( 'about' );
         $model->socials = $socials;
-        $model->creator= Auth::user()->user_id;
+        $model->creator = Auth::user()->user_id;
         $model->save();
 
         $request->session()->flash( 'message', 'category Inserted Successfully' );
