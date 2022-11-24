@@ -111,6 +111,12 @@ class User extends Authenticatable implements MustVerifyEmail
                 $user->cover_photo_path =
                 'public/icons/banner/banner' . rand(1, 3) . '.png';
             }
+            if (!$user->socials) {
+                $user->socials = '{}';
+            }
+            if (!$user->interests) {
+                $user->interests = [];
+            }
         });
     }
     /**

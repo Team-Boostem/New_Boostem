@@ -107,17 +107,17 @@
             align-items: center;
             padding: 3rem 10vw ;
             margin-top: 2rem;
+            width: 100%
         }
         .left-about{
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            min-width: 25rem;
-            max-width: 46rem;
+            min-width: 15rem;
             margin-right: 2rem;
         }
         .left-about img{
-            width: 100%;
+            max-width: 28rem;
         }
     </style>
 @endpush
@@ -133,19 +133,25 @@
         {{-- main banner section starts heare --}}
         <div class="banner-container">
             <div class="banner-box">
-                <img src="{{ asset('public/icons/banner/banner1.png') }}" alt="">
+                <img src="{{ url('/') }}/{{ $community->banner_photo_path }}" alt="">
+                {{-- <img src="{{ asset('public/icons/banner/banner1.png') }}" alt=""> --}}
                 <div class="logo-holder">
-                    <img src="{{ asset('public/icons/avtar/avtar1.png') }}" alt="">
+                    @isset($community->logo_photo_path)
+                        <img src="{{ $community->logo_photo_path }}" alt="">
+                        @else<img src="{{ asset('public/icons/avtar/avtar1.png') }}" alt="">
+                    @endisset
+                    
                 </div>
             </div>
             <div class="banner-content">
-                <h2>name of community</h2>
-                <h4>tagline should be a littel big</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas qui placeat voluptatum dolores iusto
-                    eligendi, ducimus mollitia facere voluptates repellat expedita quae dolorem beatae</p>
-                    <a href="">
-                      <button class="btn btn-primary py-40" style="padding-left: 2rem;padding-right:2rem; ">Website</button>
-                    </a>
+                <h2>{{ $community->name }}</h2>
+                <p>{{ $community->description }}</p>
+                @if($community->website)
+                <a href="{{ $community->website }}">
+                    <button class="btn btn-primary py-40" style="padding-left: 2rem;padding-right:2rem; ">Website</button>
+                  </a>
+                @endif
+                    
             </div>
             {{-- /////main banner section ends heare --}}
             {{-- about section starts heare --}}
@@ -154,9 +160,13 @@
                     <img src="{{ asset('public/img/about_us.png') }}" alt="About Us">
                 </div>
                 <div class="right-about">
-                    <h3>Ecell Rgpv Bhopal</h3>
+                    @if($community->tagline)
+                    <h3>{{ $community->tagline }}</h3>
+                    @else
+                    <h3>{{ $community->name }}</h3>
+                    @endif
                     <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto, vero excepturi alias beatae dolores eum laudantium blanditiis, debitis quae impedit ratione atque numquam ipsam ea quibusdam. At ullam magni explicabo architecto. A numquam itaque iste ad ipsa odio alias quis earum impedit, provident, libero accusantium aperiam repellendus dolor, atque soluta aut accusamus obcaecati voluptates quidem voluptatum similique. Laudantium corrupti unde rerum. Ullam obcaecati repellendus autem beatae ipsam placeat sed dolores minima quam? A eaque pariatur voluptatem natus, modi tempora libero cupiditate quia tempore nesciunt recusandae quod, nulla necessitatibus porro aut exercitationem! Corrupti culpa id earum vel repellat, non mollitia facere.
+                        {{ $community->about }}
                     </p>
                 </div>
             </div>
@@ -169,7 +179,8 @@
                     exercitationem ratione.</p>
                     
                 <div class="social-icons-container">
-                    <a href="">
+                    @isset($socials['instagram'])
+                    <a href="{{ $socials['instagram'] }}">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48"
                             viewBox="0 0 48 48">
                             <path fill="#304ffe"
@@ -234,7 +245,9 @@
                             </g>
                         </svg>
                     </a>
-                    <a href="">
+                    @endisset
+                    @isset($socials['linkedin'])
+                    <a href="{{ $socials['linkedin'] }}">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48"
                             viewBox="0 0 48 48">
                             <path fill="#0288D1"
@@ -245,7 +258,9 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="">
+                    @endisset
+                    @isset($socials['facebook'])
+                    <a href="{{ $socials['facebook'] }}">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48"
                             viewBox="0 0 48 48">
                             <path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"></path>
@@ -254,7 +269,9 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="">
+                    @endisset
+                    @isset($socials['twitter'])
+                    <a href="{{ $socials['twitter'] }}">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48"
                             viewBox="0 0 48 48">
                             <path fill="#03A9F4"
@@ -262,6 +279,7 @@
                             </path>
                         </svg>
                     </a>
+                    @endisset
 
 
                 </div>
