@@ -37,6 +37,10 @@ Route::middleware([
     Route::get('/community/view/{community_id}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
     Route::get('/community/create',[CommunityController::class, 'createCommunity'] )->name('create.community');
     Route::post('/community/create',[CommunityController::class, 'postCreateCommunity'] )->name('post.create.community');
+    
+});
+Route::group(['middleware' => ['protectedEdit']], function () {
+    //COMMUNITY EDIT ACCDESS PAGES
     Route::get('/community/edit/{community_id}',[CommunityController::class, 'editCommunity'] )->name('edit.community');
     Route::post('/community/edit/{community_id}',[CommunityController::class, 'postEditCommunity'] )->name('community.page')->name('edit.community');
 });

@@ -68,7 +68,7 @@
 
                     <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
                         <div class="drodpown-title message">
-                            <h6 class="d-flex justify-content-between"><span class="align-self-center">Messages</span> <span class="badge badge-primary">9 Unread</span></h6>
+                            <h6 class="d-flex justify-content-between"><span class="align-self-center">My Communities</span></h6>
                         </div>
                         <div class="notification-scroll" style="height: auto">
 

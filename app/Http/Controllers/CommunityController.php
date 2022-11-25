@@ -38,7 +38,7 @@ class CommunityController extends Controller {
             'description'=>'required',
         ] );
         //convert linkedin facebook and twitter to json
-        $socials = [
+        $socials = [ 
             'linkedin' => $request->linkedin,
             'facebook' => $request->facebook,
             'instagram' => $request->instagram,
