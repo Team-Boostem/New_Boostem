@@ -133,4 +133,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new CustomEmailVarificationNotification);
     }
+    // set $user->mycommunity to the communities where $community->creator is equal to $user->user_id
+    public function mycommunity()
+    {
+        return $this->hasMany('App\Models\Community', 'creator', 'user_id');
+    }
+    
+    
 }

@@ -67,6 +67,14 @@
             text-align: center;
             max-width: 55rem;
         }
+        .edit-options{
+            position: absolute;
+            bottom: -3.2rem;
+            right: 0;
+        }
+        .edit-options button{
+            margin-left: 0.8rem !important;
+        }
         .social-container{
           display: flex;
           justify-content: center;
@@ -142,11 +150,15 @@
                     @endisset
                     
                 </div>
+                <div class="edit-options">
+                    <button class="btn btn-outline-info">Upload Banner</button>
+                    <button class="btn btn-outline-info">Upload Logo</button>
+                    <a href="{{ url('/community/edit') }}/{{ $community->id }}">
+                        <button class="btn btn-outline-info">Edit</button>
+                    </a>
+                </div>
             </div>
             <div class="banner-content">
-                <h2>{{ $community->name }}</h2>
-                <h2>{{ $community->name }}</h2>
-                <h2>{{ $community->name }}</h2>
                 <h2>{{ $community->name }}</h2>
                 <p>{{ $community->description }}</p>
                 @if($community->website)
