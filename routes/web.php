@@ -31,7 +31,6 @@ Route::middleware([
 ])->group(function () {
     //dashboard routes
     Route::get('/dashboard',[HomeController::class, 'index'] )->name('dashboard');
-    Route::get('/dashboard/community', function () {return view('pages/community-page');})->name('community.page');
 
     //community routes
     Route::get('/community/view/{community_id}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
@@ -39,7 +38,7 @@ Route::middleware([
     Route::post('/community/create',[CommunityController::class, 'postCreateCommunity'] )->name('post.create.community');
     
 });
-Route::group(['middleware' => ['protectedEdit']], function () {
+Route::group(['middleware' => ['protectedEdit','auth']], function () {
     //COMMUNITY EDIT ACCDESS PAGES
     Route::get('/community/edit/{community_id}',[CommunityController::class, 'editCommunity'] )->name('edit.community');
     Route::post('/community/edit/{community_id}',[CommunityController::class, 'postEditCommunity'] )->name('community.page')->name('edit.community');

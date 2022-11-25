@@ -15,7 +15,11 @@ class CommunityController extends Controller {
         if ( $community ) {
             $socials = $community->socials;
             $result = compact( 'community', 'socials' );
-            return view( 'pages.community.community-page', )->with( $result );
+            if ( Auth::user()->user_id == $community->creator ) {
+                return view( 'pages.community.admin-community-page', )->with( $result );
+            } else {
+                return view( 'pages.community.community-page', )->with( $result );
+            }
         } else {
             return view( 'pages.error' );
         }
@@ -72,11 +76,17 @@ class CommunityController extends Controller {
             $result = compact( 'model', 'heading', 'url', 'socials' );
             return view( 'pages.community.create-community' )->with( $result );
         } else {
-            return redirect( 'admin/category' );
+            return view( 'pages.error' );
         }
     }
 
     public function postEditCommunity( $community_id, Request $request ) {
+        $request->validate( [
+            'name'=>'required',
+            'username'=>'required|unique:communities,username',
+            'email'=>'required|email|unique:communities,email',
+            'description'=>'required',
+        ] );
         $socials = [
             'linkedin' => $request->linkedin,
             'facebook' => $request->facebook,
