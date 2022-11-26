@@ -50,3 +50,7 @@ Route::get('/google/callback',[AuthController::class, 'handdleGoogleCallBack'] )
 
 // test route
 Route::get('/test', function () {return view('pages/test');})->name('test');
+
+//contact us route
+Route::get('/contactus', [HomeController::class, 'contactus'])->name('contact-us');
+Route::post('/contactus', [HomeController::class, 'contactusPost'])->name('contact-us');
