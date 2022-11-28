@@ -83,7 +83,7 @@
                             $mycommunities = Auth::user()->mycommunity;
                             ?>
                             @foreach ($mycommunities as $mycommunity)
-                                <a href="{{ url('community/view') }}/{{ $mycommunity->id }}">
+                                <a href="{{ url('community') }}/{{ $mycommunity->username }}">
                                     <div class="dropdown-item">
                                         <div class="media server-log">
                                             <img src="{{ url('/') }}/{{ $mycommunity->logo_photo_path }}" class="img-fluid me-2"
