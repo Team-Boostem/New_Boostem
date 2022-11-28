@@ -83,8 +83,8 @@ class CommunityController extends Controller {
     public function postEditCommunity( $community_id, Request $request ) {
         $request->validate( [
             'name'=>'required',
-            'username'=>'required|unique:communities,username',
-            'email'=>'required|email|unique:communities,email',
+            'username'=>'required|unique:communities,username,'.$community_id,
+            'email'=>'required|email|unique:communities,email,'.$community_id,
             'description'=>'required',
         ] );
         $socials = [

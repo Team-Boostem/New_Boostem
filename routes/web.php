@@ -18,7 +18,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 Route::get('logout', function (){
     auth()->logout();
     Session()->flush(); return Redirect::to('/');

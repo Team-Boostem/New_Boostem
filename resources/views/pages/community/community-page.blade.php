@@ -90,7 +90,7 @@
         .social-icons-container{
           min-width: 20rem;
           display: flex;
-          justify-content: space-between;
+          justify-content: space-evenly;
           align-items: center;
         }
         .social-icons-container a svg{
