@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class PageView extends Model
 {
     use HasFactory;
+    
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($user) {
+            $user->id = (string) Str::uuid();
+        });
+    }
 }
