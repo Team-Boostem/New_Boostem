@@ -33,7 +33,7 @@ Route::middleware([
     Route::get('/dashboard',[HomeController::class, 'index'] )->name('dashboard');
 
     //community routes
-    Route::get('/community/view/{community_id}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
+    Route::get('/community/{username}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
     Route::get('/community/create',[CommunityController::class, 'createCommunity'] )->name('create.community');
     Route::post('/community/create',[CommunityController::class, 'postCreateCommunity'] )->name('post.create.community');
     

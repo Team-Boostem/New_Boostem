@@ -5,19 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Community;
 use Auth;
+use App\Models\PageView;
 
 class CommunityController extends Controller {
 
-    public function viewCommunity( $community_id ) {
+    public function viewCommunity( $username ) {
 
-        $community = Community::where( 'id', $community_id )->first();
+        $community = Community::where( 'username', $username )->first();
 
         if ( $community ) {
             $socials = $community->socials;
             $result = compact( 'community', 'socials' );
+
             if ( Auth::user()->user_id == $community->creator ) {
                 return view( 'pages.community.admin-community-page', )->with( $result );
             } else {
+                page('community/{username}', $community->username);
                 return view( 'pages.community.community-page', )->with( $result );
             }
         } else {
