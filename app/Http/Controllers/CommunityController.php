@@ -24,7 +24,7 @@ class CommunityController extends Controller {
                 return view( 'pages.community.community-page', )->with( $result );
             }
         } else {
-            return view( 'pages.error' );
+            return view( 'pages.error.not-found' );
         }
 
     }

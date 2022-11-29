@@ -25,7 +25,7 @@ class editAccess {
             if ( $community->creator == Auth::user()->user_id ) {
                 return $next( $request );
             } else {
-                return response()->view( 'pages.error' );
+                return response()->view( 'pages.error.error' );
             }
         } else {
             return redirect()->route( 'login' );

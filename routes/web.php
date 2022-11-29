@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,12 @@ Route::middleware([
     Route::get('/community/{username}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
     Route::get('/community/create',[CommunityController::class, 'createCommunity'] )->name('create.community');
     Route::post('/community/create',[CommunityController::class, 'postCreateCommunity'] )->name('post.create.community');
+
+    //profile Routes
+    Route::get('/user/{user_id}',[ProfileController::class, 'viewUser'] )->name('user.page');
+    Route::get('/user/edit',[ProfileController::class, 'editUser'] )->name('user.edit');
+    Route::post('/user/edit',[ProfileController::class, 'editUserPost'] )->name('user.edit');
+    Route::get('/user/settings',[ProfileController::class, 'settingsUser'] )->name('user.settings');
     
 });
 Route::group(['middleware' => ['protectedEdit','auth']], function () {
