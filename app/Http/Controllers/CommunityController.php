@@ -116,6 +116,14 @@ class CommunityController extends Controller {
 
     }
 
+    // view create edit TEAM in community..............
+
+    public function viewTeamCommunity( $community_id ) {
+
+        $team = TeamCommunity::where( 'community_id', $community_id )->first();
+        $result = compact( 'team' );
+        return view( 'pages.community.view-team', )->with( $result );
+    }
     public function createTeamCommunity( $community_id ) {
 
         $team = TeamCommunity::where( 'community_id', $community_id )->first();
@@ -124,15 +132,25 @@ class CommunityController extends Controller {
     }
     public function createTeamCommunityPost( $community_id, Request $request ) {
 
+        $team = TeamCommunity::where( 'community_id', $community_id )->first();
         $request->validate([
             'team_details.*.title' => 'required',
             'team_details.*.email' => 'required'
         ]);
-        $team = new TeamCommunity();
-        $team->community_id = $community_id;
-        $team->team_details = $request->team_details;
-        $team->save();
-        return view( 'pages.community.community-page', );
+        if($team){
+            $team->community_id = $community_id;
+            $team->team_details = $request->team_details;
+            $team->save();
+            return view( 'pages.community.community-page', );
+        } else{
+            $team = new TeamCommunity();
+            $team->community_id = $community_id;
+            $team->team_details = $request->team_details;
+            $team->save();
+            return view( 'pages.community.community-page', );
+        }
+
+        
     }
     public function editTeamCommunity( $community_id ) {
 

@@ -16,15 +16,22 @@
 
 {{-- push scripts --}}
 @push('scripts')
-<script type="text/javascript">
-    var i = 0;
-    $("#add-btn").click(function(){
-    ++i;
-    $("#dynamicAddRemove").append('<tr><td><input type="text" name="team_details['+i+'][title]" placeholder="Enter title" class="form-control" /></td><td><input type="text" name="team_details['+i+'][email]" placeholder="Enter email" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
-    });
-    $(document).on('click', '.remove-tr', function(){  
-    $(this).parents('tr').remove();
-    });
+    <script type="text/javascript">
+        var j = document.getElementById("hidden").value;
+        console.log(j);
+
+        $("#add-btn").click(function() {
+            console.log(j);
+            $("#dynamicAddRemove").append('<tr><td><input type="text" name="team_details[' + j +
+                '][title]" placeholder="Enter title" class="form-control" /></td><td><input type="text" name="team_details[' +
+                j +
+                '][email]" placeholder="Enter email" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>'
+                );
+            ++j;    
+        });
+        $(document).on('click', '.remove-tr', function() {
+            $(this).parents('tr').remove();
+        });
     </script>
 @endpush
 
@@ -61,24 +68,44 @@
                                 <th>Title</th>
                                 <th>Action</th>
                             </tr>
-                            <tr>
-                                <td><input type="text" name="team_details[0][title]" placeholder="Enter title"
-                                        class="form-control" /></td>
-                                <td><input type="text" name="team_details[0][email]" placeholder="Enter email"
-                                        class="form-control" /></td>
-                                <td><button type="button" name="add" id="add-btn" class="btn btn-success">Add
-                                        More</button></td>
-                            </tr>
+
+                            @if($team)
+                                @for ($i = 0; $i < count($team->team_details); $i++)
+
+                                <tr>
+                                <td><input type="text" name='team_details[][title]' placeholder="Enter title"
+                                    class="form-control" value="{{$team->team_details[$i]['title']}}" /></td>
+                            <td><input type="text" name="team_details[{{$i}}][email]" placeholder="Enter email"
+                                    class="form-control" value="{{$team->team_details[$i]['email']}}" /></td>
+                            
+                                    </tr>
+                                @endfor
+                                @else
+                                <tr>
+                                <td><input type="text" name='team_details[0][title]' placeholder="Enter title"
+                                    class="form-control" /></td>
+                            <td><input type="text" name="team_details[0][email]" placeholder="Enter email"
+                                    class="form-control" /></td>
+                            
+                                    </tr>
+                                @endif
+                            
+                            
+                                
+                                
+                            
                         </table>
+                        <button type="button" name="add" id="add-btn" class="btn btn-success">Add
+                                    More</button>
                         <button type="submit" class="btn btn-success">Save</button>
                     </form>
+                    @if($team)
+                        <input type="text" name='hidden' id="hidden" value="{{count($team->team_details)}}" />
+                        @else
+                        <input type="text" name='hidden' id="hidden" value="1" />
+                        @endif
                 </div>
             </div>
         </div>
-        <h1>now itss about old members</h1>
-        <div class="one-men-info">
-            <h6>{{ $team->team_details[0]['title'] }}</h6>
-        </div>
-
     </div>
 @endsection
