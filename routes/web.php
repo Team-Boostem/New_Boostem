@@ -48,7 +48,12 @@ Route::middleware([
 Route::group(['middleware' => ['protectedEdit','auth']], function () {
     //COMMUNITY EDIT ACCDESS PAGES
     Route::get('/community/edit/{community_id}',[CommunityController::class, 'editCommunity'] )->name('edit.community');
-    Route::post('/community/edit/{community_id}',[CommunityController::class, 'postEditCommunity'] )->name('community.page')->name('edit.community');
+    Route::post('/community/edit/{community_id}',[CommunityController::class, 'postEditCommunity'] )->name('edit.community');
+    //community create and update team
+    Route::get('/community/team/create/{community_id}',[CommunityController::class, 'createTeamCommunity'] )->name('create.team.community');
+    Route::post('/community/team/create/{community_id}',[CommunityController::class, 'createTeamCommunityPost'] )->name('create.team.community');
+    Route::get('/community/team/edit/{community_id}',[CommunityController::class, 'editTeamCommunity'] )->name('edit.team.community');
+    Route::post('/community/team/edit/{community_id}',[CommunityController::class, 'editTeamCommunityPost'] )->name('edit.team.community');
 });
 
 //routes for google auth
