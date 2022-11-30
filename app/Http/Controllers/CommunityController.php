@@ -136,7 +136,7 @@ class CommunityController extends Controller {
     }
     public function editTeamCommunity( $community_id ) {
 
-        $community = TeamCommunity::where( 'community_id', $community_id )->first();
+        $team = TeamCommunity::where( 'community_id', $community_id )->first();
         return view( 'pages.community.community-page', )->with( $result );
     }
     public function editTeamCommunityPost( $community_id ) {

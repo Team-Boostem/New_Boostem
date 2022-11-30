@@ -75,6 +75,10 @@
                 </div>
             </div>
         </div>
+        <h1>now itss about old members</h1>
+        <div class="one-men-info">
+            <h6>{{ $team->team_details[0]['title'] }}</h6>
+        </div>
 
     </div>
 @endsection
