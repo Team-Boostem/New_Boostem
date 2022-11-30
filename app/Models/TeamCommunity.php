@@ -12,4 +12,7 @@ class TeamCommunity extends Model
     protected $casts = [
         'team_details' => 'array',
     ];
+    protected $fillable = [
+        'team_details'
+    ];
 }

@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Community;
 use Auth;
 use App\Models\PageView;
+use App\Models\TeamCommunity;
 
 class CommunityController extends Controller {
 
-    public function viewCommunity( $username ) {
+    public function viewCommunity( $community_id ) {
 
-        $community = Community::where( 'username', $username )->first();
+        $community = Community::where( 'id', $community_id )->first();
 
         if ( $community ) {
             $socials = $community->socials;
@@ -20,7 +21,7 @@ class CommunityController extends Controller {
             if ( Auth::user()->user_id == $community->creator ) {
                 return view( 'pages.community.admin-community-page', )->with( $result );
             } else {
-                page('community/{username}', $community->username);
+                page('community/{username}', $community->community_id);
                 return view( 'pages.community.community-page', )->with( $result );
             }
         } else {
@@ -114,5 +115,35 @@ class CommunityController extends Controller {
         return redirect( '/community/view/'.$community_id );
 
     }
+
+    public function createTeamCommunity( $community_id ) {
+
+        $team = TeamCommunity::where( 'community_id', $community_id )->first();
+        $result = compact( 'team' );
+        return view( 'pages.community.create-team', )->with( $result );
+    }
+    public function createTeamCommunityPost( $community_id, Request $request ) {
+
+        $request->validate([
+            'team_details.*.title' => 'required',
+            'team_details.*.email' => 'required'
+        ]);
+        $team = new TeamCommunity();
+        $team->community_id = $community_id;
+        $team->team_details = $request->team_details;
+        $team->save();
+        return view( 'pages.community.community-page', );
+    }
+    public function editTeamCommunity( $community_id ) {
+
+        $community = TeamCommunity::where( 'community_id', $community_id )->first();
+        return view( 'pages.community.community-page', )->with( $result );
+    }
+    public function editTeamCommunityPost( $community_id ) {
+
+        $community = TeamCommunity::where( 'community_id', $community_id )->first();
+        return view( 'pages.community.community-page', )->with( $result );
+    }
+    
 
 }
