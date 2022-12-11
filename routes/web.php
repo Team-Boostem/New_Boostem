@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,5 +68,15 @@ Route::get('/test', function () {return view('pages/test');})->name('test');
 //contact us route
 Route::get('/contactus', [HomeController::class, 'contactus'])->name('contact-us');
 Route::post('/contactus', [HomeController::class, 'contactusPost'])->name('contact-us');
+
+
+//blog routes
+Route::get('/blog/create', [BlogController::class, 'contactus'])->name('blog.create');
+Route::post('/blog/create', [BlogController::class, 'contactusPost'])->name('blog.create');
+Route::get('/blog/edit/{blog_slug}', [BlogController::class, 'contactus'])->name('blog.edit');
+Route::post('/blog/edit/{blog_slug}', [BlogController::class, 'contactusPost'])->name('blog.edit');
+
+Route::get('/blog', [BlogController::class, 'contactus'])->name('blog');
+Route::get('/blog/view/{blog_slug}', [BlogController::class, 'contactus'])->name('blog.view');
 
 
