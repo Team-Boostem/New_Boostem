@@ -121,9 +121,16 @@ class CommunityController extends Controller {
     public function viewTeamCommunity( $community_id ) {
 
         $team = TeamCommunity::where( 'community_id', $community_id )->first();
-        $result = compact( 'team' );
+        $community = Community::where( 'id', $community_id )->first();
+        if($community->creator == Auth::user()->user_id){
+            $access = true;
+        }else{
+            $access = false;
+        }
+        $result = compact( 'team','access' );
         return view( 'pages.community.view-team', )->with( $result );
     }
+
     public function createTeamCommunity( $community_id ) {
 
         $team = TeamCommunity::where( 'community_id', $community_id )->first();
