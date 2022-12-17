@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 class BlogController extends Controller
 {
     public function blogList() {
-        //GET ALL BLOGS
-        
-        return view('pages.blog.list-blog');
+        //GET ALL BLOGs
+        // $blogs = Blog::all();
+        // return view('pages.blog.list-blog', compact('blogs'));
+        $blogs = DB::table('blogs')
+            ->join('users', 'blogs.creator', '=', 'users.user_id')
+            ->select('blogs.*','users.user_id', 'users.name', 'users.profile_photo_path')
+            ->get();
+        return view('pages.blog.list-blog', compact('blogs'));
     }
+
     public function blogView() {
         return view('pages.blog.view-blog');
     }
@@ -30,8 +37,9 @@ class BlogController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
+            //store in storage blog folder
+            $path = 'storage/covers/blogs/';
+            $image->move($path, $name);
             // $this->save();
         }
         //convert category into csv
@@ -53,7 +61,7 @@ class BlogController extends Controller
         $blog->meta_description = $request->meta_description;
         $blog->category = $cat_csv_data;
         $blog->tags = $tags_csv_data;
-        $blog->image = $name;
+        $blog->image = '/' . $path . $name;
         $blog->slug = $request->slug;
         $blog->creator = Auth::user()->user_id;
         $blog->creator_type = 'c';

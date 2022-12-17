@@ -46,21 +46,26 @@
         
         <div class="row">
 
+            @foreach ($blogs as $blog)
+                
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
                 <a href="./app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-                    <img src="{{ asset('public/img/banner-samp1.png') }}" class="card-img-top" alt="...">
+                    <img src="{{ $blog->image }}" class="card-img-top" alt="...">
                     <div class="card-body px-0 pb-0">
-                        <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
+                        <h5 class="card-title mb-3">{{ $blog->title }}</h5>
                         <div class="media mt-4 mb-0 pt-1">
-                            <img src="{{ Auth::user()->profile_photo_path }}" class="card-media-image me-3" alt="">
+                            <img src="{{ $blog->profile_photo_path }}" class="card-media-image me-3" alt="">
                             <div class="media-body">
-                                <h4 class="media-heading mb-1">Shaun Park</h4>
-                                <p class="media-text">01 May</p>
+                                <h4 class="media-heading mb-1">{{ $blog->name}}</h4>
+                                {{-- <p class="media-text">{{ $blog->updated_at->diffForHumans() }}</p> --}}
+                                <p class="media-text">{{ \Carbon\Carbon::parse($blog->created_at)->diffForHumans() }}</p>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
+
+            @endforeach
 
            
             
