@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class BlogController extends Controller
 {
     public function blogList() {
+        return view('pages.blog.list-blog');
     }
     public function blogView() {
         return view('pages.blog.view-blog');
