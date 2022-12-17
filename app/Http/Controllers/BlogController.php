@@ -20,7 +20,7 @@ class BlogController extends Controller
         return view('pages.blog.list-blog', compact('blogs'));
     }
 
-    public function blogView() {
+    public function blogView($slug) {
         return view('pages.blog.view-blog');
     }
     public function blogCreate() {

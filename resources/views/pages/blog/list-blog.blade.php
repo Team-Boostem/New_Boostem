@@ -49,7 +49,7 @@
             @foreach ($blogs as $blog)
                 
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
-                <a href="./app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+                <a href="{{ url('/blog/view')}}/{{ $blog->slug }}" class="card style-2 mb-md-0 mb-4">
                     <img src="{{ $blog->image }}" class="card-img-top" alt="...">
                     <div class="card-body px-0 pb-0">
                         <h5 class="card-title mb-3">{{ $blog->title }}</h5>
