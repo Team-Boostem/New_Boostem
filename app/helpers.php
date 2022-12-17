@@ -22,6 +22,11 @@ function page($page, $profile_id = null)
     $p->user_agent = request()->header('User-Agent');
     $p->save();
 }
+function profileview($profile_id)
+{
+    $count = PageView::where('profile_id', $profile_id)->count();
+    return $count;
+}
 
 
 ?>

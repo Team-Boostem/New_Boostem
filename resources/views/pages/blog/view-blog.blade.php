@@ -90,6 +90,7 @@
                                 <span class="badge badge-primary mb-2">{{ $tag }}</span>
                                 @endforeach
                             </div>
+                            <p>views:{{ profileview($blog->slug) }}</p>
 
                         </div>
 

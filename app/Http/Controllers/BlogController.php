@@ -31,6 +31,7 @@ class BlogController extends Controller {
         foreach ( $cat_data as $cat ) {
             array_push($cat_array_data,$cat);
         }
+        
         //convert tags into array
         $tags = $blog->tags;
         $tags_data = explode( ',', $tags );
@@ -39,6 +40,7 @@ class BlogController extends Controller {
             array_push($tags_array_data,$tag);
         }
         // dd( $cat_array_data );
+        page('blog/{username}', $blog->slug);
         return view( 'pages.blog.view-blog', compact( 'blog','tags_array_data','cat_array_data' ) );
     }
 
