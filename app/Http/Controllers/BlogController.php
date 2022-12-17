@@ -6,6 +6,10 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Storage;
+//use file class
+use Illuminate\Support\Facades\File;
+
 
 class BlogController extends Controller {
     public function blogList() {
@@ -83,7 +87,7 @@ class BlogController extends Controller {
         $blog->meta_description = $request->meta_description;
         $blog->category = $cat_csv_data;
         $blog->tags = $tags_csv_data;
-        $blog->image = '/' . $path . $name;
+        $blog->image = $name;
         $blog->slug = $request->slug;
         $blog->creator = Auth::user()->user_id;
         $blog->creator_type = 'c';
@@ -97,5 +101,16 @@ class BlogController extends Controller {
     }
 
     public function blogEditPost() {
+    }
+
+    public function blogDelete($blog_slug) {
+        $blog = Blog::where('slug', $blog_slug)->first();
+
+        $image = $blog->image;
+        $file = storage_path('covers\blogs\\'.$image);
+        $status = File::delete($file);
+        $blog->delete();
+
+        return redirect()->route('blog');
     }
 }

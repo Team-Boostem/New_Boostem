@@ -80,5 +80,7 @@ Route::post('/blog/create', [BlogController::class, 'blogCreatePost'])->name('bl
 Route::get('/blog/edit/{blog_slug}', [BlogController::class, 'blogEdit'])->name('blog.edit');
 Route::post('/blog/edit/{blog_slug}', [BlogController::class, 'blogEditPost'])->name('blog.edit');
 
+Route::get('/blog/delete/{blog_slug}', [BlogController::class, 'blogDelete'])->name('blog.delete');
+
 
 
