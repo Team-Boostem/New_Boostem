@@ -6,14 +6,31 @@
 var quill = new Quill('#blog-description', {
     modules: {
         toolbar: [
-        [{ header: [1, 2, false] }],
-        ['bold', 'italic', 'underline'],
-        ['image', 'code-block']
+            [{ header: [1, 2, false] }],
+            ['bold', 'italic', 'underline'],
+            ['code-block'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'align': [] }],
+            ['link']
         ]
     },
     placeholder: 'Write product description...',
     theme: 'snow'  // or 'bubble'
 });
+var toolbarOptions = {
+    handlers: {
+      // handlers object will be merged with default handlers object
+      'link': function(value) {
+        if (value) {
+          var href = prompt('Enter the URL');
+          this.quill.format('link', href);
+        } else {
+          this.quill.format('link', false);
+        }
+      }
+    }
+  }
 
 
 /**
@@ -59,6 +76,6 @@ new Tagify(input)
 var input = document.querySelector('input[name=category]');
 
 new Tagify(input, {
-    whitelist: ["Themeforest","Admin","Dashboard","Laravel","Sale","Vue","React","Cork Admin"],
+    whitelist: ["Themeforest", "Admin", "Dashboard", "Laravel", "Sale", "Vue", "React", "Cork Admin"],
     userInput: false
 })
