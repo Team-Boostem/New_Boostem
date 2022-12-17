@@ -57,7 +57,7 @@
 
                         <div class="header-section">
                             <div class="image-container">
-                                <img src="{{ $blog->image }}" alt="">
+                                <img src="/storage/covers/blogs/{{ $blog->image }}" alt="">
                             </div>
                             <div class="creater-profail flex">
                                 <div class="creater-img">
@@ -66,7 +66,7 @@
                                 <div class="creater-info">
                                     {{-- <a href="{{  }}"> --}}
                                         <h5 class="creater-name">{{ $blog->name }}</h5>
-                                    <p class="creater-name">{{ $blog->username }}</>
+                                    <p class="creater-name">{{ $blog->username }}</p>
                                     {{-- </a> --}}
                                 </div>
                             </div>

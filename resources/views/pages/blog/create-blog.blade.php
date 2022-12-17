@@ -105,7 +105,7 @@ document.getElementById('blog-description').onchange = function(){
                             </div>
                             <div class="col-xxl-12">
                                 <label for="post-meta-description">Meta Description</label>
-                                <textarea name="post-meta-description" class="form-control" id="post-meta-description" cols="10" rows="5" name="meta_description"></textarea>
+                                <textarea class="form-control" id="post-meta-description" cols="10" rows="5" name="meta_description"></textarea>
                             </div>
                         </div>
 
