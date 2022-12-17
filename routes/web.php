@@ -71,12 +71,14 @@ Route::post('/contactus', [HomeController::class, 'contactusPost'])->name('conta
 
 
 //blog routes
-Route::get('/blog/create', [BlogController::class, 'contactus'])->name('blog.create');
-Route::post('/blog/create', [BlogController::class, 'contactusPost'])->name('blog.create');
-Route::get('/blog/edit/{blog_slug}', [BlogController::class, 'contactus'])->name('blog.edit');
-Route::post('/blog/edit/{blog_slug}', [BlogController::class, 'contactusPost'])->name('blog.edit');
+Route::get('/blog', [BlogController::class, 'blogList'])->name('blog');
+Route::get('/blog/view/{blog_slug}', [BlogController::class, 'blogView'])->name('blog.view');
 
-Route::get('/blog', [BlogController::class, 'contactus'])->name('blog');
-Route::get('/blog/view/{blog_slug}', [BlogController::class, 'contactus'])->name('blog.view');
+Route::get('/blog/create', [BlogController::class, 'blogCreate'])->name('blog.create');
+Route::post('/blog/create', [BlogController::class, 'blogCreatePost'])->name('blog.create');
+
+Route::get('/blog/edit/{blog_slug}', [BlogController::class, 'blogEdit'])->name('blog.edit');
+Route::post('/blog/edit/{blog_slug}', [BlogController::class, 'blogEditPost'])->name('blog.edit');
+
 
 
