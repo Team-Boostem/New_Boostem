@@ -17,18 +17,17 @@ return new class extends Migration
             $table->string('id');
             $table->primary('id');
             $table->string('title');
-            $table->longText('discription');
+            $table->longText('description');
+            $table->string('meta_title')->nullable();
+            $table->longText('meta_description')->nullable();
+            $table->string('category')->nullable();
+            $table->string('tags')->nullable();
+            $table->string('image')->nullable();
             $table->string('slug');
-            $table->string('type')->default('a');
-            $table->longText('content');
             $table->string('creator');
             $table->string('creator_type');
-            $table->integer('category')->nullable();
-            $table->string('tags')->nullable();
-            $table->integer('readtime')->nullable();
-            $table->string('image');
-            $table->boolean('active')->default(true);
-            $table->boolean('suspended')->default(false);
+            $table->boolean('type')->default('1');
+            $table->boolean('suspended')->default(false);       
             $table->timestamps();
         });
     }

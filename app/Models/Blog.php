@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Blog extends Model
 {
@@ -17,13 +18,11 @@ class Blog extends Model
         'title',
         'discription',
         'type',
-        'content',
         'creator',
         'creator_type',
         'category',
         'slug',
         'tags',
-        'readtime',
         'image',
         'active',
         'suspended',

@@ -58,7 +58,17 @@ document.getElementById('blog-description').onchange = function(){
 @extends('layouts/community-dashboard')
 @section('content')
    <div class="main-box">
-    <form action="blog.create" method="POST" enctype="multipart/form-data">
+    
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+    <form action="{{ route('blog.create') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="middle-content container-xxl p-0">
@@ -119,6 +129,12 @@ document.getElementById('blog-description').onchange = function(){
                                 </div>
                             </div> --}}
                             <div class="col-xxl-12 col-md-12 mb-4">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="post-title" placeholder="Unique Slug" name="slug">
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-12 col-md-12 mb-4">
                                 <label for="tags">Tags</label>
                                 <input id="tags" class="blog-tags" name="tags" value="">
                             </div>
@@ -131,16 +147,13 @@ document.getElementById('blog-description').onchange = function(){
                             <div class="col-xxl-12 col-md-12 mb-4">
 
                                 <label for="product-images">Featured Image</label>
-                                <div class="multiple-file-upload">
+                                {{-- <div class="multiple-file-upload">
                                     <input type="file" 
                                         class="filepond file-upload-multiple"
-                                        name="image"
-                                        id="product-images" 
-                                        multiple 
-                                        data-allow-reorder="true"
-                                        data-max-file-size="3MB"
-                                        data-max-files="5">
-                                </div>
+                                        name="filepond"
+                                        id="product-images">
+                                </div> --}}
+                                <input type="file" placeholder="uplode image" name="image">
 
                             </div>
 
