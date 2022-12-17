@@ -44,12 +44,22 @@
  <!-- END GLOBAL MANDATORY STYLES -->
 
 <!-- END PAGE LEVEL SCRIPTS -->
+<script>
+//on change function
+document.getElementById('blog-description').onchange = function(){
+    console.log('hii')
+};
+
+
+</script>
 @endpush
 
 {{-- extend and yield content --}}
 @extends('layouts/community-dashboard')
 @section('content')
    <div class="main-box">
+    <form action="blog.create" method="POST" enctype="multipart/form-data">
+        @csrf
 
         <div class="middle-content container-xxl p-0">
 
@@ -61,13 +71,14 @@
 
                         <div class="row mb-4">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="post-title" placeholder="Post Title">
+                                <input type="text" class="form-control" id="post-title" placeholder="Post Title" name="title">
                             </div>
                         </div>
 
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label>Content</label>
+                                <input type="hidden" name="description">
                                 <div id="blog-description"></div>
                             </div>
                         </div>
@@ -80,11 +91,11 @@
                         
                         <div class="row mb-4">
                             <div class="col-xxl-12 mb-4">
-                                <input type="text" class="form-control" id="post-meta-title" placeholder="Meta Title">
+                                <input type="text" class="form-control" id="post-meta-title" placeholder="Meta Title" name="meta_title">
                             </div>
                             <div class="col-xxl-12">
                                 <label for="post-meta-description">Meta Description</label>
-                                <textarea name="post-meta-description" class="form-control" id="post-meta-description" cols="10" rows="5"></textarea>
+                                <textarea name="post-meta-description" class="form-control" id="post-meta-description" cols="10" rows="5" name="meta_description"></textarea>
                             </div>
                         </div>
 
@@ -97,24 +108,24 @@
                         <div class="row">
                             <div class="col-xxl-12 mb-4">
                                 <div class="switch form-switch-custom switch-inline form-switch-primary">
-                                    <input class="switch-input" type="checkbox" role="switch" id="showPublicly" checked>
-                                    <label class="switch-label" for="showPublicly">Publish</label>
+                                    <input class="switch-input" type="checkbox" role="switch" id="showPublicly" checked name="type">
+                                    <label class="switch-label" for="showPublicly">Public</label>
                                 </div>
                             </div>
-                            <div class="col-xxl-12 mb-4">
+                            {{-- <div class="col-xxl-12 mb-4">
                                 <div class="switch form-switch-custom switch-inline form-switch-primary">
                                     <input class="switch-input" type="checkbox" role="switch" id="enableComment" checked>
                                     <label class="switch-label" for="enableComment">Enable Comments</label>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-xxl-12 col-md-12 mb-4">
                                 <label for="tags">Tags</label>
-                                <input id="tags" class="blog-tags" value="">
+                                <input id="tags" class="blog-tags" name="tags" value="">
                             </div>
 
                             <div class="col-xxl-12 col-md-12 mb-4">
                                 <label for="category">Category</label>
-                                <input id="category" name="category" placeholder="Choose...">
+                                <input name="category" placeholder="Choose...">
                             </div>
 
                             <div class="col-xxl-12 col-md-12 mb-4">
@@ -123,7 +134,7 @@
                                 <div class="multiple-file-upload">
                                     <input type="file" 
                                         class="filepond file-upload-multiple"
-                                        name="filepond"
+                                        name="image"
                                         id="product-images" 
                                         multiple 
                                         data-allow-reorder="true"
@@ -134,7 +145,7 @@
                             </div>
 
                             <div class="col-xxl-12 col-sm-4 col-12 mx-auto">
-                                <button class="btn btn-success w-100">Create Post</button>
+                                <button type="submit" class="btn btn-success w-100">Create Post</button>
                             </div>
                             
                         </div>
@@ -144,6 +155,7 @@
             </div>
             
         </div>
-
+    </form>
+    
     </div>
 @endsection

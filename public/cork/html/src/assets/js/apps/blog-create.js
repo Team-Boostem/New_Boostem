@@ -31,6 +31,12 @@ var toolbarOptions = {
       }
     }
   }
+  quill.on('text-change', function() {
+    var html = quill.root.innerHTML;
+    document.querySelector('input[name=description]').value = html;
+  });
+  
+    
 
 
 /**
