@@ -92,6 +92,33 @@
                             </div>
                             <p>views:{{ profileview($blog->slug) }}</p>
 
+                            <div class="post-form mt-5">
+                                <form action="{{ route('comment.add',$blog->slug) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="section add-comment">
+                                    <div class="info">
+                                        <h6 class="">Add Comment</h6>
+                                        <p>Add your <span class="text-success">comment</span> to this post.</p>
+
+                                        <div class="row mt-4">
+
+                                                <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Write Comment</label>
+                                                    <textarea class="form-control" cols="30" rows="10" name="msg"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-end mt-4">
+                                            <button class="btn btn-success">Add Comment</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                                
+                            </div>
+
                         </div>
 
                     </div>

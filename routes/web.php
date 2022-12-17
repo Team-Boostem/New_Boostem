@@ -6,6 +6,7 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,10 @@ Route::get('/blog/edit/{blog_slug}', [BlogController::class, 'blogEdit'])->name(
 Route::post('/blog/edit/{blog_slug}', [BlogController::class, 'blogEditPost'])->name('blog.edit');
 
 Route::get('/blog/delete/{blog_slug}', [BlogController::class, 'blogDelete'])->name('blog.delete');
+
+//blog routes
+Route::post('/blog/add_comment/{blog_slug}', [CommentController::class, 'addComment'])->name('comment.add');
+Route::get('/blog/remove_comment/{comment_id}', [CommentController::class, 'removeComment'])->name('comment.remove');
 
 
 
