@@ -14,8 +14,8 @@ class BlogController extends Controller {
     public function blogList() {
         //GET ALL BLOGs
         $blogs = DB::table( 'blogs' )
-        ->join( 'users', 'blogs.creator', '=', 'users.user_id' )
-        ->select( 'blogs.*', 'users.user_id', 'users.name', 'users.profile_photo_path' )
+        ->join( 'communities', 'blogs.community_id', '=', 'communities.id' )
+        ->select( 'blogs.*', 'communities.name', 'communities.tagline', 'communities.logo_photo_path' )
         ->get();
         return view( 'pages.blog.list-blog', compact( 'blogs' ) );
     }
