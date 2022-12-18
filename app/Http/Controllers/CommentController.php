@@ -24,8 +24,14 @@ class CommentController extends Controller
     }
     public function removeComment($comment_id){
         $comment = Comment::where('id',$comment_id)->first();
-        $comment->delete();
-        return redirect()->back()->with('success', 'Comment deleted successfully');
+        $community = Community::where('id',$comment->community_id)->first();
+        if(Auth::user()->user_id == $comment->creator || Auth::user()->user_id == $community->creator){
+            $comment->delete();
+            return redirect()->back()->with('success', 'Comment deleted successfully');
+        }
+        else{
+            return redirect()->back()->with('error', 'You are not authorised in');
+        }
 
     }
 

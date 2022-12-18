@@ -106,15 +106,15 @@ class BlogController extends Controller {
 
     }
 
-    public function blogEdit() {
+    public function blogEdit($community_id,$blog_slug) {
     }
 
-    public function blogEditPost() {
+    public function blogEditPost($community_id,$blog_slug) {
     }
 
-    public function blogDelete( $blog_slug ) {
+    public function blogDelete( $community_id,$blog_slug ) {
+        
         $blog = Blog::where( 'slug', $blog_slug )->first();
-
         $image = $blog->image;
         $file = storage_path( 'covers\blogs\\'.$image );
         $status = File::delete( $file );

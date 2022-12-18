@@ -46,6 +46,10 @@ Route::middleware([
     Route::get('/user/edit',[ProfileController::class, 'editUser'] )->name('user.edit');
     Route::post('/user/edit',[ProfileController::class, 'editUserPost'] )->name('user.edit');
     Route::get('/user/settings',[ProfileController::class, 'settingsUser'] )->name('user.settings');
+
+    //blog routes
+    Route::post('/blog/add_comment/{blog_slug}', [CommentController::class, 'addComment'])->name('comment.add');
+    Route::get('/blog/remove_comment/{comment_id}', [CommentController::class, 'removeComment'])->name('comment.remove');
     
 });
 Route::group(['middleware' => ['protectedEdit','auth']], function () {
@@ -62,6 +66,7 @@ Route::group(['middleware' => ['protectedEdit','auth']], function () {
     Route::post('/blog/create/{community_id}', [BlogController::class, 'blogCreatePost'])->name('blog.create');
     Route::get('/blog/edit/{community_id}/{blog_slug}', [BlogController::class, 'blogEdit'])->name('blog.edit');
     Route::post('/blog/edit/{community_id}/{blog_slug}', [BlogController::class, 'blogEditPost'])->name('blog.edit');
+    Route::get('/blog/delete/{community_id}/{blog_slug}', [BlogController::class, 'blogDelete'])->name('blog.delete');
 });
 
 
@@ -82,14 +87,6 @@ Route::get('/blog', [BlogController::class, 'blogList'])->name('blog');
 Route::get('/blog/view/{blog_slug}', [BlogController::class, 'blogView'])->name('blog.view');
 
 
-
-
-
-Route::get('/blog/delete/{blog_slug}', [BlogController::class, 'blogDelete'])->name('blog.delete');
-
-//blog routes
-Route::post('/blog/add_comment/{blog_slug}', [CommentController::class, 'addComment'])->name('comment.add');
-Route::get('/blog/remove_comment/{comment_id}', [CommentController::class, 'removeComment'])->name('comment.remove');
 
 
 
