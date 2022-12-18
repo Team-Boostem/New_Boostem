@@ -28,6 +28,15 @@ class BlogController extends Controller {
         ->select( 'blogs.*', 'users.user_id', 'users.name', 'users.username', 'users.profile_photo_path' )
         ->where( 'slug', $blog_slug )
         ->first();
+
+        //get all comments
+        $comments = DB::table( 'comments' )
+        ->join( 'users', 'comments.creator', '=', 'users.user_id' )
+        ->select( 'comments.*', 'users.user_id', 'users.name', 'users.username', 'users.profile_photo_path' )
+        ->where( 'blog_slug', $blog_slug )
+        ->get();
+        // dd( $comments );
+
         //convert category into array
         $category = $blog->category;
         $cat_data = explode( ',', $category );
@@ -45,7 +54,7 @@ class BlogController extends Controller {
         }
         // dd( $cat_array_data );
         page('blog/{username}', $blog->slug);
-        return view( 'pages.blog.view-blog', compact( 'blog','tags_array_data','cat_array_data' ) );
+        return view( 'pages.blog.view-blog', compact( 'blog','tags_array_data','cat_array_data','comments', ) );
     }
 
     public function blogCreate() {

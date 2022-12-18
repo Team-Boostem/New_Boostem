@@ -92,14 +92,49 @@
                             </div>
                             <p>views:{{ profileview($blog->slug) }}</p>
 
+                            {{-- view comments.................. --}}
+                            <h2 class="mb-5">Comments <span class="comment-count"></span></h2>
+
+                                    <div class="post-comments">
+                                        @foreach ($comments as $comment)
+                                        <div class="media mb-5 pb-5 primary-comment">
+                                            <div class="avatar me-4">
+                                                <img alt="avatar" src="{{ url('') }}/{{ $comment->profile_photo_path }}" class="rounded-circle" />
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="media-heading mb-1">{{ $comment->name }}</h5>
+                                                <div class="meta-info mb-0">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</div>
+                                                <p class="media-text mt-2 mb-0">{{ $comment->msg }}</p>
+                                                
+                                            </div>
+                                        </div>
+                                        @endforeach
+
+                                        {{-- <div class="post-pagination">
+
+                                            <div class="pagination-no_spacing">
+
+                                                <ul class="pagination">
+                                                    <li><a href="javascript:void(0);" class="prev"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg></a></li>
+                                                    <li><a href="javascript:void(0);">1</a></li>
+                                                    <li><a href="javascript:void(0);" class="active">2</a></li>
+                                                    <li><a href="javascript:void(0);">3</a></li>
+                                                    <li><a href="javascript:void(0);" class="next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></a></li>
+                                                </ul>
+        
+                                            </div>
+                                            
+                                        </div> --}}
+                                        
+
+                                    </div>
+                            {{-- add comments.................. --}}
                             <div class="post-form mt-5">
                                 <form action="{{ route('comment.add',$blog->slug) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="section add-comment">
                                     <div class="info">
                                         <h6 class="">Add Comment</h6>
-                                        <p>Add your <span class="text-success">comment</span> to this post.</p>
-
                                         <div class="row mt-4">
 
                                                 <div class="col-md-12">
