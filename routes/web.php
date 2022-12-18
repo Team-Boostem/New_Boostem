@@ -57,7 +57,11 @@ Route::group(['middleware' => ['protectedEdit','auth']], function () {
     Route::post('/community/team/create/{community_id}',[CommunityController::class, 'createTeamCommunityPost'] )->name('create.team.community');
     Route::get('/community/team/edit/{community_id}',[CommunityController::class, 'editTeamCommunity'] )->name('edit.team.community');
     Route::post('/community/team/edit/{community_id}',[CommunityController::class, 'editTeamCommunityPost'] )->name('edit.team.community');
+    //blog routes
+    Route::get('/blog/create/{community_id}', [BlogController::class, 'blogCreate'])->name('blog.create');
+    Route::post('/blog/create/{community_id}', [BlogController::class, 'blogCreatePost'])->name('blog.create');
 });
+
 
 //routes for google auth
 Route::get('/google',[AuthController::class, 'redirectToGoogle'] );
@@ -75,8 +79,7 @@ Route::post('/contactus', [HomeController::class, 'contactusPost'])->name('conta
 Route::get('/blog', [BlogController::class, 'blogList'])->name('blog');
 Route::get('/blog/view/{blog_slug}', [BlogController::class, 'blogView'])->name('blog.view');
 
-Route::get('/blog/create', [BlogController::class, 'blogCreate'])->name('blog.create');
-Route::post('/blog/create', [BlogController::class, 'blogCreatePost'])->name('blog.create');
+
 
 Route::get('/blog/edit/{blog_slug}', [BlogController::class, 'blogEdit'])->name('blog.edit');
 Route::post('/blog/edit/{blog_slug}', [BlogController::class, 'blogEditPost'])->name('blog.edit');

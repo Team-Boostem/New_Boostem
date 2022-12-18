@@ -10,7 +10,6 @@ use Storage;
 //use file class
 use Illuminate\Support\Facades\File;
 
-
 class BlogController extends Controller {
     public function blogList() {
         //GET ALL BLOGs
@@ -42,30 +41,30 @@ class BlogController extends Controller {
         $cat_data = explode( ',', $category );
         $cat_array_data = array();
         foreach ( $cat_data as $cat ) {
-            array_push($cat_array_data,$cat);
+            array_push( $cat_array_data, $cat );
         }
-        
+
         //convert tags into array
         $tags = $blog->tags;
         $tags_data = explode( ',', $tags );
         $tags_array_data = array();
         foreach ( $tags_data as $tag ) {
-            array_push($tags_array_data,$tag);
+            array_push( $tags_array_data, $tag );
         }
         // dd( $cat_array_data );
-        page('blog/{username}', $blog->slug);
-        return view( 'pages.blog.view-blog', compact( 'blog','tags_array_data','cat_array_data','comments', ) );
+        page( 'blog/{username}', $blog->slug );
+        return view( 'pages.blog.view-blog', compact( 'blog', 'tags_array_data', 'cat_array_data', 'comments', ) );
     }
 
-    public function blogCreate() {
+    public function blogCreate($community_id) {
         return view( 'pages.blog.create-blog' );
     }
 
-    public function blogCreatePost( Request $request ) {
+    public function blogCreatePost( Request $request,$community_id ) {
         $request->validate( [
             'title' => 'required',
             'description' => 'required',
-            'slug' => 'required',
+            'slug' => 'required|unique:blogs,slug,$request->slug',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ] );
         //get image save it in storage and get the path
@@ -99,6 +98,7 @@ class BlogController extends Controller {
         $blog->image = $name;
         $blog->slug = $request->slug;
         $blog->creator = Auth::user()->user_id;
+        $blog->community_id = $community_id;
         $blog->creator_type = 'c';
         $blog->type = $yourval;
         $blog->save();
@@ -112,14 +112,14 @@ class BlogController extends Controller {
     public function blogEditPost() {
     }
 
-    public function blogDelete($blog_slug) {
-        $blog = Blog::where('slug', $blog_slug)->first();
+    public function blogDelete( $blog_slug ) {
+        $blog = Blog::where( 'slug', $blog_slug )->first();
 
         $image = $blog->image;
-        $file = storage_path('covers\blogs\\'.$image);
-        $status = File::delete($file);
+        $file = storage_path( 'covers\blogs\\'.$image );
+        $status = File::delete( $file );
         $blog->delete();
 
-        return redirect()->route('blog');
+        return redirect()->route( 'blog' );
     }
 }

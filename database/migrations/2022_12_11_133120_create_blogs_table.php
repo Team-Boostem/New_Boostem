@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('slug');
             $table->string('creator');
+            $table->string('community_id');
             $table->string('creator_type');
             $table->boolean('type')->default('1');
             $table->boolean('suspended')->default(false);       
