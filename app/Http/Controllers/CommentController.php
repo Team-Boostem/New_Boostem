@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Models\Community;
 use Auth;
 
 class CommentController extends Controller
@@ -23,6 +24,7 @@ class CommentController extends Controller
         return redirect()->back()->with('success', 'Comment added successfully');
     }
     public function removeComment($comment_id){
+        // dd($comment_id);
         $comment = Comment::where('id',$comment_id)->first();
         $community = Community::where('id',$comment->community_id)->first();
         if(Auth::user()->user_id == $comment->creator || Auth::user()->user_id == $community->creator){

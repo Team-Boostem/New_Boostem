@@ -74,11 +74,11 @@
                             </div>
                             <div class="blog-edit">
                                 @auth
-                                @if (Auth::user()->user_id == $blog->creator)
-                                    <a
-                                        href="{{ route('blog.edit', ['community_id' => $blog->community_id, 'blog_slug' => $blog->slug]) }}"><button
-                                            class="btn btn-edit">Edit</button></a>
-                                @endif
+                                    @if (Auth::user()->user_id == $blog->creator)
+                                        <a
+                                            href="{{ route('blog.edit', ['community_id' => $blog->community_id, 'blog_slug' => $blog->slug]) }}"><button
+                                                class="btn btn-edit">Edit</button></a>
+                                    @endif
                                 @endauth
                             </div>
                         </div>
@@ -119,7 +119,17 @@
                                             <div class="meta-info mb-0">
                                                 {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</div>
                                             <p class="media-text mt-2 mb-0">{{ $comment->msg }}</p>
+                                            @auth
+                                                @if (Auth::user()->user_id == $blog->creator || Auth::user()->user_id == $comment->creator)
+                                                    <a href="{{ route('comment.remove', $comment->id) }}">
+                                                        <button class="btn btn-danger btn-icon btn-reply btn-rounded">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                                                        </button>
+                                                    </a>
+                                                    
+                                                @endif
 
+                                            @endauth
                                         </div>
                                     </div>
                                 @endforeach
@@ -145,34 +155,34 @@
                             {{-- add comments.................. --}}
                             <div class="post-form mt-5">
                                 @auth
-                                    
-                                
-                                <form action="{{ route('comment.add', $blog->slug) }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="section add-comment">
-                                        <div class="info">
-                                            <h6 class="">Add Comment</h6>
-                                            <div class="row mt-4">
 
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Write Comment</label>
-                                                        <textarea class="form-control" cols="30" rows="10" name="msg"></textarea>
+
+                                    <form action="{{ route('comment.add', $blog->slug) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="section add-comment">
+                                            <div class="info">
+                                                <h6 class="">Add Comment</h6>
+                                                <div class="row mt-4">
+
+                                                    <div class="col-md-12">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Write Comment</label>
+                                                            <textarea class="form-control" cols="30" rows="10" name="msg"></textarea>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="text-end mt-4">
-                                                <button class="btn btn-success">Add Comment</button>
+                                                <div class="text-end mt-4">
+                                                    <button class="btn btn-success">Add Comment</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
                                 @else
-                                <a href="{{ route('login') }}">
-                                <h3>login to comment</h3>
-                                </a>
+                                    <a href="{{ route('login') }}">
+                                        <h3>login to comment</h3>
+                                    </a>
                                 @endauth
 
                             </div>
