@@ -27,6 +27,9 @@
             box-sizing: border-box;
             padding: 1.5rem 0rem;
         }
+        .avatar-indicators:before{
+            border: none !important;
+        }
     </style>
 </head>
 
