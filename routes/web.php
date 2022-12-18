@@ -60,6 +60,8 @@ Route::group(['middleware' => ['protectedEdit','auth']], function () {
     //blog routes
     Route::get('/blog/create/{community_id}', [BlogController::class, 'blogCreate'])->name('blog.create');
     Route::post('/blog/create/{community_id}', [BlogController::class, 'blogCreatePost'])->name('blog.create');
+    Route::get('/blog/edit/{community_id}/{blog_slug}', [BlogController::class, 'blogEdit'])->name('blog.edit');
+    Route::post('/blog/edit/{community_id}/{blog_slug}', [BlogController::class, 'blogEditPost'])->name('blog.edit');
 });
 
 
@@ -81,8 +83,7 @@ Route::get('/blog/view/{blog_slug}', [BlogController::class, 'blogView'])->name(
 
 
 
-Route::get('/blog/edit/{blog_slug}', [BlogController::class, 'blogEdit'])->name('blog.edit');
-Route::post('/blog/edit/{blog_slug}', [BlogController::class, 'blogEditPost'])->name('blog.edit');
+
 
 Route::get('/blog/delete/{blog_slug}', [BlogController::class, 'blogDelete'])->name('blog.delete');
 

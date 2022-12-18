@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('page_views', function (Blueprint $table) {
             $table->id();
             $table->string('page');
-            $table->string('user_id');
+            $table->string('user_id')->nullable();
             $table->string('profile_id')->nullable();
             $table->text('ip_address')->nullable();
             $table->text('user_agent')->nullable();

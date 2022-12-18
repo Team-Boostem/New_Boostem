@@ -12,10 +12,11 @@
 {{-- push styles --}}
 @push('styles')
     <style>
-        .header-section{
+        .header-section {
             margin: 1rem 4.5rem;
         }
-        .image-container img{
+
+        .image-container img {
             width: 100%;
             max-height: 600px;
             object-fit: cover;
@@ -24,18 +25,19 @@
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
-        .creater-img img{
+
+        .creater-img img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
         }
-        .creater-profail{
+
+        .creater-profail {
             margin: 1rem 0;
             display: flex;
             flex-direction: row;
         }
-        
     </style>
 @endpush
 
@@ -61,14 +63,23 @@
                             </div>
                             <div class="creater-profail flex">
                                 <div class="creater-img">
-                                    <img src="/{{ $blog->profile_photo_path }}" alt="">
+                                    <img src="/{{ $blog->logo_photo_path }}" alt="">
                                 </div>
                                 <div class="creater-info">
                                     {{-- <a href="{{  }}"> --}}
-                                        <h5 class="creater-name">{{ $blog->name }}</h5>
-                                    <p class="creater-name">{{ $blog->username }}</p>
+                                    <h5 class="creater-name">{{ $blog->name }}</h5>
+                                    <p class="creater-name">{{ $blog->tagline }}</p>
                                     {{-- </a> --}}
                                 </div>
+                            </div>
+                            <div class="blog-edit">
+                                @auth
+                                @if (Auth::user()->user_id == $blog->creator)
+                                    <a
+                                        href="{{ route('blog.edit', ['community_id' => $blog->community_id, 'blog_slug' => $blog->slug]) }}"><button
+                                            class="btn btn-edit">Edit</button></a>
+                                @endif
+                                @endauth
                             </div>
                         </div>
 
@@ -82,12 +93,12 @@
 
                             <div class="post-tags mt-5">
                                 @foreach ($cat_array_data as $cat)
-                                <span class="badge badge-primary mb-2">{{ $cat }}</span>
+                                    <span class="badge badge-primary mb-2">{{ $cat }}</span>
                                 @endforeach
                             </div>
                             <div class="post-tags mt-5">
                                 @foreach ($tags_array_data as $tag)
-                                <span class="badge badge-primary mb-2">{{ $tag }}</span>
+                                    <span class="badge badge-primary mb-2">{{ $tag }}</span>
                                 @endforeach
                             </div>
                             <p>views:{{ profileview($blog->slug) }}</p>
@@ -95,22 +106,25 @@
                             {{-- view comments.................. --}}
                             <h2 class="mb-5">Comments <span class="comment-count"></span></h2>
 
-                                    <div class="post-comments">
-                                        @foreach ($comments as $comment)
-                                        <div class="media mb-5 pb-5 primary-comment">
-                                            <div class="avatar me-4">
-                                                <img alt="avatar" src="{{ url('') }}/{{ $comment->profile_photo_path }}" class="rounded-circle" />
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="media-heading mb-1">{{ $comment->name }}</h5>
-                                                <div class="meta-info mb-0">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</div>
-                                                <p class="media-text mt-2 mb-0">{{ $comment->msg }}</p>
-                                                
-                                            </div>
+                            <div class="post-comments">
+                                @foreach ($comments as $comment)
+                                    <div class="media mb-5 pb-5 primary-comment">
+                                        <div class="avatar me-4">
+                                            <img alt="avatar"
+                                                src="{{ url('') }}/{{ $comment->profile_photo_path }}"
+                                                class="rounded-circle" />
                                         </div>
-                                        @endforeach
+                                        <div class="media-body">
+                                            <h5 class="media-heading mb-1">{{ $comment->name }}</h5>
+                                            <div class="meta-info mb-0">
+                                                {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</div>
+                                            <p class="media-text mt-2 mb-0">{{ $comment->msg }}</p>
 
-                                        {{-- <div class="post-pagination">
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                {{-- <div class="post-pagination">
 
                                             <div class="pagination-no_spacing">
 
@@ -125,33 +139,42 @@
                                             </div>
                                             
                                         </div> --}}
-                                        
 
-                                    </div>
+
+                            </div>
                             {{-- add comments.................. --}}
                             <div class="post-form mt-5">
-                                <form action="{{ route('comment.add',$blog->slug) }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="section add-comment">
-                                    <div class="info">
-                                        <h6 class="">Add Comment</h6>
-                                        <div class="row mt-4">
+                                @auth
+                                    
+                                
+                                <form action="{{ route('comment.add', $blog->slug) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="section add-comment">
+                                        <div class="info">
+                                            <h6 class="">Add Comment</h6>
+                                            <div class="row mt-4">
 
                                                 <div class="col-md-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Write Comment</label>
-                                                    <textarea class="form-control" cols="30" rows="10" name="msg"></textarea>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Write Comment</label>
+                                                        <textarea class="form-control" cols="30" rows="10" name="msg"></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="text-end mt-4">
-                                            <button class="btn btn-success">Add Comment</button>
+                                            <div class="text-end mt-4">
+                                                <button class="btn btn-success">Add Comment</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
-                                
+                                </form>
+                                @else
+                                <a href="{{ route('login') }}">
+                                <h3>login to comment</h3>
+                                </a>
+                                @endauth
+
                             </div>
 
                         </div>
