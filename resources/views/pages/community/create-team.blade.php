@@ -1,6 +1,6 @@
 {{-- push title --}}
 @push('title')
-    <title>User Profile</title>
+    <title>Create Team |</title>
 @endpush
 
 {{-- push styles --}}
