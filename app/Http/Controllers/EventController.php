@@ -6,30 +6,31 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use Auth;
 
-class EventController extends Controller
-{
-    public function event($event_slug){
+class EventController extends Controller {
+    public function event( $event_slug ) {
         //get event whwere slug = $event_slug
-        $event = Event::where('slug', $event_slug)->first();
-        return view('pages/event/view-event', compact('event'));
+        $event = Event::where( 'slug', $event_slug )->first();
+        $que = json_decode( $event->questions, true );
+        //dd( $que );
+        return view( 'pages/event/view-event', compact( 'event','que' ) );
     }
 
-    public function eventCreate(){
-        return view('pages/event/create-event');
+    public function eventCreate() {
+        return view( 'pages/event/create-event' );
     }
 
-    public function eventCreatePost(Request $request, $community_id){
-        $request->validate([
+    public function eventCreatePost( Request $request, $community_id ) {
+        $request->validate( [
             'title' => 'required',
             'description' => 'required',
-        ]);
+        ] );
+        dd( $request->all() );
         $customArr = [];
         $j = $request->hidden;
 
-        for($i = 0; $i < $j; $i++){
-            $customArr[$i] = [
-                "title" => $request->custom_input[$i]["title"],
-                "required" => $request->custom_input[$i]["type"],
+        for ( $i = 0; $i <= $j; $i++ ) {
+            $customArr[ $i ] = [
+                'title' => $request->custom_input[ $i ][ 'title' ],
             ];
         }
 
@@ -53,9 +54,9 @@ class EventController extends Controller
         // $event->vanue_type = $request->vanue_type;
         $event->community_id = $community_id;
         $event->creator = Auth::user()->user_id;
-        $event->questions = json_encode($customArr);
+        $event->questions = json_encode( $customArr );
 
         $event->save();
-        return redirect()->route('blog');
+        return redirect()->route( 'blog' );
     }
 }
