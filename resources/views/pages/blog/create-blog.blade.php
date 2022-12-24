@@ -68,7 +68,7 @@ document.getElementById('blog-description').onchange = function(){
             </ul>
         </div>
         @endif
-    <form action="{{ route('blog.create') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url()->current() }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="middle-content container-xxl p-0">
