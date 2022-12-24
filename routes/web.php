@@ -90,6 +90,9 @@ Route::get('/blog/view/{blog_slug}', [BlogController::class, 'blogView'])->name(
 //create event route
 Route::get('/event/create/{community_id}', [EventController::class, 'eventCreate'])->name('event.create');
 Route::post('/event/create/{community_id}', [EventController::class, 'eventCreatePost'])->name('event.create');
+Route::get('/event/{event_slug}', [EventController::class, 'event'])->name('event');
+Route::post('/event/{event_slug}', [EventController::class, 'eventPost'])->name('event');
+
 
 
 

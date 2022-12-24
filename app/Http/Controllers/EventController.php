@@ -8,6 +8,12 @@ use Auth;
 
 class EventController extends Controller
 {
+    public function event($event_slug){
+        //get event whwere slug = $event_slug
+        $event = Event::where('slug', $event_slug)->first();
+        return view('pages/event/view-event', compact('event'));
+    }
+
     public function eventCreate(){
         return view('pages/event/create-event');
     }
