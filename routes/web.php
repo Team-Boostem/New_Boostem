@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,11 @@ Route::post('/contactus', [HomeController::class, 'contactusPost'])->name('conta
 //blog routes
 Route::get('/blog', [BlogController::class, 'blogList'])->name('blog');
 Route::get('/blog/view/{blog_slug}', [BlogController::class, 'blogView'])->name('blog.view');
+
+//create event route
+Route::get('/event/create/{community_id}', [EventController::class, 'eventCreate'])->name('event.create');
+Route::post('/event/create/{community_id}', [EventController::class, 'eventCreatePost'])->name('event.create');
+
 
 
 
