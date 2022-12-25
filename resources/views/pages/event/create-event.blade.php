@@ -48,19 +48,15 @@
     {{-- adding custom input type text////////////////////////////////////////////////// --}}
     <script>
         const newInput = document.querySelector('#add_input');
-        const removeInput = document.querySelector('.remove-tr');
         const inputContainer = document.querySelector('#input_container');
-        const customCount = document.querySelector('input[name="hidden"]');
         var i = document.getElementById("hidden").value;
-        // onclickon the button, create a new input and append it to the container
         newInput.addEventListener('click', () => {
-            inputContainer.innerHTML +=
+            inputContainer.insertAdjacentHTML('beforeend',
                 `<tr>
                                     <div class="col-xxl-12 mb-4 mt-4">
                                         <input type="text" class="form-control" id="post-meta-title" required
-                                            placeholder="give a placeholder"
-                                            name="custom_input[` + i + `][title]"
-                                            value="{{ old('custom_input[`+ i +`][title]') }}">
+                                            placeholder="give a placeholder text"
+                                            name="custom_input[` + i + `][title]">
                                         <div class="col-xxl-12 mb-4 mt-4">
 
                                             <div class="form-check">
@@ -79,11 +75,12 @@
                                                     not-required
                                                 </label>
                                             </div>
+                                            <input type="hidden" name="custom_input[` + i + `][type]" value="text">
                                             <button type="button" class="btn btn-danger remove-tr">remove input</button>
 
                                         </div>
                                     </div>
-                                </tr>`;
+                                </tr>`);
             document.getElementById("hidden").value = i++;
         });
         // remove input
@@ -94,7 +91,120 @@
         });
     </script>
 
-    {{-- adding custom input type text////////////////////////////////////////////////// --}}
+    {{-- adding custom input type textarea////////////////////////////////////////////////// --}}
+    <script>
+        const newTextarea = document.querySelector('#add_textarea');
+        var i = document.getElementById("hidden").value;
+        newTextarea.addEventListener('click', () => {
+            inputContainer.insertAdjacentHTML('beforeend', `<tr>
+                                    <div class="col-xxl-12 mb-4 mt-4">
+                                        <input type="text" class="form-control" id="post-meta-title" required
+                                            placeholder="give a placeholder textarea"
+                                            name="custom_input[` + i + `][title]" >
+                                        <div class="col-xxl-12 mb-4 mt-4">
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio"
+                                                    name="custom_input[` + i + `][required]" id="flexRadioDefault1"
+                                                    value="required" checked>
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    required
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio"
+                                                    name="custom_input[` + i + `][required]" id="flexRadioDefault2"
+                                                    value="not-required">
+                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                    not-required
+                                                </label>
+                                            </div>
+                                            <input type="hidden" name="custom_input[` + i + `][type]" value="textarea">
+                                            <button type="button" class="btn btn-danger remove-tr">remove input</button>
+
+                                        </div>
+                                    </div>
+                                </tr>`);
+            document.getElementById("hidden").value = i++;
+        });
+        inputContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-tr')) {
+                e.target.parentElement.parentElement.parentElement.remove();
+            }
+        });
+    </script>
+    {{-- adding custom input type textarea////////////////////////////////////////////////// --}}
+    <script>
+        const newRadio = document.querySelector('#add_radio');
+        var i = document.getElementById("hidden").value;
+        newRadio.addEventListener('click', () => {
+            inputContainer.insertAdjacentHTML('beforeend', `<tr>
+                                    <div class="col-xxl-12 mb-4 mt-4">
+                                        <input type="text" class="form-control" id="post-meta-title" required
+                                            placeholder="give a radio question"
+                                            name="custom_input[` + i + `][title]" >
+                                        <div class="col-xxl-12 mb-4 mt-4">
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio"
+                                                    name="custom_input[` + i + `][required]" id="flexRadioDefault1"
+                                                    value="required" checked>
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    required
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio"
+                                                    name="custom_input[` + i + `][required]" id="flexRadioDefault2"
+                                                    value="not-required">
+                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                    not-required
+                                                </label>
+                                            </div>
+                                            <input type="hidden" name="custom_input[` + i +
+                `][type]" value="radio">
+                                            <button type="button" class="btn btn-danger remove-tr">remove radio question</button>
+                                            <button type="button" id="add_radio_option" class="btn btn-edit add_option">add option</button>
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <input type="text" class="form-control" placeholder="option" name="custom_input[` + i + `][options][0]">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>`);
+            document.getElementById("hidden").value = i++;
+        });
+        inputContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-option')) {
+                e.target.parentElement.parentElement.remove();
+            }
+        });
+        inputContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-tr')) {
+                e.target.parentElement.parentElement.parentElement.remove();
+            }
+        });
+        inputContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add_option')) {
+                var o = e.target.nextElementSibling.childElementCount;
+                var l = i - 1;
+                e.target.nextElementSibling.insertAdjacentHTML('beforeend',
+                    `<div class="row">
+                                                    <div class="col">
+                                                        <input type="text" class="form-control" placeholder="option" name="custom_input[` + l + `][options][` + o + `]">
+                                                    </div>
+                                                    <div class="col">
+                                                        <button type="button" class="btn btn-danger remove-option">remove option</button>
+                                                    </div>
+                                                </div>`);
+            }
+        });
+    </script>
+
+    {{-- adding custom input type dropdown////////////////////////////////////////////////// --}}
     {{-- <script>
         const newDropdown = document.querySelector('#add_dropdown');
         const dropdownContainer = document.querySelector('#dropdown_container');
@@ -181,20 +291,14 @@
                             <h5 class="mb-4">creating input questions</h5>
 
                             <button type="button" class="btn btn-primary" id="add_input">add input</button>
+                            <button type="button" class="btn btn-primary" id="add_textarea">add textarea</button>
+                            <button type="button" class="btn btn-primary" id="add_radio">add single choice</button>
+                            <input type="hidden" id="hidden" name="hidden" value="0">
                             <div class="row mb-4" id="input_container">
-                                {{-- //hidden input --}}
-                                <input type="hidden" id="hidden" name="hidden" value="0">
 
                             </div>
                         </div>
-                        {{-- creating dropdown questions/////////////////////////////////////////////////////////// --}}
-                        {{-- <div class="widget-content widget-content-area blog-create-section mt-4">
-                            <h5 class="mb-4">creating dropdown questions</h5>
-                            <button type="button" class="btn btn-primary" id="add_dropdown">add dropdown questions</button>
-                            <div class="row mb-4" id="dropdown_container">
-                                <input type="hidden" id="hidden_dropdown" name="hidden_dropdown" value="0">
-                            </div>
-                        </div> --}}
+                        {{-- end creating input questions///////////////////////////////////////////// --}}
                     </div>
                     <div class="col-xxl-3 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-xxl-0 mt-4">
                         <div class="widget-content widget-content-area blog-create-section">
@@ -215,8 +319,8 @@
                             </div> --}}
                                 <div class="col-xxl-12 col-md-12 mb-4">
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="post-title"
-                                            placeholder="Unique Slug" name="slug">
+                                        <input type="text" class="form-control" id="post-title" placeholder="Unique Slug"
+                                            name="slug">
                                     </div>
                                 </div>
 
