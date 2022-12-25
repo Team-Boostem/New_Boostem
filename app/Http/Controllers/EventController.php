@@ -24,15 +24,17 @@ class EventController extends Controller {
             'title' => 'required',
             'description' => 'required',
         ] );
-        dd( $request->all() );
+        //dd( $request->all() );
         $customArr = [];
         $j = $request->hidden;
 
         for ( $i = 0; $i <= $j; $i++ ) {
-            $customArr[ $i ] = [
+            $customArr[ 1 ][ $i ] = [
                 'title' => $request->custom_input[ $i ][ 'title' ],
+                'required' => $request->custom_input[ $i ][ 'required' ]
             ];
         }
+        dd( $customArr );
 
         //radio public button into 01
         $radio = $request->post( 'type' );
