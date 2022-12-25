@@ -24,17 +24,35 @@ class EventController extends Controller {
             'title' => 'required',
             'description' => 'required',
         ] );
-        dd( $request->all() );
+        //dd( $request->all() );
         $customArr = [];
         $j = $request->hidden;
 
         for ( $i = 0; $i <= $j; $i++ ) {
-            $customArr[ 1 ][ $i ] = [
-                'title' => $request->custom_input[ $i ][ 'title' ],
-                'required' => $request->custom_input[ $i ][ 'required' ]
-            ];
+            if ( $request->custom_input[ $i ][ 'type' ] == 'text' ) {
+                $customArr[ $i ] = [
+                    'type' => $request->custom_input[ $i ][ 'type' ],
+                    'title' => $request->custom_input[ $i ][ 'title' ],
+                    'required' => $request->custom_input[ $i ][ 'required' ]
+                ];
+            } elseif( $request->custom_input[ $i ][ 'type' ] == 'textarea' ) {
+                $customArr[ $i ] = [
+                    'type' => $request->custom_input[ $i ][ 'type' ],
+                    'title' => $request->custom_input[ $i ][ 'title' ],
+                    'required' => $request->custom_input[ $i ][ 'required' ]
+                ];
+            } elseif( $request->custom_input[ $i ][ 'type' ] == 'radio' ) {
+                $customArr[ $i ] = [
+                    'type' => $request->custom_input[ $i ][ 'type' ],
+                    'title' => $request->custom_input[ $i ][ 'title' ],
+                    'required' => $request->custom_input[ $i ][ 'required' ]
+                ];
+                foreach ( $request->custom_input[ $i ][ 'options' ] as $key => $value ) {
+                    $customArr[ $i ][ 'options' ][] = $value;
+                }
+            }
         }
-        dd( $customArr );
+        //dd( $customArr );
 
         //radio public button into 01
         $radio = $request->post( 'type' );
@@ -57,8 +75,8 @@ class EventController extends Controller {
         $event->community_id = $community_id;
         $event->creator = Auth::user()->user_id;
         $event->questions = json_encode( $customArr );
-
         $event->save();
-        return redirect()->route( 'blog' );
+        return redirect()->back()->with( 'success', 'Event Created Successfully' );
+ 
     }
 }
