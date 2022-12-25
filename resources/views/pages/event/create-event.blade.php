@@ -141,22 +141,16 @@
         @endif
         <form action="{{ url()->current() }}" method="POST" enctype="multipart/form-data">
             @csrf
-
             <div class="middle-content container-xxl p-0">
-
                 <div class="row mb-4 layout-spacing layout-top-spacing">
-
                     <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-
                         <div class="widget-content widget-content-area blog-create-section">
-
                             <div class="row mb-4">
                                 <div class="col-sm-12">
                                     <input type="text" class="form-control" id="post-title" placeholder="Event Title"
                                         name="title">
                                 </div>
                             </div>
-
                             <div class="row mb-4">
                                 <div class="col-sm-12">
                                     <label>Description</label>
@@ -164,9 +158,7 @@
                                     <div id="blog-description"></div>
                                 </div>
                             </div>
-
                         </div>
-
                         <div class="widget-content widget-content-area blog-create-section mt-4">
 
                             <h5 class="mb-4">SEO Settings</h5>
@@ -183,7 +175,6 @@
                             </div>
 
                         </div>
-
                         {{-- creating input questions///////////////////////////////////////////// --}}
                         <div class="widget-content widget-content-area blog-create-section mt-4">
 
@@ -196,7 +187,6 @@
 
                             </div>
                         </div>
-
                         {{-- creating dropdown questions/////////////////////////////////////////////////////////// --}}
                         {{-- <div class="widget-content widget-content-area blog-create-section mt-4">
                             <h5 class="mb-4">creating dropdown questions</h5>
@@ -205,9 +195,7 @@
                                 <input type="hidden" id="hidden_dropdown" name="hidden_dropdown" value="0">
                             </div>
                         </div> --}}
-
                     </div>
-
                     <div class="col-xxl-3 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-xxl-0 mt-4">
                         <div class="widget-content widget-content-area blog-create-section">
                             <div class="row">
@@ -261,9 +249,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </form>
     </div>
