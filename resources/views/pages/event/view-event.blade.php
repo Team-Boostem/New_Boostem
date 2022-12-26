@@ -22,9 +22,7 @@
         <p>{!! $event->description !!}</p>
         <div>
             @foreach ($que as $line)
-                @foreach ($line as $v)
-                    <input type="text" placeholder="{{ $v }}">
-                @endforeach
+                <p>{{ $line[] }}</p>
             @endforeach
         </div>
     </div>

@@ -24,7 +24,8 @@ class EventController extends Controller {
             'title' => 'required',
             'description' => 'required',
         ] );
-        //dd( $request->all() );
+        
+        dd( $request->all() );
         $customArr = [];
         $j = $request->hidden;
 

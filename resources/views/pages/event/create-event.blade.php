@@ -191,6 +191,7 @@
             if (e.target.classList.contains('add_option')) {
                 var o = e.target.nextElementSibling.childElementCount;
                 var l = i - 1;
+                console.log(l)
                 e.target.nextElementSibling.insertAdjacentHTML('beforeend',
                     `<div class="row">
                                                     <div class="col">
@@ -332,19 +333,22 @@
                                 <div class="col-xxl-12 col-md-12 mb-4">
                                     <label for="category">Category</label>
                                     <input name="category" placeholder="Choose...">
-                                </div>
+                                </div>                                
 
+                                <div class="md-form md-outline input-with-post-icon datepicker mb-4">
+                                    <label for="category">START Date</label>
+                                    <input placeholder="Select date" name="start_date" type="date" id="example" class="form-control">
+                                  </div>
 
-                                <div class="col-xxl-12 col-md-12 mb-4">
+                                <div class="md-form md-outline input-with-post-icon datepicker mb-4">
+                                    <label for="category">End Date</label>
+                                    <input placeholder="Select date" name="end_date" type="date" id="example" class="form-control">
+                                  </div>
 
-                                    <label for="product-images">Featured Image</label>
-                                    {{-- <div class="multiple-file-upload">
-                                    <input type="file" class="filepond file-upload-multiple" name="filepond"
-                                        id="product-images">
-                                </div> --}}
-                                    <input type="file" placeholder="uplode image" name="image">
-
-                                </div>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Featured Image</label>
+                                    <input class="form-control" type="file" id="formFile" name="new_image" name="image">
+                                  </div>
 
                                 <div class="col-xxl-12 col-sm-4 col-12 mx-auto">
                                     <button type="submit" class="btn btn-success w-100">Create Event</button>
