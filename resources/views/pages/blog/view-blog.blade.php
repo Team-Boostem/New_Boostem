@@ -5,7 +5,10 @@
     <link href="{{ asset('public/cork/html/src/assets/css/light/elements/custom-pagination.css') }}" rel="stylesheet"
         type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/html/src/assets/css/light/apps/blog-post.css') }}">
-
+    <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
     <!--  END CUSTOM STYLE FILE  -->
 @endpush
 
@@ -43,6 +46,32 @@
 
 {{-- push scripts --}}
 @push('scripts')
+<script type="text/javascript">
+
+$("#save_blog").click(function(){
+        console.log('hii')
+        var blog_slug = "{{ $blog->slug }}";
+        // send ajax request
+        $.ajax({
+            url: "{{ route('blog.save') }}",
+            type: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "blog_slug": blog_slug,
+            },
+            success: function(response) {
+                console.log(response);
+                if (response.status == 200) {
+                    $("#status").html(response);
+                } else {
+                    $("#status").html(response);
+                }
+            }
+        });
+    }
+);
+    
+</script>
 @endpush
 
 {{-- extend and yield content --}}
@@ -83,15 +112,16 @@
                             </div>
                             <div class="blog-edit">
                                 @auth
-                                    @if (checkBlogSave($blog->slug))
+                                    {{-- @if (checkBlogSave($blog->slug))
                                         <button type="button" class="btn btn-info mt-3">
                                             Saved
                                         </button>
                                     @else
-                                    <button type="button" class="btn btn-info mt-3">
+                                    @endif --}}
+                                    <button type="button" id="save_blog"   class="btn btn-info mt-3">
                                         Save
                                     </button>
-                                    @endif
+                                    <div id="status" ></div>
                                 @endauth
                             </div>
                         </div>

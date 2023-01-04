@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\SaveController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,7 @@ Route::middleware([
     //blog routes
     Route::post('/blog/add_comment/{blog_slug}', [CommentController::class, 'addComment'])->name('comment.add');
     Route::get('/blog/remove_comment/{comment_id}', [CommentController::class, 'removeComment'])->name('comment.remove');
+    Route::post('/blog/save', [SaveController::class, 'saveblog'])->name('blog.save');
     
 });
 Route::group(['middleware' => ['protectedEdit','auth']], function () {
