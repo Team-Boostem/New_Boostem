@@ -32,18 +32,21 @@ class EventController extends Controller {
         for ( $i = 0; $i <= $j; $i++ ) {
             if ( $request->custom_input[ $i ][ 'type' ] == 'text' ) {
                 $customArr[ $i ] = [
+                    'name' => 'custom_input_' . $i,
                     'type' => $request->custom_input[ $i ][ 'type' ],
                     'title' => $request->custom_input[ $i ][ 'title' ],
                     'required' => $request->custom_input[ $i ][ 'required' ]
                 ];
             } elseif( $request->custom_input[ $i ][ 'type' ] == 'textarea' ) {
                 $customArr[ $i ] = [
+                    'name' => 'custom_input_' . $i,
                     'type' => $request->custom_input[ $i ][ 'type' ],
                     'title' => $request->custom_input[ $i ][ 'title' ],
                     'required' => $request->custom_input[ $i ][ 'required' ]
                 ];
             } elseif( $request->custom_input[ $i ][ 'type' ] == 'radio' ) {
                 $customArr[ $i ] = [
+                    'name' => 'custom_input_' . $i,
                     'type' => $request->custom_input[ $i ][ 'type' ],
                     'title' => $request->custom_input[ $i ][ 'title' ],
                     'required' => $request->custom_input[ $i ][ 'required' ]
