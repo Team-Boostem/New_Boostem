@@ -2,44 +2,33 @@
 @push('title')
     <title>Event | Boostem</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('public/cork/collapsible-menu/css/dark/loader.css') }}" rel="stylesheet"
+    <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/dark/loader.css') }}" rel="stylesheet"
         type="text/css" />
-    <script src="{{ asset('public/cork/collapsible-menu/loader.js') }}"></script>
+    <script src="{{ asset('public/cork/html/layouts/collapsible-menu/loader.js') }}"></script>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-    <link href="{{ asset('public/cork/admin/src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('public/cork/collapsible-menu/css/light/plugins.css') }}" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('public/cork/collapsible-menu/css/dark/plugins.css') }}" rel="stylesheet"
+    <link href="{{ asset('public/cork/html/src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/light/plugins.css') }}" rel="stylesheet"
         type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
     <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/admin/src/plugins/src/stepper/bsStepper.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/html/src/plugins/src/stepper/bsStepper.min.css') }}">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/admin/src/assets/css/light/scrollspyNav.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/html/src/assets/css/light/scrollspyNav.css') }}" />
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('public/cork/admin/src/plugins/css/light/stepper/custom-bsStepper.css') }}">
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/admin/src/assets/css/dark/scrollspyNav.css') }}" />
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('public/cork/admin/src/plugins/css/dark/stepper/custom-bsStepper.css') }}">
+        href="{{ asset('public/cork/html/src/plugins/css/light/stepper/custom-bsStepper.css') }}">
     <!--  END CUSTOM STYLE FILE  -->
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('public/cork/admin/src/plugins/css/light/editors/quill/quill.snow.css') }}">
+        href="{{ asset('public/cork/html/src/plugins/css/light/editors/quill/quill.snow.css') }}">
 
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('public/cork/admin/src/plugins/css/dark/editors/quill/quill.snow.css') }}">
     <!--  END CUSTOM STYLE FILE  -->
     <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/admin/src/plugins/src/tagify/tagify.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/html/src/plugins/src/tagify/tagify.css') }}">
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('public/cork/admin/src/plugins/css/light/tagify/custom-tagify.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('public/cork/admin/src/plugins/css/dark/tagify/custom-tagify.css') }}">
+        href="{{ asset('public/cork/html/src/plugins/css/light/tagify/custom-tagify.css') }}">
     <!--  END CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/admin/src/assets/css/light/forms/switches.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/admin/src/assets/css/dark/forms/switches.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/html/src/assets/css/light/forms/switches.css') }}">
 @endpush
 
 {{-- push styles --}}
@@ -437,34 +426,34 @@
 {{-- push scripts --}}
 @push('scripts')
             <!-- BEGIN PAGE LEVEL SCRIPTS -->
-            <script src="{{ asset('public/cork/admin/src/plugins/src/stepper/bsStepper.min.js') }}"></script>
-            <script src="{{ asset('public/cork/admin/src/plugins/src/stepper/custom-bsStepper.min.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/plugins/src/stepper/bsStepper.min.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/plugins/src/stepper/custom-bsStepper.min.js') }}"></script>
             <!-- END PAGE LEVEL SCRIPTS -->
         
             <!-- BEGIN GLOBAL MANDATORY STYLES -->
-            <script src="{{ asset('public/cork/admin/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('public/cork/admin/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-            <script src="{{ asset('public/cork/admin/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
-            <script src="../../../resources/views/admin/html/layouts/vertical-dark-menu/app.js"></script>
-            <script src="{{ asset('public/cork/admin/src/plugins/src/highlight/highlight.pack.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
+            <script src="{{ asset('public/cork/html/layouts/vertical-dark-menu/app.js')}}"></script>
+            <script src="{{ asset('public/cork/html/src/plugins/src/highlight/highlight.pack.js') }}"></script>
             <!-- END GLOBAL MANDATORY STYLES -->
         
             <!-- BEGIN PAGE LEVEL SCRIPTS -->
-            <script src="{{ asset('public/cork/admin/src/assets/js/scrollspyNav.js') }}"></script>
-            <script src="{{ asset('public/cork/admin/src/plugins/src/editors/quill/quill.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/assets/js/scrollspyNav.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/plugins/src/editors/quill/quill.js') }}"></script>
             {{-- <script src="{{ asset('cork/admin/src/plugins/src/editors/quill/custom-quill.js') }}"></script> --}}
             <!-- END PAGE LEVEL SCRIPTS -->
             <!--  BEGIN CUSTOM SCRIPTS FILE  -->
-            <script src="{{ asset('public/cork/admin/src/plugins/src/tagify/tagify.min.js') }}"></script>
-            <script src="{{ asset('public/cork/admin/src/plugins/src/tagify/custom-tagify.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/plugins/src/tagify/tagify.min.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/plugins/src/tagify/custom-tagify.js') }}"></script>
             <!--  BEGIN CUSTOM SCRIPTS FILE  -->
             <!-- BEGIN PAGE LEVEL PLUGINS -->
         
             <!-- toastr -->
-            <script src="{{ asset('public/cork/admin/src/plugins/src/notification/snackbar/snackbar.min.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/plugins/src/notification/snackbar/snackbar.min.js') }}"></script>
             <!-- END PAGE LEVEL PLUGINS -->
             <!--  BEGIN CUSTOM SCRIPTS FILE  -->
-            <script src="{{ asset('public/cork/admin/src/assets/js/components/notification/custom-snackbar.js') }}"></script>
+            <script src="{{ asset('public/cork/html/src/assets/js/components/notification/custom-snackbar.js') }}"></script>
             <!--  END CUSTOM SCRIPTS FILE  -->
             
         
@@ -534,9 +523,6 @@
             @endforeach
         </div> --}}
 
-
-        <div class="main-content">
-            <div class="page-content">
         @if (session('message'))
         <div  class="flex message-box" id="success-msg" style="position: fixed;z-index:20; left:10vw; top:10vh; height:14rem;width:25rem; background-color:white; flex-direction:column; transition:1s;">
             <img style="height: 5rem;width:5rem; margin-bottom:1rem;" src="{{ asset('public/icons/checked.png') }}" alt="">
@@ -843,10 +829,9 @@
                         href="{{ route('user.register') }}"
                         style=" position:absolute; top:50%; left:50%; padding:10px 24px; font-size:1.2rem;  color:white; cursor: pointer; border-radius: 4px;transform: translate(-50% ,-50%); background-color:#0168fa ;  ">Login
                         to Register</a>
-                    <div> @endif </div> </div></div> {{-- /registration ends heare --}}
+                    <div> @endif </div> </div> {{-- /registration ends heare --}}
         
         
         
 
-    </div> 
 @endsection
