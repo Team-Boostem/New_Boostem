@@ -14,8 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('event_registrations', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string('id');
+            $table->primary('id');
+            $table->string('event_id');
+            $table->string('user_id');
+            $table->string('status')->default('pending');
+            $table->json('basic_answers')->nullable();
+            $table->json('answers')->nullable();
+            $table->timestamps(); 
         });
     }
 
