@@ -685,141 +685,51 @@
                         <div class="row layout-top-spacing" id="cancel-row">
                             <div id="wizard_Default" class="col-lg-12 layout-spacing">
                                 <div class="statbox widget box box-shadow">
-                                    <form method="POST" id="spectra-form" action="{{ url('/event/edp') }}"> @csrf <div
-                                            class="widget-content widget-content-area">
-                                            <div class="bs-stepper stepper-form-one">
-                                                <div class="bs-stepper-header" role="tablist">
-                                                    <div class="step" data-target="#defaultStep-one"> <button type="button"
-                                                            class="step-trigger" role="tab"> <span
-                                                                class="bs-stepper-circle">1</span> <span
-                                                                class="bs-stepper-label">Step One</span> </button> </div>
-                                                    <div class="line"></div>
-                                                    <div class="step" data-target="#defaultStep-two"> <button type="button"
-                                                            class="step-trigger" role="tab"> <span
-                                                                class="bs-stepper-circle">2</span> <span
-                                                                class="bs-stepper-label">Step Two</span> </button> </div>
-                                                    <div class="line"></div>
-                                                    <div class="step" data-target="#defaultStep-three"> <button type="button"
-                                                            class="step-trigger" role="tab"> <span
-                                                                class="bs-stepper-circle">3</span> <span
-                                                                class="bs-stepper-label"> <span class="bs-stepper-title">Step
-                                                                    Three</span> </span> </button> </div>
-                                                </div>
-                                                <div id="error-msg"
-                                                    style="color: red; font-size:1rem; margin:0 3.2rem; padding:0px 9px; background-color:#fdcbcb; border-radius:4px; ">
-                                                </div>
-                                                <div class="bs-stepper-content">
-                                                    <div id="defaultStep-one" class="content" role="tabpanel"> {{-- <form> --}}
-                                                            <div class="form-group mb-4"> <label
-                                                                    for="defaultForm-name">Name</label> <input type="text"
-                                                                    required name="name" class="form-control"
-                                                                    id="defaultForm-name" @if (Auth::check())
-                                                                    value="{{ Auth::user()->name }}" @endif> </div>
-                                                            <div class="form-group mb-4"> <label for="defaultEmailAddress">Email
-                                                                    Address</label> <input type="email" required
-                                                                    class="form-control" id="defaultEmailAddress" name="email"
-                                                                    @if (Auth::check()) value="{{ Auth::user()->email }}"
-                                                                    @endif> </div>
-                                                            <div class="form-group mb-4"> <label
-                                                                    for="defaultContactAddress">Contact No.</label> <input
-                                                                    type="text" required class="form-control"
-                                                                    id="defaultContactAddress" name="contact"> </div>
-                                                            <div class="form-group mb-4"> <label
-                                                                    for="defaultContactAddress">Watsapp No.</label> <input
-                                                                    type="text" required class="form-control"
-                                                                    id="defaultContactAddress" name="watsapp"> </div> {{--
-                                                        </form> --}}
-                                                        <div class="button-action mt-5"> <button type="button"
-                                                                class="btn btn-secondary btn-prev me-3" disabled>Prev</button>
-                                                            <button type="button"
-                                                                class="btn btn-secondary btn-nxt">Next</button>
-                                                        </div>
-                                                    </div>
-                                                    <div id="defaultStep-two" class="content" role="tabpanel"> {{-- <form> --}}
-                                                            <div class="" style="margin: 1rem 0;"> <label
-                                                                    for="defaultInputAddress" class="form-label">College</label>
-                                                                <input type="text" required class="form-control"
-                                                                    id="defaultInputAddress" name="college">
-                                                            </div>
-                                                            <div class="" style="margin: 1rem 0;"> <label
-                                                                    for="defaultInputAddress2" class="form-label"> Enrollment
-                                                                    No.</label> <input type="text" class="form-control"
-                                                                    id="defaultInputAddress2" placeholder="ex: 0101CS211120"
-                                                                    name="enrollment_no"> </div>
-                                                            <div class="row">
-                                                                <div class="col-md-6" style="margin: 0.8rem 0;"> <label
-                                                                        for="defaultInputState" class="form-label">Year</label>
-                                                                    <select id="defaultInputState" required name="year"
-                                                                        class="form-select">
-                                                                        <option value="1" selected="">1st</option>
-                                                                        <option value="2">2nd</option>
-                                                                        <option value="3">3rd</option>
-                                                                        <option value="4">4th</option>
-                                                                        <option value="10">Other</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-md-6" style="margin: 0.8rem 0;"> <label
-                                                                        for="defaultInputBranch"
-                                                                        class="form-label">Branch</label> <select
-                                                                        id="defaultInputBranch" class="form-select"
-                                                                        name="branch">
-                                                                        <option value="CSE" selected="">CSE</option>
-                                                                        <option value="ECE">ECE</option>
-                                                                        <option value="EX">EX</option>
-                                                                        <option value="IT">IT</option>
-                                                                        <option value="ME">ME</option>
-                                                                        <option value="PCT">PCT</option>
-                                                                        <option value="ECE">ECE</option>
-                                                                        <option value="CE">CE</option>
-                                                                        <option value="AU">AU</option>
-                                                                        <option value="CSBS">CSBS</option>
-                                                                        <option value="Other">Other</option>
-                                                                    </select> </div>
-                                                            </div> {{--
-                                                        </form> --}}
-                                                        <div class="button-action mt-5"> <button type="button"
-                                                                class="btn btn-secondary btn-prev me-3">Prev</button> <button
-                                                                type="button" class="btn btn-secondary btn-nxt">Next</button>
-                                                        </div>
-                                                    </div>
-                                                    <div id="defaultStep-three" class="content" role="tabpanel"> {{-- <form
-                                                            class="row g-3"> --}}
-                                                            <div class="form-group mb-4"> <label
-                                                                    for="exampleFormControlTextarea1"> Why do you want to join
-                                                                    this program </label> <textarea class="form-control"
-                                                                    id="exampleFormControlTextarea1" name="why_join" rows="3"
-                                                                    spellcheck="false"></textarea> </div>
-                                                            <div class="form-group mb-4"> <label
-                                                                    for="exampleFormControlTextarea2"> Do you have an idea which
-                                                                    you want to work on</label> <textarea class="form-control"
-                                                                    id="exampleFormControlTextarea2" name="pre_idea" rows="3"
-                                                                    spellcheck="false"></textarea> </div>
-                                                            <div class="widget-content widget-content-area"
-                                                                style="padding: 20px 0px"> {{-- <label for="interest">
-                                                                    Interest</label> --}} <input id="interest"
-                                                                    placeholder="Interest" name='interest'> </div>
-                                                            <div class="col-lg-12 col-12 layout-spacing">
-                                                                <div class="form-check form-switch form-check-inline"> <input
-                                                                        class="form-check-input" name="current_startup"
-                                                                        type="checkbox" role="switch"
-                                                                        id="flexSwitchCheckChecked" checked value="1"> <label
-                                                                        class="form-check-label" for="flexSwitchCheckChecked">
-                                                                        Are you currently working on any startup or idea</label>
-                                                                </div>
-                                                            </div> {{--
-                                                        </form> --}}
-                                                        <div id="form-action-last" class="button-action mt-3"> 
-                                                            <button type="button"
-                                                                class="btn btn-secondary btn-prev me-3">Prev</button>
-        
-                                                            <button type="button" onclick="submitFormSpectra()"
-                                                                class="btn btn-success me-3">Verify</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    {{-- <form action="">
+                                        <h2>Fill this form</h2>
+                                            <div class="form-group">
+                                                <label for="name">Name</label>
+                                                <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}" placeholder="Enter your name">
                                             </div>
-                                        </div>
-                                    </form>
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}" placeholder="Enter your email">
+                                            </div>
+                                        <h2>secondary form</h2> 
+                                            @foreach ( $que as $questio )
+
+                                            @if($questio['type'] == 'text')
+                                            <div class="form-group">
+                                                <label for="{{ $questio['name'] }}">{{ $questio['title'] }}</label>
+                                                <input type="text" class="form-control" id="{{ $questio['name'] }}" name="{{ $questio['name'] }}" placeholder="{{ $questio['title'] }}">
+                                            </div>
+                                            @endif
+
+                                            @if($questio['type'] == 'textarea')
+                                            <div class="form-group">
+                                                <label for="{{ $questio['name'] }}">{{ $questio['title'] }}</label>
+                                                <textarea name="{{ $questio['name'] }}" id="{{ $questio['name'] }}" cols="70" rows="7"></textarea>
+                                            </div>
+                                            @endif
+
+                                            @if($questio['type'] == 'radio')
+                                            <div class="form-group">
+                                                <label>{{ $questio['title'] }}</label>
+                                                @foreach ($questio['options'] as $option)
+                                                    <input class="form-check-input"  type="radio" name="{{ $questio['name'] }}" id="{{ $questio['name'] }}" value="{{ $option }}"/>
+                                                    <label class="form-check-label" for="{{ $questio['name'] }}"> {{ $option }} </label>
+                                                @endforeach
+
+                                            </div>
+                                            @endif
+                                                
+                                            @endforeach
+                                            
+                                    </form> --}}
+
+                                    <h1>This Form will strt soon</h1>
+                                    <h1>This Form is closed now</h1>
+                                    
                                 </div>
                             </div>
                         </div>
