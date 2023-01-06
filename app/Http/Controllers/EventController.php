@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventRegistration;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -26,6 +27,26 @@ class EventController extends Controller {
         }
 
         return view( 'pages/event/view-event', compact( 'event','que' ) );
+    }
+
+    public function eventPost( $event_slug ,Request $request ) {
+        //dd($request);
+        $event = Event::where( 'slug', $event_slug )->first();
+        foreach( $request->all() as $key => $value ) {
+            if ( $key == '_token' ) {
+                continue;
+            }
+            $answers[ $key ] = $value;
+        }
+
+        $partisipent = new EventRegistration;
+        $partisipent->event_id = $event->id;
+        $partisipent->user_id = Auth::user()->id;
+        //$partisipent->basic_answers = $basic_answers;
+        $partisipent->basic_answers = $answers;
+        $partisipent->save();
+
+        return view( 'pages/event/view-event');
     }
 
     public function eventCreate() {
