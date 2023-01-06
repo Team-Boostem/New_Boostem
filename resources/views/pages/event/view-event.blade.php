@@ -557,13 +557,13 @@
                 <div class="flex time-box"> <i class="dripicons-calendar"></i>
                     <div>
                         <p>Registration starts</p>
-                        <h5>{{ $event->start_date }}</h5>
+                        {{-- <h5>{{ $event->start_date }}</h5> --}}
                     </div>
                 </div>
                 <div class="flex time-box"> <i class="dripicons-calendar"></i>
                     <div>
                         <p>Registration ends</p>
-                        <h5>{{ $event->start_date }}</h5>
+                        {{-- <h5>{{ $event->start_date }}</h5> --}}
                     </div>
                 </div>
             </div>

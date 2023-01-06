@@ -26,7 +26,8 @@ class EventController extends Controller {
             $event->status = 'completed';
         }
 
-        return view( 'pages/event/view-event', compact( 'event','que' ) );
+        return view( 'pages/event/view-event', compact( 'event', 'que' ) );
+        
     }
 
     public function eventPost( $event_slug ,Request $request ) {
@@ -36,17 +37,26 @@ class EventController extends Controller {
             if ( $key == '_token' ) {
                 continue;
             }
-            $answers[ $key ] = $value;
+            elseif ( $key == 'name' ) {
+                $basic_answers[ $key ] = $value;
+            }
+            elseif( $key == 'email' ) {
+                $basic_answers[ $key ] = $value;
+            }
+            else{
+                $answers[ $key ] = $value;
+            }
         }
 
         $partisipent = new EventRegistration;
         $partisipent->event_id = $event->id;
         $partisipent->user_id = Auth::user()->id;
-        //$partisipent->basic_answers = $basic_answers;
-        $partisipent->basic_answers = $answers;
+        $partisipent->basic_answers = $basic_answers;
+        $partisipent->answers = $answers;
         $partisipent->save();
 
-        return view( 'pages/event/view-event');
+
+        return redirect()->route('event', ['event_slug' => $event_slug]);
     }
 
     public function eventCreate() {
