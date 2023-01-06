@@ -12,6 +12,19 @@ class EventController extends Controller {
         $event = Event::where( 'slug', $event_slug )->first();
         $que = json_decode( $event->questions, true );
         //dd( $que );
+
+        //current date and time
+        $current_date = date( 'Y-m-d H:i:s' );
+        if ( $event->start_date > $current_date ) {
+            $event->status = 'upcoming';
+        }
+        elseif( $event->start_date < $current_date && $event->end_date > $current_date ) {
+            $event->status = 'ongoing';
+        }
+        elseif( $event->end_date < $current_date ) {
+            $event->status = 'completed';
+        }
+
         return view( 'pages/event/view-event', compact( 'event','que' ) );
     }
 
@@ -28,6 +41,8 @@ class EventController extends Controller {
         //dd( $request->all() );
         $customArr = [];
         $j = $request->hidden;
+
+        if ( $request->custom_input) {
 
         for ( $i = 0; $i <= $j; $i++ ) {
             if ( $request->custom_input[ $i ][ 'type' ] == 'text' ) {
@@ -56,6 +71,7 @@ class EventController extends Controller {
                 }
             }
         }
+    }
         //dd( $customArr );
 
         //radio public button into 01
@@ -72,8 +88,8 @@ class EventController extends Controller {
         $event->image = $request->image;
         $event->slug = $request->slug;
         $event->type = $yourval;
-        // $event->start_date = $request->start_date;
-        // $event->end_date = $request->end_date;
+        $event->start_date = $request->start_date;
+        $event->end_date = $request->end_date;
         // $event->location = $request->location;
         // $event->vanue_type = $request->vanue_type;
         $event->community_id = $community_id;

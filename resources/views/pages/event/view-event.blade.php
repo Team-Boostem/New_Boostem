@@ -557,13 +557,13 @@
                 <div class="flex time-box"> <i class="dripicons-calendar"></i>
                     <div>
                         <p>Registration starts</p>
-                        <h5>06 Nov 2022 | 00:00</h5>
+                        <h5>{{ $event->start_date }}</h5>
                     </div>
                 </div>
                 <div class="flex time-box"> <i class="dripicons-calendar"></i>
                     <div>
                         <p>Registration ends</p>
-                        <h5>11 Nov 2022 | 23:59</h5>
+                        <h5>{{ $event->start_date }}</h5>
                     </div>
                 </div>
             </div>
@@ -660,7 +660,8 @@
                                                 </div>
                                                 {{-- < !-- cd-timeline-block --> --}}
                                                     <div class="cd-timeline-block">
-                                                        <div class="cd-timeline-img bg-warning"> <i class="mdi mdi-adjust"></i>
+                                                        <div class="cd-timeline-img bg-warning"> 
+                                                            <i class="mdi mdi-adjust"></i>
                                                         </div>
                                                         {{-- < !-- cd-timeline-img --> --}}
                                                             <div class="cd-timeline-content">
@@ -685,7 +686,14 @@
                         <div class="row layout-top-spacing" id="cancel-row">
                             <div id="wizard_Default" class="col-lg-12 layout-spacing">
                                 <div class="statbox widget box box-shadow">
-                                    {{-- <form action="">
+
+                                    @if($event->status == 'upcoming')
+                                    <h1>This Form will strt soon</h1>
+                                    @elseif ($event->status == 'completed')
+                                    <h1>This Form is closed now</h1>
+                                    @elseif ($event->status == 'ongoing')
+                                        <form action="{{ url()->current() }}" method="POST">
+                                            @csrf
                                         <h2>Fill this form</h2>
                                             <div class="form-group">
                                                 <label for="name">Name</label>
@@ -725,10 +733,12 @@
                                                 
                                             @endforeach
                                             
-                                    </form> --}}
+                                    </form>
+                                    @endif
+                                    
 
-                                    <h1>This Form will strt soon</h1>
-                                    <h1>This Form is closed now</h1>
+                                   
+                                    
                                     
                                 </div>
                             </div>
