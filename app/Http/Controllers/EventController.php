@@ -130,4 +130,25 @@ class EventController extends Controller {
         return redirect()->back()->with( 'success', 'Event Created Successfully' );
  
     }
+
+    public function eventTable( $event_slug ) {
+        $event = Event::where( 'slug', $event_slug )->first();
+        $que = json_decode( $event->questions, true );
+        $participantes = EventRegistration::where( 'event_id', $event->id )->get();
+
+        $table = [];
+        foreach( $que as $value ) {
+            foreach( $participantes as $participante ) {
+                if($value){
+                    if($participante->answers[ $value['name'] ]){
+                        $table[ $value['name'] ][] = $participante->answers[ $value['name'] ];
+                    }else{
+                        $table[ $value['name'] ][] = 'null';
+                    }
+                } 
+            }
+        }
+        dd( $table );
+        return view( 'pages/event/event-table', compact( 'event', 'que', 'participantes' ) );
+    }
 }

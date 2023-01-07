@@ -95,6 +95,8 @@ Route::get('/event/create/{community_id}', [EventController::class, 'eventCreate
 Route::post('/event/create/{community_id}', [EventController::class, 'eventCreatePost'])->name('event.create');
 Route::get('/event/view/{event_slug}', [EventController::class, 'event'])->name('event');
 Route::post('/event/view/{event_slug}', [EventController::class, 'eventPost'])->name('event');
+//EVEN table route
+Route::get('/event/table/{event_slug}', [EventController::class, 'eventTable'])->name('event.table');
 
 
 
