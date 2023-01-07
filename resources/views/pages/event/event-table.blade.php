@@ -87,34 +87,28 @@
                                                     <th data-priority="1">Name</th>
                                                     <th data-priority="2">Email</th>
                                                     @foreach ($que as $question)
-                                                    <th>{{ $question->title }}</th>
+                                                    <th>{{ $question['title'] }}</th>
                                                     @endforeach 
-                                                    //count que and print the number of columns
-                                                    
-
-                                                    @for ($i=o; $i< ; $i++)
-                                                        
-                                                    @endfor
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
                                                  $i=1;
                                                 ?>
-                                               @foreach ($participantes as $participante )
-                                               
-                                               <tr>
-                                                <th>{{ $i++ }}</th>
-                                                <th>{{ $participante->basic_answers['name'] }}</th>
-                                                <th>{{ $participante->basic_answers['email'] }}</th>
-                                                @foreach ($participante->answers as $answer)
-                                                <th>{{ $answer->answer }}</th>
+                                                {{-- @for ($i=0, $i< count($participantes), $i++ ) --}}
+                                                {{-- @endfor --}}
+                                                {{-- @foreach ($table as $tableLine) --}}
 
-                                                
-                                            </tr>
-                                               @endforeach
-                                                
-                                                
+                                                @foreach ($participantes as $participante )
+                                                <tr>
+                                                    <th>{{ $i++ }}
+                                                    <th>{{ $participante->basic_answers['name'] }}</th>
+                                                    <th>{{ $participante->basic_answers['email'] }}</th>
+                                                    @foreach ($participante->answers as $key => $value)
+                                                    <th>{{ $value }}</th>
+                                                    @endforeach
+                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

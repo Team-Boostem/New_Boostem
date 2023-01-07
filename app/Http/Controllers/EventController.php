@@ -18,44 +18,38 @@ class EventController extends Controller {
         $current_date = date( 'Y-m-d H:i:s' );
         if ( $event->start_date > $current_date ) {
             $event->status = 'upcoming';
-        }
-        elseif( $event->start_date < $current_date && $event->end_date > $current_date ) {
+        } elseif ( $event->start_date < $current_date && $event->end_date > $current_date ) {
             $event->status = 'ongoing';
-        }
-        elseif( $event->end_date < $current_date ) {
+        } elseif ( $event->end_date < $current_date ) {
             $event->status = 'completed';
         }
 
         return view( 'pages/event/view-event', compact( 'event', 'que' ) );
-        
+
     }
 
-    public function eventPost( $event_slug ,Request $request ) {
-        //dd($request->all());
+    public function eventPost( $event_slug, Request $request ) {
+        //dd( $request->all() );
         $event = Event::where( 'slug', $event_slug )->first();
         $que = json_decode( $event->questions, true );
-        foreach( $request->all() as $key => $value ) {
+        foreach ( $request->all() as $key => $value ) {
             if ( $key == '_token' ) {
                 continue;
-            }
-            elseif ( $key == 'name' ) {
+            } elseif ( $key == 'name' ) {
                 $basic_answers[ $key ] = $value;
-            }
-            elseif( $key == 'email' ) {
+            } elseif ( $key == 'email' ) {
                 $basic_answers[ $key ] = $value;
-            }
-            else{
+            } else {
                 $answers[ $key ] = $value;
             }
-            //if a question is in $que but not in $request->all() then it is not answered
-            
         }
-        foreach( $que as $question ) {
-        if ( !array_key_exists( $question['name'], $request->all() ) ) {
-            $answers[ $question['name'] ] = 'not answered';
+        //if a question is in $que but not in $request->all() then it is not answered
+        foreach ( $que as $question ) {
+            if ( !array_key_exists( $question[ 'name' ], $request->all() ) ) {
+                $answers[ $question[ 'name' ] ] = 'not answered';
+            }
         }
-        }
-        dd( $answers );
+        //dd( $answers );
 
         $partisipent = new EventRegistration;
         $partisipent->event_id = $event->id;
@@ -64,8 +58,7 @@ class EventController extends Controller {
         $partisipent->answers = $answers;
         $partisipent->save();
 
-
-        return redirect()->route('event', ['event_slug' => $event_slug]);
+        return redirect()->route( 'event', [ 'event_slug' => $event_slug ] );
     }
 
     public function eventCreate() {
@@ -77,41 +70,41 @@ class EventController extends Controller {
             'title' => 'required',
             'description' => 'required',
         ] );
-        
+
         //dd( $request->all() );
         $customArr = [];
         $j = $request->hidden;
 
-        if ( $request->custom_input) {
+        if ( $request->custom_input ) {
 
-        for ( $i = 0; $i <= $j; $i++ ) {
-            if ( $request->custom_input[ $i ][ 'type' ] == 'text' ) {
-                $customArr[ $i ] = [
-                    'name' => 'custom_input_' . $i,
-                    'type' => $request->custom_input[ $i ][ 'type' ],
-                    'title' => $request->custom_input[ $i ][ 'title' ],
-                    'required' => $request->custom_input[ $i ][ 'required' ]
-                ];
-            } elseif( $request->custom_input[ $i ][ 'type' ] == 'textarea' ) {
-                $customArr[ $i ] = [
-                    'name' => 'custom_input_' . $i,
-                    'type' => $request->custom_input[ $i ][ 'type' ],
-                    'title' => $request->custom_input[ $i ][ 'title' ],
-                    'required' => $request->custom_input[ $i ][ 'required' ]
-                ];
-            } elseif( $request->custom_input[ $i ][ 'type' ] == 'radio' ) {
-                $customArr[ $i ] = [
-                    'name' => 'custom_input_' . $i,
-                    'type' => $request->custom_input[ $i ][ 'type' ],
-                    'title' => $request->custom_input[ $i ][ 'title' ],
-                    'required' => $request->custom_input[ $i ][ 'required' ]
-                ];
-                foreach ( $request->custom_input[ $i ][ 'options' ] as $key => $value ) {
-                    $customArr[ $i ][ 'options' ][] = $value;
+            for ( $i = 0; $i <= $j; $i++ ) {
+                if ( $request->custom_input[ $i ][ 'type' ] == 'text' ) {
+                    $customArr[ $i ] = [
+                        'name' => 'custom_input_' . $i,
+                        'type' => $request->custom_input[ $i ][ 'type' ],
+                        'title' => $request->custom_input[ $i ][ 'title' ],
+                        'required' => $request->custom_input[ $i ][ 'required' ]
+                    ];
+                } elseif ( $request->custom_input[ $i ][ 'type' ] == 'textarea' ) {
+                    $customArr[ $i ] = [
+                        'name' => 'custom_input_' . $i,
+                        'type' => $request->custom_input[ $i ][ 'type' ],
+                        'title' => $request->custom_input[ $i ][ 'title' ],
+                        'required' => $request->custom_input[ $i ][ 'required' ]
+                    ];
+                } elseif ( $request->custom_input[ $i ][ 'type' ] == 'radio' ) {
+                    $customArr[ $i ] = [
+                        'name' => 'custom_input_' . $i,
+                        'type' => $request->custom_input[ $i ][ 'type' ],
+                        'title' => $request->custom_input[ $i ][ 'title' ],
+                        'required' => $request->custom_input[ $i ][ 'required' ]
+                    ];
+                    foreach ( $request->custom_input[ $i ][ 'options' ] as $key => $value ) {
+                        $customArr[ $i ][ 'options' ][] = $value;
+                    }
                 }
             }
         }
-    }
         //dd( $customArr );
 
         //radio public button into 01
@@ -137,7 +130,7 @@ class EventController extends Controller {
         $event->questions = json_encode( $customArr );
         $event->save();
         return redirect()->back()->with( 'success', 'Event Created Successfully' );
- 
+
     }
 
     public function eventTable( $event_slug ) {
@@ -146,18 +139,19 @@ class EventController extends Controller {
         $participantes = EventRegistration::where( 'event_id', $event->id )->get();
 
         $table = [];
-        foreach( $que as $value ) {
-            foreach( $participantes as $participante ) {
-                if($value){
-                    if($participante->answers[ $value['name'] ]){
-                        $table[ $value['name'] ][] = $participante->answers[ $value['name'] ];
-                    }else{
-                        $table[ $value['name'] ][] = 'null';
+        foreach ( $que as $value ) {
+            foreach ( $participantes as $participante ) {
+                if ( $value ) {
+                    if ( $participante->answers[ $value[ 'name' ] ] ) {
+                        $table[ $value[ 'name' ] ][] = $participante->answers[ $value[ 'name' ] ];
+                    } else {
+                        $table[ $value[ 'name' ] ][] = 'null';
                     }
-                } 
+                }
+
             }
         }
-        dd( $table );
-        return view( 'pages/event/event-table', compact( 'event', 'que', 'participantes' ) );
+        //dd( $table );
+        return view( 'pages/event/event-table', compact( 'event', 'que', 'participantes','table' ) );
     }
 }
