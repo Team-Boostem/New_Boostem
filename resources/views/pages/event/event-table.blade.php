@@ -1,129 +1,105 @@
 {{-- push title --}}
 @push('title')
-    <title>User Profile</title>
-    <link href="{{ asset('cork/collapsible-menu/css/dark/loader.css') }}" rel="stylesheet"
-        type="text/css" />
-    <script src="{{ asset('cork/collapsible-menu/loader.js') }}"></script>
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-    <link href="{{ asset('cork/admin/src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('cork/collapsible-menu/css/light/plugins.css') }}" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('cork/collapsible-menu/css/dark/plugins.css') }}" rel="stylesheet"
-        type="text/css" />
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('cork/admin/src/plugins/src/stepper/bsStepper.min.css') }}">
+<title>User Profile</title>
+<link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/light/loader.css')}}" rel="stylesheet"
+    type="text/css" />
+<script src="{{ asset('public/cork/html/layouts/collapsible-menu/loader.js')}}"></script>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+<link href="{{ asset('public/cork/html/src/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/light/plugins.css')}}" rel="stylesheet"
+    type="text/css" />
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('public/cork/html/src/plugins/src/table/datatable/datatables.css')}}">
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('public/cork/html/src/plugins/css/light/table/datatable/dt-global_style.css')}}">
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('public/cork/html/src/plugins/css/light/table/datatable/custom_dt_miscellaneous.css')}}">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('cork/admin/src/assets/css/light/scrollspyNav.css') }}" />
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('cork/admin/src/plugins/css/light/stepper/custom-bsStepper.css') }}">
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('cork/admin/src/assets/css/dark/scrollspyNav.css') }}" />
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('cork/admin/src/plugins/css/dark/stepper/custom-bsStepper.css') }}">
-    <!--  END CUSTOM STYLE FILE  -->
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('cork/admin/src/plugins/css/light/editors/quill/quill.snow.css') }}">
-
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('cork/admin/src/plugins/css/dark/editors/quill/quill.snow.css') }}">
-    <!--  END CUSTOM STYLE FILE  -->
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('cork/admin/src/plugins/src/tagify/tagify.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('cork/admin/src/plugins/css/light/tagify/custom-tagify.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('cork/admin/src/plugins/css/dark/tagify/custom-tagify.css') }}">
-    <!--  END CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('cork/admin/src/assets/css/light/forms/switches.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('cork/admin/src/assets/css/dark/forms/switches.css') }}">
-    <!-- DataTables -->
-    <link href="{{ asset('fonic/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('fonic/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet"
-        type="text/css" />
-
-    <!-- Responsive datatable examples -->
-    <link href="{{ asset('fonic/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet"
-        type="text/css" />
 @endpush
 
 {{-- push styles --}}
 @push('styles')
 <style>
-    
+
 </style>
 @endpush
 
 {{-- push scripts --}}
 @push('scripts')
+<!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+<script src="{{ asset('public/cork/html/src/plugins/src/global/vendors.min.js')}}"></script>
+<script src="{{ asset('public/cork/html/src/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('public/cork/html/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+<script src="{{ asset('public/cork/html/src/plugins/src/mousetrap/mousetrap.min.js')}}"></script>
+<script src="{{ asset('public/cork/html/layouts/collapsible-menu/app.js')}}"></script>
+
+
+<script src="../src/assets/js/custom.js"></script>
+<!-- END GLOBAL MANDATORY SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="{{ asset('public/cork/html/src/plugins/src/table/datatable/datatables.js')}}"></script>
+<script src="{{ asset('public/cork/html/src/plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}">
+</script>
+<script src="{{ asset('public/cork/html/src/plugins/src/table/datatable/button-ext/jszip.min.js')}}"></script>
+<script src="{{ asset('public/cork/html/src/plugins/src/table/datatable/button-ext/buttons.html5.min.js')}}"></script>
+<script src="{{ asset('public/cork/html/src/plugins/src/table/datatable/button-ext/buttons.print.min.js')}}"></script>
+<script src="{{ asset('public/cork/html/src/plugins/src/table/datatable/custom_miscellaneous.js')}}"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
 @endpush
 
 {{-- extend and yield content --}}
 @extends('layouts/community-dashboard')
 @section('content')
-   <div class="main-box">
+<div class="main-box">
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
-    
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-    
-                                <h4 class="card-title">Spectra registrations</h4>
-                                {{-- <p class="card-title-desc">This is an experimental awesome solution for responsive
-                                    tables with complex data.</p> --}}
-    
-                                <div class="table-rep-plugin">
-                                    <div class="table-responsive b-0" data-pattern="priority-columns">
-                                        <table id="datatable-buttons" class="table  table-striped">
-                                            <thead>
-                                                <tr>
-    
-                                                    <th data-priority="0">S No.</th>
-                                                    <th data-priority="1">Name</th>
-                                                    <th data-priority="2">Email</th>
-                                                    @foreach ($que as $question)
-                                                    <th>{{ $question['title'] }}</th>
-                                                    @endforeach 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                 $i=1;
-                                                ?>
-                                                {{-- @for ($i=0, $i< count($participantes), $i++ ) --}}
-                                                {{-- @endfor --}}
-                                                {{-- @foreach ($table as $tableLine) --}}
 
-                                                @foreach ($participantes as $participante )
-                                                <tr>
-                                                    <th>{{ $i++ }}
-                                                    <th>{{ $participante->basic_answers['name'] }}</th>
-                                                    <th>{{ $participante->basic_answers['email'] }}</th>
-                                                    @foreach ($participante->answers as $key => $value)
-                                                    <th>{{ $value }}</th>
-                                                    @endforeach
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-    
-                                </div>
-                                <h4 style="margin-top: 1rem">Total Registrations: {{ --$i }}</h4>
-    
+                <div class="row">
+
+                    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                        <div class="statbox widget box box-shadow">
+                            <div class="widget-content widget-content-area">
+                                <table id="html5-extension" class="table dt-table-hover" style="width:100%">
+                                    <thead>
+                                        <tr>
+            
+                                            <th data-priority="0">S No.</th>
+                                            <th data-priority="1">Name</th>
+                                            <th data-priority="2">Email</th>
+                                            @foreach ($que as $question)
+                                            <th>{{ $question['title'] }}</th>
+                                            @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                                             $i=1;
+                                                            ?>
+                                        @foreach ($participantes as $participante )
+                                        <tr>
+                                            <th>{{ $i++ }}
+                                            <th>{{ $participante->basic_answers['name'] }}</th>
+                                            <th>{{ $participante->basic_answers['email'] }}</th>
+                                            @foreach ($participante->answers as $key => $value)
+                                            <th>{{ $value }}</th>
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <!-- end col -->
+            
                 </div>
-                
+
             </div>
-        </div> 
-    </div> 
-   </div>
+        </div>
+    </div>
+    
+</div>
 @endsection
