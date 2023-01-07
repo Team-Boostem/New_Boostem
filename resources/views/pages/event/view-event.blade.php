@@ -723,9 +723,11 @@
                                             @if($questio['type'] == 'radio')
                                             <div class="form-group">
                                                 <label>{{ $questio['title'] }}</label>
+                                                <br>
                                                 @foreach ($questio['options'] as $option)
                                                     <input class="form-check-input"  type="radio" name="{{ $questio['name'] }}" id="{{ $questio['name'] }}" value="{{ $option }}"/>
                                                     <label class="form-check-label" for="{{ $questio['name'] }}"> {{ $option }} </label>
+                                                    <br>
                                                 @endforeach
 
                                             </div>

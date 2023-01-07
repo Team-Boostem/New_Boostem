@@ -31,8 +31,9 @@ class EventController extends Controller {
     }
 
     public function eventPost( $event_slug ,Request $request ) {
-        //dd($request);
+        //dd($request->all());
         $event = Event::where( 'slug', $event_slug )->first();
+        $que = json_decode( $event->questions, true );
         foreach( $request->all() as $key => $value ) {
             if ( $key == '_token' ) {
                 continue;
@@ -46,7 +47,15 @@ class EventController extends Controller {
             else{
                 $answers[ $key ] = $value;
             }
+            //if a question is in $que but not in $request->all() then it is not answered
+            
         }
+        foreach( $que as $question ) {
+        if ( !array_key_exists( $question['name'], $request->all() ) ) {
+            $answers[ $question['name'] ] = 'not answered';
+        }
+        }
+        dd( $answers );
 
         $partisipent = new EventRegistration;
         $partisipent->event_id = $event->id;
