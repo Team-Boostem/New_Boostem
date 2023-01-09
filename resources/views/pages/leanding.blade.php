@@ -2,6 +2,10 @@
 @push('title')
     <title>User Profile</title>
     <link href="{{ asset('public/cork/html/src/assets/css/light/pages/knowledge_base.css')}}" rel="stylesheet" type="text/css" /> 
+    <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
 @endpush
 
 {{-- push styles --}}
@@ -20,7 +24,7 @@
             var email_id = $("#newsletter_inp").val();
             // send ajax request
             $.ajax({
-                url: "{{ route('blog.save') }}",
+                url: "{{ route('newsletter.save') }}",
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}",
@@ -29,9 +33,11 @@
                 success: function(response) {
                     console.log(response);
                     if (response.status == 200) {
-                        $("#status").html(response);
+                        $("#newsletter-status").html(response);
+                        
                     } else {
-                        $("#status").html(response);
+                        $("#newsletter-status").html(response);
+                        $("#newsletter_row").hide();
                     }
                 }
             });
@@ -48,32 +54,31 @@
     <div>
         <div class="fq-header-wrapper">
             <div class="container">
-                @if ( )
-                    
-                @endif
-                    <div class="alert alert-success">te to msh</div>
-
-
-                {{-- <div class="row">
-                    <div class="col-md-12 align-self-center order-md-0 order-1">
-                        <div class="faq-header-content">
-                            <h1 class="mb-4">Subscribe to newsletter</h1>
-                            <div class="row">
-                                <div class="col-lg-5 mx-auto">
-                                    <div class="autocomplete-btn">
-                                        <input id="newsletter_inp" type="email"  class="form-control"
-                                            @auth
-                                                value="{{ Auth::user()->email }}"
-                                            @endauth
-                                        >
-                                        <button type="button" id="newsletter_btn" class="btn btn-primary">Subscribe</button>
+                @if (subscribeNewsletterStatus())
+                @else
+                    <div class="alert alert-success" id="newsletter-status"></div>
+                    <div class="row" id="newsletter_row">
+                        <div class="col-md-12 align-self-center order-md-0 order-1">
+                            <div class="faq-header-content">
+                                <h1 class="mb-4">Subscribe to newsletter</h1>
+                                <div class="row">
+                                    <div class="col-lg-5 mx-auto">
+                                        <div class="autocomplete-btn">
+                                            <input id="newsletter_inp" type="email"  class="form-control"
+                                                @auth
+                                                    value="{{ Auth::user()->email }}"
+                                                @endauth
+                                            >
+                                            <button type="button" id="newsletter_btn" class="btn btn-primary">Subscribe</button>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="mt-4 mb-0">Search instant answers & questions asked by popular users</p>
                             </div>
-                            <p class="mt-4 mb-0">Search instant answers & questions asked by popular users</p>
                         </div>
                     </div>
-                </div> --}}
+                @endif
+                
             </div>
         </div>
     </div>

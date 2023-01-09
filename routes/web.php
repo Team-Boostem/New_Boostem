@@ -9,6 +9,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SaveController;
+use App\Http\Controllers\NotificationController;
 
 
 /*
@@ -97,6 +98,9 @@ Route::get('/event/view/{event_slug}', [EventController::class, 'event'])->name(
 Route::post('/event/view/{event_slug}', [EventController::class, 'eventPost'])->name('event');
 //EVEN table route
 Route::get('/event/table/{event_slug}', [EventController::class, 'eventTable'])->name('event.table');
+
+//neawsletter route
+Route::post('/newsletter/save', [NotificationController::class, 'saveNewsletter'])->name('newsletter.save');
 
 
 

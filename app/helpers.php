@@ -4,6 +4,7 @@ use App\Models\Community;
 use App\Models\User;
 use App\Models\PageView;
 use App\Models\Save;
+use App\Models\Newsletter;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\DB;
 
@@ -76,8 +77,9 @@ function save(){
 
 function subscribeNewsletterStatus(){
 
-    $user = User::where('user_id', Auth::user()->user_id)->first();
-    if($user->newsletter == 1){
+    //check if user has already subscribed to newsletter
+    $check = Newsletter::where('user_id', Auth::user()->user_id)->first();
+    if($check){
         return true;
     }else{
         return false;
