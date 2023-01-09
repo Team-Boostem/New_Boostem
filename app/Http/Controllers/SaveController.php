@@ -21,7 +21,7 @@ class SaveController extends Controller
         $save->user_id = Auth::user()->user_id;
         $save->page_type = 'blog';
         $save->save();
-        echo "Blog saved";
+        echo "Blog saved abhi";
 
         
     }

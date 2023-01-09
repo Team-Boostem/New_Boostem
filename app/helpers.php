@@ -71,18 +71,17 @@ function save(){
     $save->user_id = Auth::user()->user_id;
     $save->page_type = 'blog';
     $save->save();
-    echo "Blog saved";
+    echo "Blog saved ho gayn hai";
 }
 
-function subscribeNewsletter(){
+function subscribeNewsletterStatus(){
 
-    $blog_slug = $_POST['blog_slug'];
-    $save = new Save();
-    $save->page_id = $blog_slug;
-    $save->user_id = Auth::user()->user_id;
-    $save->page_type = 'blog';
-    $save->save();
-    echo "Blog saved";
+    $user = User::where('user_id', Auth::user()->user_id)->first();
+    if($user->newsletter == 1){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 
