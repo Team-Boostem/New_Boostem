@@ -92,10 +92,20 @@
                 if (response.status == 200) {
                     $("#search-status").html(value);
                 } else {
-                    //foreach the response.data print it
-                    $.each(response.data, function(key, value) {
-                        $("#search-status").html(value);
-                    });
+                    //decode response json
+                    var res = JSON.parse(response);
+                    var exp = res.data;
+
+                    //print the array
+                    console.log(exp)
+                    // $.each(exp, function(key, value) {
+                    //     $("#search-status").html(value['title']);
+                    // });
+                    for (var i = 0; i < exp.length; i++) {
+                        console.log(exp[i]['title']);
+                        document.getElementById("search-status").innerHTML += `<a href="/blog/view/`+ exp[i]['slug'] +`" >` + exp[i]['title'] + `</a><br>`;
+                        // $("#search-status").html(exp[i]['title']);
+                    }
                 }
             }
         });
