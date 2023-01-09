@@ -10,6 +10,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SaveController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SearchController;
 
 
 /*
@@ -101,6 +102,9 @@ Route::get('/event/table/{event_slug}', [EventController::class, 'eventTable'])-
 
 //neawsletter route
 Route::post('/newsletter/save', [NotificationController::class, 'saveNewsletter'])->name('newsletter.save');
+
+//search route
+Route::post('/search', [SearchController::class, 'search'])->name('search');
 
 
 

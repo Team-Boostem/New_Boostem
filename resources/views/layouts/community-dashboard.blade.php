@@ -73,6 +73,35 @@
     {{-- geting pushed script --}}
     @stack('scripts')
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script type="text/javascript">
+
+           //onchange value of #search_inp run this function
+    $("#search_inp").on('change', function() {
+        //get the value of #search_inp
+        var search = $("#search_inp").val();
+        //send ajax request
+        $.ajax({
+            url: "{{ route('search') }}",
+            type: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "search": search,
+            },
+            success: function(response) {
+                console.log(response);
+                if (response.status == 200) {
+                    $("#search-status").html(value);
+                } else {
+                    //foreach the response.data print it
+                    $.each(response.data, function(key, value) {
+                        $("#search-status").html(value);
+                    });
+                }
+            }
+        });
+    });
+            
+        </script>
     <script src="{{ asset('public/cork/html/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('public/cork/html/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('public/cork/html/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>

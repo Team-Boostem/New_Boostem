@@ -51,6 +51,7 @@
 @extends('layouts/community-dashboard')
 @section('content')
    <div class="main-box">
+    <div id="search-status"></div>
     <div>
         <div class="fq-header-wrapper">
             <div class="container">
