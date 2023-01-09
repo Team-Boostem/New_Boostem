@@ -74,5 +74,16 @@ function save(){
     echo "Blog saved";
 }
 
+function subscribeNewsletter(){
+
+    $blog_slug = $_POST['blog_slug'];
+    $save = new Save();
+    $save->page_id = $blog_slug;
+    $save->user_id = Auth::user()->user_id;
+    $save->page_type = 'blog';
+    $save->save();
+    echo "Blog saved";
+}
+
 
 ?>
