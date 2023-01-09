@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('newsletters', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string('id');
+            $table->primary('id');
+            $table->string('user_id');
+            $table->string('email');
+            $table->string('status')->default('on');
+            $table->timestamps(); 
         });
     }
 
