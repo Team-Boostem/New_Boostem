@@ -106,6 +106,9 @@ Route::post('/newsletter/save', [NotificationController::class, 'saveNewsletter'
 //search route
 Route::post('/search', [SearchController::class, 'search'])->name('search');
 
+//image route
+Route::post('/img/save', [HomeController::class, 'imgSave'])->name('img.save');
+
 
 
 
