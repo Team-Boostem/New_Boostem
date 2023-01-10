@@ -27,7 +27,8 @@
             box-sizing: border-box;
             padding: 1.5rem 0rem;
         }
-        .avatar-indicators:before{
+
+        .avatar-indicators:before {
             border: none !important;
         }
     </style>
@@ -74,44 +75,69 @@
     @stack('scripts')
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script type="text/javascript">
-
-           //onchange value of #search_inp run this function
-    $("#search_inp").on('change', function() {
-        //get the value of #search_inp
-        var search = $("#search_inp").val();
-        //send ajax request
-        $.ajax({
-            url: "{{ route('search') }}",
-            type: "POST",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "search": search,
-            },
-            success: function(response) {
-                console.log(response);
-                if (response.status == 200) {
-                    $("#search-status").html(value);
-                } else {
-                    //decode response json
-                    var res = JSON.parse(response);
-                    var exp = res.data;
-
-                    //print the array
-                    console.log(exp)
-                    // $.each(exp, function(key, value) {
-                    //     $("#search-status").html(value['title']);
-                    // });
-                    for (var i = 0; i < exp.length; i++) {
-                        console.log(exp[i]['title']);
-                        document.getElementById("search-status").innerHTML += `<a href="/blog/view/`+ exp[i]['slug'] +`" >` + exp[i]['title'] + `</a><br>`;
-                        // $("#search-status").html(exp[i]['title']);
+        //onchange value of #search_inp run this function
+        // $("#search_inp").on('change', function() {
+        //     var search = $("#search_inp").val();
+        //     $.ajax({
+        //         url: "{{ route('search') }}",
+        //         type: "POST",
+        //         data: {
+        //             "_token": "{{ csrf_token() }}",
+        //             "search": search,
+        //         },
+        //         success: function(response) {
+        //             console.log(response);
+        //             if (response.status == 200) {
+        //                 $("#search-status").html(value);
+        //             } else {
+        //                 var res = JSON.parse(response);
+        //                 var exp = res.data;
+        //                 console.log(exp)
+        //                 for (var i = 0; i < exp.length; i++) {
+        //                     console.log(exp[i]['title']);
+        //                     document.getElementById("search-status").innerHTML +=
+        //                         `<a href="/blog/view/` + exp[i]['slug'] + `" >` + exp[i]['title'] +
+        //                         `</a><br>`;
+        //                 }
+        //             }
+        //         }
+        //     });
+        // });
+        $(document).ready(function() {
+            $("#search_inp").on('keyup', function() {
+                console.log('hii')
+                //var email_id as the value of input with name newsletter 
+                var search = $("#search_inp").val();
+                //alert(email_id);
+                $.ajax({
+                    url: "{{ route('search') }}",
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "search": search,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                            $("#search-status").html(value);
+                        } else {
+                            var res = JSON.parse(response);
+                            var exp = res.data;
+                            document.getElementById("search-status").innerHTML = "";
+                            for (var i = 0; i < exp.length; i++) {
+                                console.log(exp[i]['title']);
+                                document.getElementById("search-status").innerHTML +=
+                                    `<a href="/blog/view/` + exp[i]['slug'] + `" >` + exp[i][
+                                        'title'
+                                    ] +
+                                    `</a><br>`;
+                            }
+                        }
                     }
-                }
-            }
+                });
+            });
         });
-    });
-            
-        </script>
+    </script>
     <script src="{{ asset('public/cork/html/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('public/cork/html/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('public/cork/html/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>

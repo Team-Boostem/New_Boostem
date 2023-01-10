@@ -21,6 +21,7 @@
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
             <form class="form-inline search-full form-inline search" role="search">
+                @csrf
                 <div class="search-bar">
                     <input id="search_inp" type="text" class="form-control search-form-control  ml-lg-auto" placeholder="Search...">
                     <button id="search_btn" type="button" class="btn btn-success">Search</button>
