@@ -1,5 +1,5 @@
 <!--  BEGIN NAVBAR  -->
-<div class="header-container container-xxl">
+<div class="header-container container-xxl navbar-to-fadein">
     <header class="header navbar navbar-expand-sm expand-header">
         <h1>
         </h1>
