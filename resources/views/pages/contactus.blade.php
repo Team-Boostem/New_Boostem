@@ -23,20 +23,14 @@
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link href="{{ asset('public/cork/html/src/assets/css/light/pages/contact_us.css') }}" rel="stylesheet"
         type="text/css" />
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
     <!--  END CUSTOM STYLE FILE  -->
 </head>
 
 <body class=" layout-boxed alt-menu">
 
-    <!-- BEGIN LOADER -->
-    <div id="load_screen">
-        <div class="loader">
-            <div class="loader-content">
-                <div class="spinner-grow align-self-center"></div>
-            </div>
-        </div>
-    </div>
-    <!--  END LOADER -->
+    <x-loader />
 
     <div class="contact-us layout-top-spacing container">
         <div class="cu-contact-section">
@@ -169,6 +163,16 @@
     <script src="{{ asset('public/cork/html/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
     <script src="{{ asset('public/cork/html/layouts/collapsible-menu/app.js') }}"></script>
     <!-- END GLOBAL MANDATORY STYLES -->
+    <script type="text/javascript">
+        $(".contact-us").hide();
+        //windows on load but min of 800ms
+        $(window).on('load', function() {
+            setTimeout(function() {
+                $("#loder-container").fadeOut("10");
+                $(".contact-us").fadeIn("10");
+            }, 500);
+        });
+    </script>
 
 </body>
 

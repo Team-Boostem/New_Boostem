@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/icons/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('public/css/login.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -22,6 +24,7 @@
         <button type="button" id="dismiss">DISMISS</button>
     </div> 
     @endif
+    <x-loader/>
     <div class="community-registration-container">
         <div class="left-com-reg">
             <h1>Lorem ipsum dolor sit amet consectetur.</h1>
@@ -90,6 +93,16 @@
         </div>
     </div>
     <script src="{{ asset('public/js/script.js') }}"></script>
+    <script type="text/javascript">
+        $(".community-registration-container").hide();
+        //windows on load but min of 800ms
+        $(window).on('load', function() {
+            setTimeout(function() {
+                $("#loder-container").fadeOut("10");
+                $(".community-registration-container").fadeIn("10");
+            }, 500);
+        });
+    </script>
 </body>
 
 </html>

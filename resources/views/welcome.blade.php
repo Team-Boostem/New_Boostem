@@ -16,12 +16,15 @@
     <title>Boostem</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/icons/logo.png') }}">
     <link rel="stylesheet" href="{{ URL::asset('public/css/welcome.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
 
 </head>
 
 <body>
     <!-- navigation bar start -->
-
+    <x-loader/>
+    <div class="all-element-container">
     <nav>
         <div class="max-width navbar">
             <div class="logo">
@@ -250,6 +253,7 @@
             </div>
         </div>
     </footer>
+</div>
     <!-- footer ends heair -->
     <script>
         const nav = document.querySelector("nav");
@@ -295,6 +299,16 @@
         }
 
         hamburger.addEventListener("click", mobileMenu);
+    </script>
+    <script type="text/javascript">
+        $(".all-element-container").hide();
+        //windows on load but min of 800ms
+        $(window).on('load', function() {
+            setTimeout(function() {
+                $("#loder-container").fadeOut("10");
+                $(".all-element-container").fadeIn("10");
+            }, 500);
+        });
     </script>
 </body>
 

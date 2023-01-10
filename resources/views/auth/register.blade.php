@@ -20,9 +20,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/icons/logo.png') }}">
     <title>Document</title>
     <link rel="stylesheet" href="{{ URL::asset('public/css/login.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <x-loader />
     <div class="login">
         <div class="login-content">
             <div class="left-login">
@@ -104,6 +107,16 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(".login").hide();
+        //windows on load but min of 800ms
+        $(window).on('load', function() {
+            setTimeout(function() {
+                $("#loder-container").fadeOut("10");
+                $(".login").fadeIn("10");
+            }, 800);
+        });
+    </script>
 </body>
 
 </html>
