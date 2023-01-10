@@ -45,11 +45,9 @@ class HomeController extends Controller {
                 $image_array_2 = explode( ',', $image_array_1[ 1 ] );
                 $data = base64_decode( $image_array_2[ 1 ] );
                 $imageName = time() . '.png';
-                // file_put_contents( $imageName, $data );
-                $path = 'storage/covers/blogs/';
-                \File::put(storage_path('covers\test') . $imageName, $data);
+                \File::put(storage_path('\profile\profile'). $imageName, $data);
                 //$im->move( $path, $imageName );
-                echo '<img src="'.$imageName.'" class="img-thumbnail" />';
+                echo '<img src="' .url('/') .'/storage/profile/profile'.$imageName.'" class="img-thumbnail" />';
             }
         } catch ( \Throwable $th ) {
             //throw $th;
