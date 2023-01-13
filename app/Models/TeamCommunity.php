@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TeamCommunity extends Model
 {
     use HasFactory;
+    
 
     protected $casts = [
         'team_details' => 'array',
