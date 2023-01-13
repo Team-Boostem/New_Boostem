@@ -14,7 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('follows', function (Blueprint $table) {
-            $table->id();
+            $table->string('id');
+            $table->primary('id');
+            $table->string('followed_by')->nullable();
+            $table->string('following')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

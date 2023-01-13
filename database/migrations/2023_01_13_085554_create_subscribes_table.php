@@ -14,7 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('subscribes', function (Blueprint $table) {
-            $table->id();
+            $table->string('id');
+            $table->primary('id');
+            $table->string('community_id')->nullable();
+            $table->string('user_id')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
