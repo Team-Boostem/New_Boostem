@@ -47,10 +47,10 @@ Route::middleware([
     Route::get('/community/team/view/{community_id}',[CommunityController::class, 'viewTeamCommunity'] )->name('view.team.community');
 
     //profile Routes
-    Route::get('/user/{user_id}',[ProfileController::class, 'viewUser'] )->name('user.page');
-    Route::get('/user/edit',[ProfileController::class, 'editUser'] )->name('user.edit');
-    Route::post('/user/edit',[ProfileController::class, 'editUserPost'] )->name('user.edit');
-    Route::get('/user/settings',[ProfileController::class, 'settingsUser'] )->name('user.settings');
+    Route::get('/profile/{user_id}',[ProfileController::class, 'viewProfile'] )->name('profile');
+    Route::get('/profile/edit',[ProfileController::class, 'editProfile'] )->name('profile.edit');
+    Route::post('/profile/edit',[ProfileController::class, 'editProfilePost'] )->name('profile.edit');
+    Route::get('/profile/settings',[ProfileController::class, 'settingsProfile'] )->name('profile.settings');
 
     //blog routes
     Route::post('/blog/add_comment/{blog_slug}', [CommentController::class, 'addComment'])->name('comment.add');
