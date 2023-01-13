@@ -7,6 +7,8 @@ use App\Models\Community;
 use Auth;
 use App\Models\PageView;
 use App\Models\TeamCommunity;
+use Mail;
+use App\Mail\CreatedCommunity;
 
 class CommunityController extends Controller {
 
@@ -66,6 +68,18 @@ class CommunityController extends Controller {
         $model->socials = $socials;
         $model->creator = Auth::user()->user_id;
         $model->save();
+
+        $maildata = [ 
+            "name" =>Auth::user()->name,
+            "email" =>Auth::user()->email,
+            "community_name" =>$request->name,
+            "subject" =>"Your Community " .$request->name." have successfully Created at Boostem",
+         ];
+        Mail::send('emails.CreatedCommunity',  $maildata, function ($message) use ( $maildata) {
+            $message->from('info.boostem@gmail.com', 'Team Boostem');
+            $message->to( $maildata['email'],  $maildata['name']);
+            $message->subject($maildata['subject']);
+        });
 
         $request->session()->flash( 'message', 'category Inserted Successfully' );
         return redirect( '/dashboard' );
