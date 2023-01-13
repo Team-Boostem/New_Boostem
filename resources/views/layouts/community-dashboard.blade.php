@@ -16,6 +16,14 @@
     <link href="{{ asset('public/cork/html/src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/light/plugins.css') }}" rel="stylesheet"
         type="text/css" />
+    <meta property="og:title" content="Boostems">
+    <meta property="og:image" content="{{ asset('public/icons/logo.png') }}">
+    <meta property="og:url" content="https://boostem.live">
+    <meta property="og:description"
+        content="Boostem is a one stop solution for Communities to manage their events projects and workflow, for
+        individuals to learn through various communities and resources and for Aquisitors to publicize
+        their organisation as well as hire skilled individuals respectively.">
+    <meta property="og:site_name" content="boostem.live">
     <!-- END GLOBAL MANDATORY STYLES -->
     @stack('title')
     @include('partials.meta')
@@ -28,6 +36,20 @@
 
         .avatar-indicators:before {
             border: none !important;
+        }
+
+        .side-social-share {
+            position: absolute;
+            width: 100%;
+            height: 7rem;
+            bottom: 0;
+            right: 0;
+            background-color: rgb(223, 255, 252)2);
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            z-index: 999;
         }
     </style>
 </head>
