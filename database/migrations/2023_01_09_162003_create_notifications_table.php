@@ -14,7 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('notifications', function (Blueprint $table) {
-            $table->id();
+            $table->string('id');
+            $table->primary('id');
+            $table->string('user_id')->nullable();
+            $table->string('notification')->nullable();
+            $table->string('image')->nullable();
+            $table->string('status')->default('sent');
             $table->timestamps();
         });
     }
