@@ -108,6 +108,8 @@ Route::post('/search', [SearchController::class, 'search'])->name('search');
 
 //image route
 Route::post('/img/save', [HomeController::class, 'imgSave'])->name('img.save');
+//subscribe route
+Route::get('/subscribe/{community_id}', [CommunityController::class, 'subscribe'])->name('subscribe');
 
 
 

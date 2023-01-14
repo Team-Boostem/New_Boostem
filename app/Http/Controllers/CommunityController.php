@@ -9,6 +9,7 @@ use App\Models\PageView;
 use App\Models\TeamCommunity;
 use Mail;
 use App\Mail\CreatedCommunity;
+use App\Models\Subscribe;
 
 class CommunityController extends Controller {
 
@@ -182,6 +183,14 @@ class CommunityController extends Controller {
 
         $community = TeamCommunity::where( 'community_id', $community_id )->first();
         return view( 'pages.community.community-page', )->with( $result );
+    }
+    public function subscribe( $community_id ) {
+
+       $subscribe = new Subscribe();
+         $subscribe->community_id = $community_id;
+            $subscribe->user_id = Auth::user()->user_id;
+            $subscribe->save();
+            return redirect( '/community/view/'.$community_id );
     }
     
 
