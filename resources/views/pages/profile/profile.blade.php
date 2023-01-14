@@ -15,7 +15,7 @@
     .right-profile{
         width: 30%;
         float: left;
-        background-color: rgb(176, 150, 253);
+        /* background-color: rgb(176, 150, 253); */
     }
     .main-profile, .banner-container{
         width: 100%;
@@ -85,12 +85,75 @@
         margin-bottom: 1.5rem;
         padding: 2rem 1rem;
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
     .community-image-container img{
         height: 3rem;
-        width
-        
+        width: 3rem;
     }
+    .profile-h4{
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        color: rgb(90, 90, 90);
+    }
+    .my-community-line{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        justify-content: space-evenly;
+        margin-bottom: 1rem;
+    }
+    .total-boost-points{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        background-color: #64B5FF;
+        box-shadow: #919191 2px 2px 4px;
+    }
+    .boost-points{
+        font-size: 2rem;
+        font-weight: 700;
+        color: white;
+        padding: 0;
+        margin: 0;
+    }
+    .detailed-points{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+    .point-box{
+        width: 6rem;
+        background-color: #cfe8ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0 0.5rem;
+        border-radius: 8px;
+        padding: 0.8rem 0.4rem;
+        text-align: center
+    }
+    .point-box h3{
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+    }
+    .point-box p{
+        margin: 0;
+        padding: 0;
+    }
+
     
 </style>
 @endpush
@@ -142,13 +205,13 @@
             </div>
             <div class="skill-intrest-container">
                 <div class="skill-intrest skills-container">
-                    <h3>skills</h3>
+                    <h3 class="profile-h4">skills</h3>
                     <div class="skills">
 
                     </div>
                 </div>
                 <div class="skill-intrest intrest-container">
-                    <h3>Intrests</h3>
+                    <h3 class="profile-h4">Intrests</h3>
                     <div class="intrests">
 
                     </div>
@@ -157,7 +220,7 @@
         </div>
         <div class="right-profile">
             <div class="my-community-profile">
-                <h3>My Community</h3>
+                <h4 class="profile-h4">My Community</h4>
                 <div class="my-community-line">
                     <a class="community-image-container">
                         <img src="{{ url('') }}/{{ Auth::user()->profile_photo_path }}" alt="">
@@ -174,7 +237,24 @@
                 </div>
             </div>
             <div class="boost-point-container">
-                hii
+                <h4 class="profile-h4">Boost points</h4>
+                <div class="total-boost-points">
+                    <h3 class="boost-points">05</h3>
+                </div>
+                <div class="detailed-points">
+                    <div class="point-box">
+                        <h3>05</h3>
+                        <p>Boost points</p>
+                    </div>
+                    <div class="point-box">
+                        <h3>05</h3>
+                        <p>Boost points</p>
+                    </div>
+                    <div class="point-box">
+                        <h3>05</h3>
+                        <p>Boost points</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
