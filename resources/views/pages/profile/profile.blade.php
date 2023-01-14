@@ -77,13 +77,13 @@
         width: 48%;
         padding: 1rem;
     }
-    .my-community-profile, .boost-point-container, .followers-container, .following-container{
+    .my-community-profile, .boost-point-container, .follow-container{
         background-color: #fff;
         border: 1px solid rgb(215, 215, 215);
         border-radius: 8px;
         overflow: hidden;
         margin-bottom: 1.5rem;
-        padding: 2rem 1rem;
+        padding: 1.5rem 1rem;
         width: 100%;
         display: flex;
         align-items: center;
@@ -153,6 +153,47 @@
         margin: 0;
         padding: 0;
     }
+    .follow-container h3{
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+    }
+    .follow-container a{
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+        color: #0073de
+    }
+    .skill{
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    .skill-count{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: #64B5FF;
+        box-shadow: #919191 2px 2px 4px;
+        margin-right: 0.85rem;
+    }
+    .skill-count h4{
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+        padding: 0;
+        margin: 0;
+    }
+    .skills p{
+        margin: 0;
+        padding: 0;
+        font-size: 1rem;
+        font-weight: 600;
+    }
 
     
 </style>
@@ -207,13 +248,47 @@
                 <div class="skill-intrest skills-container">
                     <h3 class="profile-h4">skills</h3>
                     <div class="skills">
-
+                        <div class="skill">
+                            <div class="skill-count">
+                                <h4>01</h4>
+                            </div>
+                            <p>this is my skill</p>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-count">
+                                <h4>02</h4>
+                            </div>
+                            <p>this is my skill</p>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-count">
+                                <h4>03</h4>
+                            </div>
+                            <p>this is my skill</p>
+                        </div>
                     </div>
                 </div>
                 <div class="skill-intrest intrest-container">
                     <h3 class="profile-h4">Intrests</h3>
                     <div class="intrests">
-
+    <div class="skill">
+                            <div class="skill-count">
+                                <h4>01</h4>
+                            </div>
+                            <p>this is my skill</p>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-count">
+                                <h4>02</h4>
+                            </div>
+                            <p>this is my skill</p>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-count">
+                                <h4>03</h4>
+                            </div>
+                            <p>this is my skill</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -255,6 +330,16 @@
                         <p>Boost points</p>
                     </div>
                 </div>
+            </div>
+            <div class="follow-container">
+                <h3>83</h3>
+                <p>followers</p>
+                <a href="">See all</a>
+            </div>
+            <div class="follow-container">
+                <h3>80</h3>
+                <p>following</p>
+                <a href="">See all</a>
             </div>
         </div>
     </div>
