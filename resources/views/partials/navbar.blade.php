@@ -13,7 +13,7 @@
             </svg>
         </a>
 
-        <div class="search-animated toggle-search">
+        {{-- <div class="search-animated toggle-search">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="feather feather-search">
@@ -34,7 +34,7 @@
                 </div>
             </form>
             <span class="badge badge-secondary">Ctrl + /</span>
-        </div>
+        </div> --}}
         
 
         <ul class="navbar-item flex-row ms-lg-auto ms-0">
@@ -64,13 +64,11 @@
 
             @auth
 
-                <li class="nav-item dropdown notification-dropdown">
+                {{-- <li class="nav-item dropdown notification-dropdown">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notificationDropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-framer"><path d="M5 16V9h14V2H5l14 14h-7m-7 0l7 7v-7m-7 0h7"></path></svg>
-                        {{-- <span class="badge badge-success"></span> --}}
                     </a>
-
                     <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
                         <div class="drodpown-title message">
                             <h6 class="d-flex justify-content-between"><span class="align-self-center">My Communities</span>
@@ -97,8 +95,6 @@
                                     </div>
                                 </a>
                             @endforeach
-
-
                             <div class="drodpown-title notification mt-2">
                                 <a href="{{ route('create.community') }}">
                                     <h6 class="d-flex justify-content-between"><span class="align-self-center">Create
@@ -107,8 +103,7 @@
                             </div>
                         </div>
                     </div>
-
-                </li>
+                </li> --}}
 
 
                 <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
@@ -136,7 +131,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="dropdown-item">
+                        {{-- <div class="dropdown-item">
                             <a href="{{ route('profile' , [Auth::user()->user_id])  }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -145,7 +140,7 @@
                                     <circle cx="12" cy="7" r="4"></circle>
                                 </svg> <span>Profile</span>
                             </a>
-                        </div>
+                        </div> --}}
                         <div class="dropdown-item">
                             <a href="{{ url('logout') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

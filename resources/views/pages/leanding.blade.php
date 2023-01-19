@@ -49,7 +49,7 @@
 @section('content')
     <div class="main-box">
         <div id="search-status"></div>
-        <div>
+        {{-- <div>
             <div class="fq-header-wrapper">
                 <div class="container">
                     @if (subscribeNewsletterStatus())
@@ -64,7 +64,8 @@
                                             <div class="autocomplete-btn">
                                                 <input id="newsletter_inp" type="email" class="form-control"
                                                     @auth
-value="{{ Auth::user()->email }}" @endauth>
+                                                        value="{{ Auth::user()->email }}" 
+                                                    @endauth>
                                                 <button type="button" id="newsletter_btn"
                                                     class="btn btn-primary">Subscribe</button>
                                             </div>
@@ -78,7 +79,7 @@ value="{{ Auth::user()->email }}" @endauth>
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro, quo veniam quibusdam quidem modi est ducimus odio
         magni eius aspernatur ratione dolorum, odit natus itaque blanditiis delectus fuga hic soluta. Lorem ipsum dolor sit

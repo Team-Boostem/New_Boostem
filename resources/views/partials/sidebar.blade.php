@@ -45,15 +45,15 @@
             </li>
 
 
-            <li class="menu menu-heading">
+            {{-- <li class="menu menu-heading">
                 <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="feather feather-minus">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg><span>EVENTS & COMPETITIONS</span></div>
-            </li>
+            </li> --}}
 
-            <li class="menu">
+            {{-- <li class="menu">
                 <a href="" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -65,8 +65,8 @@
                         <span>Events</span>
                     </div>
                 </a>
-            </li>
-            <li class="menu">
+            </li> --}}
+            {{-- <li class="menu">
                 <a href="" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -77,8 +77,8 @@
                         <span>Competitions</span>
                     </div>
                 </a>
-            </li>
-            <li class="menu">
+            </li> --}}
+            {{-- <li class="menu">
                 <a href="{{ route('blog') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -92,18 +92,18 @@
                         <span>Blogs</span>
                     </div>
                 </a>
-            </li>
+            </li> --}}
 
 
-            <li class="menu menu-heading">
+            {{-- <li class="menu menu-heading">
                 <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg><span>COMMUNITIES & STARTUPS</span></div>
-            </li>
+            </li> --}}
 
-            <li class="menu">
+            {{-- <li class="menu">
                 <a href="{{ route('create.community') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -115,8 +115,8 @@
                         <span>Create Community</span>
                     </div>
                 </a>
-            </li>
-            <li class="menu">
+            </li> --}}
+            {{-- <li class="menu">
                 <a href="" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -130,7 +130,7 @@
                         <span>Create Startup</span>
                     </div>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="menu menu-heading">
                 <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -169,7 +169,7 @@
                     </div>
                 </a>
             </li>
-            <div class="side-social-share">
+            {{-- <div class="side-social-share">
                 <a href="https://www.facebook.com/sharer.php?u=https://boostem.live" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -190,7 +190,7 @@
                         <circle cx="11" cy="11" r="2"></circle>
                     </svg>
                 </a>
-            </div>
+            </div> --}}
 
 
 
