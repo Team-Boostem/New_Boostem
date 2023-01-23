@@ -13,7 +13,6 @@ use App\Notifications\CustomResetPasswordNotification;
 use App\Notifications\CustomEmailVarificationNotification;
 // Import Str
 use Illuminate\Support\Str;
-
 function getUniqueUsername($username)
 {
     $user = User::where('username', $username)->first();
