@@ -105,11 +105,11 @@ class User extends Authenticatable implements MustVerifyEmail
             }
             if (!$user->profile_photo_path) {
                 $user->profile_photo_path = 
-                    'storage/user/profile' . rand(1, 6) . '.png';
+                    'storage/user/profile/avtar' . rand(1, 6) . '.png';
             }
             if (!$user->cover_photo_path) {
                 $user->cover_photo_path =
-                'storage/user/banner' . rand(1, 3) . '.png';
+                'storage/user/banner/banner' . rand(1, 3) . '.png';
             }
             if (!$user->socials) {
                 $user->socials = '{}';
