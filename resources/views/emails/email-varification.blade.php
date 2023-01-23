@@ -494,7 +494,7 @@
                                                                                                     <div>
                                                                                                         <h4 class="default-heading4" style="margin: 0; color: #1f2d3d; font-family: arial,helvetica,sans-serif; font-size: 18px;">Dear User,</h4>
                                                                                                         <p style="margin: 0;"> </p>
-                                                                                                        <p style="margin: 0;">The link to reset your password is provided below; you can either copy and paste it into your browser or use the button to reset your password.</p>
+                                                                                                        <p style="margin: 0;">The link to verify your email address is provided below; you can either copy and paste it into your browser or use the button to verify your email address.</p>
                                                                                                         <p style="margin: 0;"> </p>
                                                                                                         <p style="margin: 0; margin-bottom:0.8rem;">open url: {{ $url }}} </p>
                                                                                                         <p style="margin: 0;">Please don't send anyone this link as a precaution.</p>
@@ -514,7 +514,7 @@
                                                                                                 <td height="18" align="center" valign="top" class="r15-i nl2go-default-textstyle" style="color: #3b3f44; font-family: arial,helvetica,sans-serif; font-size: 16px; line-height: 1.5;">
                                                                                                     <!--[if mso]> <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="#top" style="v-text-anchor:middle; height: 43px; width: 599px;" arcsize="10%" fillcolor="#0092ff" strokecolor="#0092ff" strokeweight="1px" data-btn="1"> <w:anchorlock/> <div style="display:none;"> <center class="default-button"><p>Reset Password&nbsp;</p></center> </div> </v:roundrect> <![endif]-->
                                                                                                     <!--[if !mso]><!-- --> <a href="{{ $url }}" class="r16-r default-button" target="_blank" data-btn="1" style="font-style: normal; font-weight: bold; line-height: 1.15; text-decoration: none; border-style: solid; word-wrap: break-word; display: inline-block; -webkit-text-size-adjust: none; mso-hide: all; background-color: #0092ff; border-color: #0092ff; border-radius: 4px; border-width: 1px; color: #ffffff; font-family: arial,helvetica,sans-serif; font-size: 16px; height: 48px; padding-bottom: 12px; padding-left: 5px; padding-right: 5px; padding-top: 12px; width: 588px; text-align:center;">
-                                                                                                        <p style="margin: 0; text-align:center;">Reset Password </p>
+                                                                                                        <p style="margin: 0; text-align:center;">Verify email</p>
                                                                                                     </a>
                                                                                                     <!--<![endif]-->
                                                                                                 </td>
@@ -583,7 +583,7 @@
                                                                                             <tr>
                                                                                                 <td align="center" valign="top" class="r20-i nl2go-default-textstyle" style="font-family: arial,helvetica,sans-serif; color: #3b3f44; font-size: 18px; line-height: 1.5; text-align: center;">
                                                                                                     <div>
-                                                                                                        <p style="margin: 0; font-size: 14px;text-align:center;">You've received it because you've subscribed to our platform.</p>
+                                                                                                        <p style="margin: 0; font-size: 14px;text-align:center;">You've received it to verify email address</p>
                                                                                                     </div>
                                                                                                 </td>
                                                                                             </tr>

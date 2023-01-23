@@ -63,7 +63,7 @@ class CustomEmailVarificationNotification extends Notification
     {
         return (new MailMessage)
             ->subject(Lang::get('Verify Email Address'))
-            ->markdown('emails.reset-password', ['url' => $url]);
+            ->markdown('emails.email-varification', ['url' => $url]);
     }
 
     /**
