@@ -11,14 +11,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/icons/logo.png') }}">
     <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/light/loader.css') }}" rel="stylesheet"
         type="text/css" />
-    <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/dark/loader.css') }}" rel="stylesheet"
-        type="text/css" />
     <script src="{{ asset('public/cork/html/layouts/collapsible-menu/loader.js') }}"></script>
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{{ asset('public/cork/html/src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/light/plugins.css') }}" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('public/cork/html/layouts/collapsible-menu/css/dark/plugins.css') }}" rel="stylesheet"
         type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
     <link href="{{ asset('public/cork/html/src/assets/css/light/authentication/auth-boxed.css') }}" rel="stylesheet"

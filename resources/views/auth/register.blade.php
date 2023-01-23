@@ -18,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/icons/logo.png') }}">
-    <title>Document</title>
+    <title>Register | Boostem</title>
     <link rel="stylesheet" href="{{ URL::asset('public/css/login.css') }}" />
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous"></script>
