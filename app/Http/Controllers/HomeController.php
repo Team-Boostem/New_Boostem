@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\Users;
 use Storage;
+use DB;
 
 class HomeController extends Controller {
     //index function
@@ -53,6 +55,24 @@ class HomeController extends Controller {
             //throw $th;
             echo $th;
         }
+    }
+    public function data() {
+        //get data of users using DB
+        $data = DB::table( 'us' )->get();
+
+        // foreach ( $data as $value ) {
+        //     $user = new Users();
+        //     $user->name = $value->name; 
+        //     $user->email = $value->email;
+        //     $user->password = $value->password;
+        //     $user->username = $value->username;
+        //     $user->created_at = $value->created_at;
+        //     $user->updated_at = $value->updated_at;
+        //     $user->save();
+
+        // }
+        dd($data);
+        return redirect( 'dashboard' );
     }
 
 }
