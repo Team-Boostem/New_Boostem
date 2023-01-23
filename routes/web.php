@@ -112,6 +112,7 @@ Route::post('/img/save', [HomeController::class, 'imgSave'])->name('img.save');
 Route::get('/subscribe/{community_id}', [CommunityController::class, 'subscribe'])->name('subscribe');
 
 Route::get('/data', [HomeController::class, 'data'])->name('data');
+Route::get('/testfun', [HomeController::class, 'test'])->name('testfun');
 
 
 

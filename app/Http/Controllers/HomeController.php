@@ -7,6 +7,8 @@ use App\Models\Contact;
 use App\Models\Users;
 use Storage;
 use DB;
+use Mail;
+use App\Mail\Signup;
 
 class HomeController extends Controller {
     //index function
@@ -73,6 +75,19 @@ class HomeController extends Controller {
         // }
         dd($data);
         return redirect( 'dashboard' );
+    }
+    public function test(){
+        $maildata = [ 
+            "name" =>'sem',
+            "email" =>'sumitsem2004@gmail.com',
+            // "community_name" =>$request->name,
+            // "subject" =>"Your Community " .$request->name." have successfully Created at Boostem",
+         ];
+        Mail::send('emails.Signup',  $maildata, function ($message) use ( $maildata) {
+            $message->from('info.boostem@gmail.com', 'Team Boostem');
+            $message->to( $maildata['email'],  $maildata['name']);
+            $message->subject('hii subject');
+        });
     }
 
 }
