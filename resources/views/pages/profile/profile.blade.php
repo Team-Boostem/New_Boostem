@@ -1,6 +1,22 @@
 {{-- push title --}}
 @push('title')
     <title>User Profile</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
 @endpush
 
 {{-- push styles --}}
@@ -229,6 +245,65 @@
 
 {{-- push scripts --}}
 @push('scripts')
+    <script type="text/javascript">
+        // modle popup
+        //     $('#exampleModalCenter').on('shown.bs.modal', function () {
+        //   $('#myInput').trigger('focus')
+        // })
+
+        $(document).ready(function() {
+            $image_crop = $('#image_demo').croppie({
+                enableExif: true,
+                viewport: {
+                    width: 200,
+                    height: 200,
+                    type: 'circle' //circle
+                },
+                boundary: {
+                    width: 300,
+                    height: 300
+                }
+            });
+            $('#upload_image').on('change', function() {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    $image_crop.croppie('bind', {
+                        url: event.target.result
+                    })
+                }
+                reader.readAsDataURL(this.files[0]);
+                $('#uploadimage').show();
+            });
+            $('.crop_image').click(function(event) {
+                $image_crop.croppie('result', {
+                    type: 'canvas',
+                    size: 'viewport'
+                }).then(function(response) {
+                    $.ajax({
+                        url: "{{ route('img.save') }}",
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "image": response
+                        },
+                        // success:function(data)
+                        // {
+                        //    $('#uploaded_image').html(data)
+                        // }
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status == 200) {
+                                $('#uploaded_image').html(response)
+
+                            } else {
+                                $('#uploaded_image').html(response)
+                            }
+                        }
+                    });
+                })
+            });
+        });
+    </script>
 @endpush
 
 {{-- extend and yield content --}}
@@ -265,12 +340,13 @@
                     </div>
                 </div>
                 <div class="edit-profile-options">
-                    <button class="btn btn-primary" id="">Edit profile</button>
-                    <button class="btn btn-primary" id="">Add intrest</button>
-                    <button class="btn btn-primary" id="">Add Skills</button>
-                    <button class="btn btn-primary" id="">Change profile Photo</button>
-                    <button class="btn btn-primary" id="">Change cover Photo</button>
-                    <button class="btn btn-primary" id="">Add Socials</button>
+                    <button class="btn btn-primary mx-1" id="">Edit profile</button>
+                    <button class="btn btn-primary mx-1" id="">Add intrest</button>
+                    <button class="btn btn-primary mx-1" id="">Add Skills</button>
+                    <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                        data-target="#exampleModalCenter" id="">Change profile Photo</button>
+                    <button class="btn btn-primary mx-1" id="">Change cover Photo</button>
+                    <button class="btn btn-primary mx-1" id="">Add Socials</button>
                 </div>
                 <div class="skill-intrest-container">
                     <div class="skill-intrest skills-container">
@@ -368,6 +444,48 @@
                     <h3>80</h3>
                     <p>following</p>
                     <a href="">See all</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="main-box py-0">
+                        <div class="container" style="margin-top:0px;padding:20px;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Select Image</h5>
+                                    <input type="file" name="upload_image" id="upload_image" />
+                                </div>
+                            </div>
+
+                            <div class="card text-center" id="uploadimage" style='display:none'>
+                                <div class="card-header">
+                                    Upload & Crop Image
+                                </div>
+                                <div class="card-body">
+                                    <div id="image_demo" style="width:350px; margin-top:30px"></div>
+                                    <div id="uploaded_image" style="width:350px; margin-top:30px;"></div>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <button class="crop_image">Crop & Upload Image</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                 </div>
             </div>
         </div>

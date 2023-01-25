@@ -76,35 +76,5 @@
 {{-- extend and yield content --}}
 @extends('layouts/community-dashboard')
 @section('content')
-    <div class="main-box">
-        <div class="container" style="margin-top:20px;padding:20px;">
-            <div class="card">
-                <div class="card-header">
-                    Crop And Upload Image using PHP and JQuery Ajax - Croppie Image Cropper
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Select Image</h5>
-                    <input type="file" name="upload_image" id="upload_image" />
-                </div>
-            </div>
-
-            <div class="card text-center" id="uploadimage" style='display:none'>
-                <div class="card-header">
-                    Upload & Crop Image
-                </div>
-                <div class="card-body">
-                    <div id="image_demo" style="width:350px; margin-top:30px"></div>
-                    <div id="uploaded_image" style="width:350px; margin-top:30px;"></div>
-                </div>
-                <div class="card-footer text-muted">
-                    <button class="crop_image">Crop & Upload Image</button>
-                </div>
-            </div>
-        </div>
-        </body>
-
-        </html>
-
-
-    </div>
+    
 @endsection
