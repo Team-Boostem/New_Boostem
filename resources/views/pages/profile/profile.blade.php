@@ -257,7 +257,7 @@
                 viewport: {
                     width: 200,
                     height: 200,
-                    type: 'circle' //circle
+                    // type: 'circle'
                 },
                 boundary: {
                     width: 300,
