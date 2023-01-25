@@ -280,7 +280,7 @@
                     size: 'viewport'
                 }).then(function(response) {
                     $.ajax({
-                        url: "{{ route('img.save') }}",
+                        url: "{{ route('profile.update.img') }}",
                         type: "POST",
                         data: {
                             "_token": "{{ csrf_token() }}",

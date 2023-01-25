@@ -75,7 +75,6 @@ Route::group(['middleware' => ['protectedEdit','auth']], function () {
     Route::get('/blog/delete/{community_id}/{blog_slug}', [BlogController::class, 'blogDelete'])->name('blog.delete');
 });
 
-
 //routes for google auth
 Route::get('/google',[AuthController::class, 'redirectToGoogle'] );
 Route::get('/google/callback',[AuthController::class, 'handdleGoogleCallBack'] );
@@ -107,12 +106,11 @@ Route::post('/newsletter/save', [NotificationController::class, 'saveNewsletter'
 Route::post('/search', [SearchController::class, 'search'])->name('search');
 
 //image route
-Route::post('/img/save', [HomeController::class, 'imgSave'])->name('img.save');
+Route::post('/profile/update/img', [ProfileController::class, 'updateProfileImg'])->name('profile.update.img');
+Route::post('/profile/update/banner', [ProfileController::class, 'updateProfileBanner']);
 //subscribe route
 Route::get('/subscribe/{community_id}', [CommunityController::class, 'subscribe'])->name('subscribe');
 
-Route::get('/data', [HomeController::class, 'data'])->name('data');
-Route::get('/testfun', [HomeController::class, 'test'])->name('testfun');
 
 
 
