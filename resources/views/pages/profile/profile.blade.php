@@ -246,11 +246,6 @@
 {{-- push scripts --}}
 @push('scripts')
     <script type="text/javascript">
-        // modle popup
-        //     $('#exampleModalCenter').on('shown.bs.modal', function () {
-        //   $('#myInput').trigger('focus')
-        // })
-
         $(document).ready(function() {
             $image_crop = $('#image_demo').croppie({
                 enableExif: true,
@@ -286,10 +281,6 @@
                             "_token": "{{ csrf_token() }}",
                             "image": response
                         },
-                        // success:function(data)
-                        // {
-                        //    $('#uploaded_image').html(data)
-                        // }
                         success: function(response) {
                             console.log(response);
                             if (response.status == 200) {
@@ -297,6 +288,56 @@
 
                             } else {
                                 $('#uploaded_image').html(response)
+                            }
+                        }
+                    });
+                })
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $image_crop = $('#image_demo_banner').croppie({
+                enableExif: true,
+                viewport: {
+                    width: 917,
+                    height: 240,
+                    // type: 'circle'
+                },
+                boundary: {
+                    width: 1000,
+                    height: 300
+                }
+            });
+            $('#upload_image_banner').on('change', function() {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    $image_crop.croppie('bind', {
+                        url: event.target.result
+                    })
+                }
+                reader.readAsDataURL(this.files[0]);
+                $('#uploadimage_banner').show();
+            });
+            $('.crop_image_banner').click(function(event) {
+                $image_crop.croppie('result', {
+                    type: 'canvas',
+                    size: 'viewport'
+                }).then(function(response) {
+                    $.ajax({
+                        url: "{{ route('banner.update.img') }}",
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "image": response
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status == 200) {
+                                $('#uploaded_image_banner').html(response)
+
+                            } else {
+                                $('#uploaded_image_banner').html(response)
                             }
                         }
                     });
@@ -345,8 +386,9 @@
                     <button class="btn btn-primary mx-1" id="">Add intrest</button>
                     <button class="btn btn-primary mx-1" id="">Add Skills</button>
                     <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
-                        data-target="#exampleModalCenter" id="">Change profile Photo</button>
-                    <button class="btn btn-primary mx-1" id="">Change cover Photo</button>
+                        data-target="#exampleModalCenter">Change profile Photo</button>
+                    <button class="btn btn-primary mx-1" type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                    data-target="#bannerModalCenter">Change cover Photo</button>
                     <button class="btn btn-primary mx-1" id="">Add Socials</button>
                 </div>
                 @endif
@@ -479,6 +521,48 @@
                                 </div>
                                 <div class="card-footer text-muted">
                                     <button class="crop_image">Crop & Upload Image</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="bannerModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">banner</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="main-box py-0">
+                        <div class="container" style="margin-top:0px;padding:20px;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Select Image</h5>
+                                    <input type="file" name="upload_image_banner" id="upload_image_banner" />
+                                </div>
+                            </div>
+
+                            <div class="card text-center" id="uploadimage_banner" style='display:none'>
+                                <div class="card-header">
+                                    Upload & Crop Image
+                                </div>
+                                <div class="card-body">
+                                    <div id="image_demo_banner" style="width:350px; margin-top:30px"></div>
+                                    <div id="uploaded_image_banner" style="width:350px; margin-top:30px;"></div>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <button class="crop_image_banner">Crop & Upload Image</button>
                                 </div>
                             </div>
                         </div>

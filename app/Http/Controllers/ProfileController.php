@@ -64,20 +64,16 @@ class ProfileController extends Controller {
                 $image_array_2 = explode( ',', $image_array_1[ 1 ] );
                 $data = base64_decode( $image_array_2[ 1 ] );
                 $imageName = time() . '.png';
-                \File::put( storage_path( '\user\profile\profile' ). $imageName, $data );
+                \File::put( storage_path( '\user\banner\banner' ). $imageName, $data );
 
                 $user = User::where( 'user_id', Auth::user()->user_id )->first();
-                $path = $user->profile_photo_path;
-                if ( $path != 'storage/user/profile/avtar1.png' && $path != 'storage/user/profile/avtar2.png' && $path != 'storage/user/profile/avtar3.png' && $path != 'storage/user/profile/avtar4.png' && $path != 'storage/user/profile/avtar5.png' && $path != 'storage/user/profile/avtar6.png' ) {
+                $path = $user->cover_photo_path;
+                if ( $path != 'storage/user/banner/banner1.png' && $path != 'storage/user/banner/banner2.png' && $path != 'storage/user/banner/banner3.png' ) {
                     File::Delete( $path );
                 }
-                $user->profile_photo_path = 'storage/user/profile/profile'.$imageName;
+                $user->cover_photo_path = 'storage/user/banner/banner'.$imageName;
                 $user->update();
-
-                //if privius image is not default image then delete it
-
                 echo 'done';
-
             }
         } catch ( \Throwable $th ) {
             //throw $th;

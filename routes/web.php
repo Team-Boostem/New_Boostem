@@ -107,7 +107,7 @@ Route::post('/search', [SearchController::class, 'search'])->name('search');
 
 //image route
 Route::post('/profile/update/img', [ProfileController::class, 'updateProfileImg'])->name('profile.update.img');
-Route::post('/profile/update/banner', [ProfileController::class, 'updateProfileBanner']);
+Route::post('/profile/update/banner', [ProfileController::class, 'updateProfileBanner'])->name('banner.update.img');
 //subscribe route
 Route::get('/subscribe/{community_id}', [CommunityController::class, 'subscribe'])->name('subscribe');
 
