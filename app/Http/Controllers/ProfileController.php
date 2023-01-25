@@ -81,11 +81,21 @@ class ProfileController extends Controller {
         }
     }
 
-    public function editProfile( $username ) {
-        return view( 'pages/user', [
-            'user' => User::where( 'username', $username )->firstOrFail(),
-            'pageViews' => PageView::where( 'page', 'user/{username}' )->where( 'profile_id', $user->user_id )->orderBy( 'created_at', 'desc' )->get(),
-        ] );
+    public function updateProfileSocials( Request $request ) {
+            $user = User::where( 'user_id', Auth::user()->user_id )->first();
+            $socialArr =[
+                'facebook' => $request->facebook,
+                'twitter' => $request->twitter,
+                'instagram' => $request->instagram,
+                'youtube' => $request->youtube,
+                'linkedin' => $request->linkedin,
+                'github' => $request->github,
+                'website' => $request->website,
+            ];
+            $user->socials = json_encode( $socialArr );
+            $user->update();
+
+            return redirect()->back()->with( 'success', 'Socials Updated Successfully' );
     }
 
     public function editProfilePost( $username ) {

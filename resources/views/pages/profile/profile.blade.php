@@ -389,7 +389,8 @@
                         data-target="#exampleModalCenter">Change profile Photo</button>
                     <button class="btn btn-primary mx-1" type="button" class="btn btn-primary mx-1" data-toggle="modal"
                     data-target="#bannerModalCenter">Change cover Photo</button>
-                    <button class="btn btn-primary mx-1" id="">Add Socials</button>
+                    <button class="btn btn-primary mx-1" type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                    data-target="#socialModalCenter" >Add Socials</button>
                 </div>
                 @endif
                 
@@ -491,6 +492,7 @@
             </div>
         </div>
     </div>
+    {{-- profile image update model --}}
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -533,6 +535,7 @@
             </div>
         </div>
     </div>
+    {{-- banner image update model --}}
     <div class="modal fade" id="bannerModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -567,6 +570,51 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- add socials model --}}
+    <div class="modal fade" id="socialModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">banner</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('profile.add.socials') }}" method="POST">
+                        @csrf
+                    <input type="text" 
+                    {{-- value="{{ $socials['instagram'] }}"  --}}
+                    name="instagram" placeholder="instagram">
+                    <input type="text" 
+                    {{-- value="{{ $socials['facebook'] }}" --}}
+                     name="facebook" placeholder="facebook">
+                    <input type="text" 
+                    {{-- value="{{ $socials['twitter'] }}"  --}}
+                    name="twitter" placeholder="twitter">
+                    <input type="text" 
+                    {{-- value="{{ $socials['website'] }}"  --}}
+                    name="website" placeholder="website">
+                    <input type="text" 
+                    {{-- value="{{ $socials['linkedin'] }}" --}}
+                     name="linkedin" placeholder="linkedin">
+                    <input type="text" 
+                    {{-- value="{{ $socials['github'] }}" n --}}
+                    ame="github" placeholder="github">
+                    <input type="text" 
+                    {{-- value="{{ $socials['youtube'] }}"  --}}
+                    name="youtube" placeholder="youtube">
+                    <button>Submit</button>
+                </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
