@@ -380,20 +380,20 @@
                         </div>
                     </div>
                 </div>
-                @if($user->user_id == Auth::user()->user_id)
-                <div class="edit-profile-options">
-                    <button class="btn btn-primary mx-1" id="">Edit profile</button>
-                    <button class="btn btn-primary mx-1" id="">Add intrest</button>
-                    <button class="btn btn-primary mx-1" id="">Add Skills</button>
-                    <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
-                        data-target="#exampleModalCenter">Change profile Photo</button>
-                    <button class="btn btn-primary mx-1" type="button" class="btn btn-primary mx-1" data-toggle="modal"
-                    data-target="#bannerModalCenter">Change cover Photo</button>
-                    <button class="btn btn-primary mx-1" type="button" class="btn btn-primary mx-1" data-toggle="modal"
-                    data-target="#socialModalCenter" >Add Socials</button>
-                </div>
+                @if ($user->user_id == Auth::user()->user_id)
+                    <div class="edit-profile-options">
+                        <button class="btn btn-primary mx-1" id="">Edit profile</button>
+                        <button class="btn btn-primary mx-1" id="">Add intrest</button>
+                        <button class="btn btn-primary mx-1" id="">Add Skills</button>
+                        <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                            data-target="#exampleModalCenter">Change profile Photo</button>
+                        <button class="btn btn-primary mx-1" type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                            data-target="#bannerModalCenter">Change cover Photo</button>
+                        <button class="btn btn-primary mx-1" type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                            data-target="#socialModalCenter">Add Socials</button>
+                    </div>
                 @endif
-                
+
                 <div class="skill-intrest-container">
                     <div class="skill-intrest skills-container">
                         <h3 class="profile-h4">skills</h3>
@@ -447,10 +447,10 @@
                 <div class="my-community-profile">
                     <h4 class="profile-h4">My Community</h4>
                     <div class="my-community-line">
-                        @foreach ($communities as $community )
-                        <a class="community-image-container" href="{{ route('community.page', $community->id) }}">
-                            <img src="{{ url('') }}/{{ $community->logo_photo_path }}" alt="">
-                        </a>
+                        @foreach ($communities as $community)
+                            <a class="community-image-container" href="{{ route('community.page', $community->id) }}">
+                                <img src="{{ url('') }}/{{ $community->logo_photo_path }}" alt="">
+                            </a>
                         @endforeach
                     </div>
                     <div class="add-more-communityes">
@@ -482,7 +482,7 @@
                 <div class="follow-container">
                     <h3>00</h3>
                     <p>followers</p>
-                    <p style="color: blue;" >This feature is under devlopement</p>
+                    <p style="color: blue;">This feature is under devlopement</p>
                 </div>
                 <div class="follow-container">
                     <h3>00</h3>
@@ -536,8 +536,8 @@
         </div>
     </div>
     {{-- banner image update model --}}
-    <div class="modal fade" id="bannerModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
+    <div class="modal fade" id="bannerModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -579,8 +579,8 @@
         </div>
     </div>
     {{-- add socials model --}}
-    <div class="modal fade" id="socialModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
+    <div class="modal fade" id="socialModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -592,29 +592,23 @@
                 <div class="modal-body">
                     <form action="{{ route('profile.add.socials') }}" method="POST">
                         @csrf
-                    <input type="text" 
-                    {{-- value="{{ $socials['instagram'] }}"  --}}
-                    name="instagram" placeholder="instagram">
-                    <input type="text" 
-                    {{-- value="{{ $socials['facebook'] }}" --}}
-                     name="facebook" placeholder="facebook">
-                    <input type="text" 
-                    {{-- value="{{ $socials['twitter'] }}"  --}}
-                    name="twitter" placeholder="twitter">
-                    <input type="text" 
-                    {{-- value="{{ $socials['website'] }}"  --}}
-                    name="website" placeholder="website">
-                    <input type="text" 
-                    {{-- value="{{ $socials['linkedin'] }}" --}}
-                     name="linkedin" placeholder="linkedin">
-                    <input type="text" 
-                    {{-- value="{{ $socials['github'] }}" n --}}
-                    ame="github" placeholder="github">
-                    <input type="text" 
-                    {{-- value="{{ $socials['youtube'] }}"  --}}
-                    name="youtube" placeholder="youtube">
-                    <button>Submit</button>
-                </form>
+
+                        <input type="text" @if ($socials != null) value="{{ $socials['instagram'] }}" @endif
+                            name="instagram" placeholder="instagram">
+                        <input type="text" @if ($socials != null) value="{{ $socials['facebook'] }}" @endif
+                            name="facebook" placeholder="facebook">
+                        <input type="text" @if ($socials != null) value="{{ $socials['twitter'] }}" @endif
+                            name="twitter" placeholder="twitter">
+                        <input type="text" @if ($socials != null) value="{{ $socials['website'] }}" @endif
+                            name="website" placeholder="website">
+                        <input type="text" @if ($socials != null) value="{{ $socials['linkedin'] }}" @endif
+                            name="linkedin" placeholder="linkedin">
+                        <input type="text" @if ($socials != null) value="{{ $socials['github'] }}" @endif n
+                            ame="github" placeholder="github">
+                        <input type="text" @if ($socials != null) value="{{ $socials['youtube'] }}" @endif
+                            name="youtube" placeholder="youtube">
+                        <button>Submit</button>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

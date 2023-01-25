@@ -15,7 +15,8 @@ class ProfileController extends Controller {
     public function viewProfile( $user_id ) {
         $user = User::where( 'user_id', $user_id )->first();
         if ( $user ) {
-            $socials = $user->socials;
+            // json decode $user->socials and save to $socials
+            $socials = json_decode( $user->socials, true );
             $pageViews = PageView::where( 'page', 'user/{username}' )->where( 'profile_id', $user->username )->get();
             $pageViewsCount = $pageViews->count();
             $communities = Community::where( 'creator', $user->user_id )->get();
