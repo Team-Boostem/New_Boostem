@@ -404,18 +404,16 @@
                 <div class="my-community-profile">
                     <h4 class="profile-h4">My Community</h4>
                     <div class="my-community-line">
-                        <a class="community-image-container">
-                            <img src="{{ url('') }}/{{ Auth::user()->profile_photo_path }}" alt="">
+                        @foreach ($communities as $community )
+                        <a class="community-image-container" href="{{ route('community.page', $community->id) }}">
+                            <img src="{{ url('') }}/{{ $community->logo_photo_path }}" alt="">
                         </a>
-                        <a class="community-image-container">
-                            <img src="{{ url('') }}/{{ Auth::user()->profile_photo_path }}" alt="">
-                        </a>
-                        <a class="community-image-container">
-                            <img src="{{ url('') }}/{{ Auth::user()->profile_photo_path }}" alt="">
-                        </a>
+                        @endforeach
                     </div>
                     <div class="add-more-communityes">
-                        <button class="btn btn-edit">Add More</button>
+                        <a href="{{ route('create.community') }}">
+                            <button class="btn btn-edit">Add Community</button>
+                        </a>
                     </div>
                 </div>
                 <div class="boost-point-container">
@@ -439,14 +437,14 @@
                     </div>
                 </div>
                 <div class="follow-container">
-                    <h3>83</h3>
+                    <h3>00</h3>
                     <p>followers</p>
-                    <a href="">See all</a>
+                    <p style="color: blue;" >This feature is under devlopement</p>
                 </div>
                 <div class="follow-container">
-                    <h3>80</h3>
+                    <h3>00</h3>
                     <p>following</p>
-                    <a href="">See all</a>
+                    <p style="color: blue;">This feature is under devlopement</p>
                 </div>
             </div>
         </div>
