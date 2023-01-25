@@ -423,16 +423,16 @@
                     </div>
                     <div class="detailed-points">
                         <div class="point-box">
-                            <h3>05</h3>
-                            <p>Boost points</p>
+                            <h3>{{ $pageViewsCount }}</h3>
+                            <p>views</p>
                         </div>
                         <div class="point-box">
-                            <h3>05</h3>
-                            <p>Boost points</p>
+                            <h3>0</h3>
+                            <p>events</p>
                         </div>
                         <div class="point-box">
-                            <h3>05</h3>
-                            <p>Boost points</p>
+                            <h3>0</h3>
+                            <p>teams</p>
                         </div>
                     </div>
                 </div>

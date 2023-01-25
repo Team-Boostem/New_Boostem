@@ -16,9 +16,10 @@ class ProfileController extends Controller
         $user = User::where('user_id', $user_id)->first();
         if ($user) {
             $socials = $user->socials;
-            $pageViews = PageView::where('page', 'user/{username}')->where('profile_id', $user->user_id)->orderBy('created_at', 'desc')->get();
+            $pageViews = PageView::where('page', 'user/{username}')->where('profile_id', $user->username)->get();
+            $pageViewsCount = $pageViews->count();
             $communities = Community::where('creator', $user->user_id)->get();
-            $result = compact('user', 'socials', 'communities', 'pageViews');
+            $result = compact('user', 'socials', 'communities', 'pageViewsCount');
             if (Auth::user()->user_id == $user->user_id) {
                 return view('pages.profile.profile', )->with($result);
             } else {
