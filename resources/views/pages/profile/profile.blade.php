@@ -345,6 +345,26 @@
             });
         });
     </script>
+    <script>
+        const newInput = document.querySelector('#add_intrest');
+        const inputContainer = document.querySelector('#intrest-add-container');
+        var i = document.getElementById("hidden_intrest").value;
+        newInput.addEventListener('click', () => {
+            inputContainer.insertAdjacentHTML('beforeend',
+                            `<div class="row">
+                                <input type="text" name="intrest[` + i + `]" placeholder="add intrest">
+                                <button type="button" class="btn btn-danger remove-tr">remove input</button>
+                            </div>`
+            );
+            document.getElementById("hidden_intrest").value = i++;
+        });
+        // remove input
+        inputContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-tr')) {
+                e.target.parentElement.remove();
+            }
+        });
+    </script>
 @endpush
 
 {{-- extend and yield content --}}
@@ -382,9 +402,12 @@
                 </div>
                 @if ($user->user_id == Auth::user()->user_id)
                     <div class="edit-profile-options">
-                        <button class="btn btn-primary mx-1" id="">Edit profile</button>
-                        <button class="btn btn-primary mx-1" id="">Add intrest</button>
-                        <button class="btn btn-primary mx-1" id="">Add Skills</button>
+                        <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                            data-target="#infoModalCenter">Edit profile</button>
+                        <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                            data-target="#intrestModalCenter">Add intrest</button>
+                        <button ctype="button" class="btn btn-primary mx-1" data-toggle="modal"
+                            data-target="#skillsModalCenter">Add Skills</button>
                         <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
                             data-target="#exampleModalCenter">Change profile Photo</button>
                         <button class="btn btn-primary mx-1" type="button" class="btn btn-primary mx-1" data-toggle="modal"
@@ -608,6 +631,39 @@
                         <input type="text" @if ($socials != null) value="{{ $socials['youtube'] }}" @endif
                             name="youtube" placeholder="youtube">
                         <button>Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- add intrest model --}}
+    <div class="modal fade" id="intrestModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">banner</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('profile.add.socials') }}" method="POST">
+                        @csrf
+                        <div class="row" id="intrest-add-container">
+                            <div class="row">
+                                <input type="text" name="intrest[0]" placeholder="add intrest">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <input type="hidden" id="hidden_intrest" value="1">
+                            <button type="button" id="add_intrest">Add</button>
+                            <button>Submit</button>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
