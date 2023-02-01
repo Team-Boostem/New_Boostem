@@ -240,12 +240,43 @@
             font-size: 1rem;
             font-weight: 600;
         }
-        .modal-content{
+
+        .modal-content {
             background-color: white;
         }
-        .close{
+
+        .close {
             border: 1.5px solid #002f5c;
             border-radius: 4px;
+        }
+
+        .image_crop_preview {
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .bd-example-modal-lg{
+            width: 50vw ;
+            margin: auto;
+        }
+        .modal-dialog-centered {
+            max-width: 100vw;
+            align-items: center;
+        }
+        .modal-dialog{
+            margin: 0;
+        }
+        @media (max-width: 1160px) {
+            .bd-example-modal-lg{
+                width: 80vw ;
+            }
+        }
+        @media (max-width: 700px) {
+            .bd-example-modal-lg{
+                width: 100vw ;
+            }
         }
     </style>
 @endpush
@@ -307,13 +338,15 @@
             $image_crop_banner = $('#image_demo_banner').croppie({
                 enableExif: true,
                 viewport: {
-                    width: 917,
-                    height: 240,
+                    width: 459.5,
+                    // width: 917,
+                    height: 120,
+                    // height: 240,
                     // type: 'circle'
                 },
                 boundary: {
-                    width: 1000,
-                    height: 300
+                    width: 500,
+                    height: 200
                 }
             });
             $('#upload_image_banner').on('change', function() {
@@ -358,7 +391,7 @@
         var i = document.getElementById("hidden_intrest").value;
         newInput.addEventListener('click', () => {
             inputContainer.insertAdjacentHTML('beforeend',
-                            `<div class="row">
+                `<div class="row">
                                 <input type="text" name="intrest[` + i + `]" placeholder="add intrest">
                                 <button type="button" class="btn btn-danger remove-tr">remove input</button>
                             </div>`
@@ -535,7 +568,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="main-box py-0">
-                        <div class="container" style="margin-top:0px;padding:20px;">
+                        <div class="container" style="margin-top:0px;padding:5px;">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Select Image</h5>
@@ -544,10 +577,8 @@
                             </div>
 
                             <div class="card text-center" id="uploadimage" style='display:none'>
-                                <div class="card-header">
-                                    Upload & Crop Image
-                                </div>
-                                <div class="card-body">
+
+                                <div class="card-body image_crop_preview">
                                     <div id="image_demo" style="width:350px; margin-top:30px"></div>
                                     <div id="uploaded_image" style="width:350px; margin-top:30px;"></div>
                                 </div>
@@ -566,10 +597,10 @@
         </div>
     </div>
     {{-- banner image update model --}}
-    <div class="modal fade" id="bannerModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+    <div class="modal fade " id="bannerModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content bd-example-modal-lg">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">banner</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -578,7 +609,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="main-box py-0">
-                        <div class="container" style="margin-top:0px;padding:20px;">
+                        <div class="container" style="margin-top:0px;padding:5px;">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Select Image</h5>
@@ -587,12 +618,10 @@
                             </div>
 
                             <div class="card text-center" id="uploadimage_banner" style='display:none'>
-                                <div class="card-header">
-                                    Upload & Crop Image
-                                </div>
-                                <div class="card-body">
-                                    <div id="image_demo_banner" style="width:350px; margin-top:30px"></div>
-                                    <div id="uploaded_image_banner" style="width:350px; margin-top:30px;"></div>
+                                
+                                <div class="card-body image_crop_preview">
+                                    <div id="image_demo_banner" style="width:500px; margin-top:20px"></div>
+                                    <div id="uploaded_image_banner" style="width:6900px; margin-top:20px;"></div>
                                 </div>
                                 <div class="card-footer text-muted">
                                     <button class="crop_image_banner">Crop & Upload Image</button>
