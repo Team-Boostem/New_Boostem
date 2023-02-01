@@ -240,6 +240,13 @@
             font-size: 1rem;
             font-weight: 600;
         }
+        .modal-content{
+            background-color: white;
+        }
+        .close{
+            border: 1.5px solid #002f5c;
+            border-radius: 4px;
+        }
     </style>
 @endpush
 
@@ -252,7 +259,7 @@
                 viewport: {
                     width: 200,
                     height: 200,
-                    // type: 'circle'
+                    type: 'circle'
                 },
                 boundary: {
                     width: 300,
@@ -297,7 +304,7 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $image_crop = $('#image_demo_banner').croppie({
+            $image_crop_banner = $('#image_demo_banner').croppie({
                 enableExif: true,
                 viewport: {
                     width: 917,
@@ -312,7 +319,7 @@
             $('#upload_image_banner').on('change', function() {
                 var reader = new FileReader();
                 reader.onload = function(event) {
-                    $image_crop.croppie('bind', {
+                    $image_crop_banner.croppie('bind', {
                         url: event.target.result
                     })
                 }
@@ -320,7 +327,7 @@
                 $('#uploadimage_banner').show();
             });
             $('.crop_image_banner').click(function(event) {
-                $image_crop.croppie('result', {
+                $image_crop_banner.croppie('result', {
                     type: 'canvas',
                     size: 'viewport'
                 }).then(function(response) {
