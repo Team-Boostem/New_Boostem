@@ -47,6 +47,10 @@
             overflow: hidden;
             margin-bottom: 1.5rem;
         }
+        .profile-container{
+            display: flex;
+
+        }
 
         .banner-container img {
             width: 100%;
@@ -79,15 +83,21 @@
         }
 
         .edit-profile-options {
-            padding: 1rem;
+            padding: 0.5rem 1rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             background-color: #fff;
             border: 1px solid rgb(215, 215, 215);
             border-radius: 8px;
             overflow: hidden;
             margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .edit-profile-options button {
+            margin: 0.5rem 0;
+            font-size: 0.8rem;
+            margin: 0.4rem 0.2rem;
         }
 
         .skill-intrest-container {
@@ -140,6 +150,10 @@
             padding: 0 1rem;
             justify-content: space-evenly;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .my-community-line a{
+            margin: 0.3rem;
         }
 
         .total-boost-points {
@@ -207,6 +221,9 @@
             padding: 0;
             color: #0073de
         }
+        .follow-container p {
+            text-align: center;
+        }
 
         .skill {
             display: flex;
@@ -268,14 +285,42 @@
         .modal-dialog{
             margin: 0;
         }
+        @media (max-width: 1400px) {
+            .detailed-points{
+                flex-wrap: wrap;
+                justify-content: center;
+                
+            }
+            .point-box{
+                margin-top: 0.3rem;
+            }
+        }
+        @media (max-width: 1200px) {
+            .profile-container{
+            flex-direction: column;
+            }
+            .left-profile{
+                width: 100%;
+                padding-right: 0;
+            }
+            .right-profile{
+                width: 100%;
+            }
+        }
         @media (max-width: 1160px) {
             .bd-example-modal-lg{
                 width: 80vw ;
             }
         }
+        @media (max-width: 992px) {
+            
+        }
         @media (max-width: 700px) {
             .bd-example-modal-lg{
                 width: 100vw ;
+            }
+            .container{
+                max-width: none;
             }
         }
     </style>
@@ -442,17 +487,17 @@
                 </div>
                 @if ($user->user_id == Auth::user()->user_id)
                     <div class="edit-profile-options">
-                        <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                        <button type="button" class="btn btn-primary " data-toggle="modal"
                             data-target="#infoModalCenter">Edit profile</button>
-                        <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                        <button type="button" class="btn btn-primary " data-toggle="modal"
                             data-target="#intrestModalCenter">Add intrest</button>
-                        <button ctype="button" class="btn btn-primary mx-1" data-toggle="modal"
+                        <button ctype="button" class="btn btn-primary " data-toggle="modal"
                             data-target="#skillsModalCenter">Add Skills</button>
-                        <button type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                        <button type="button" class="btn btn-primary " data-toggle="modal"
                             data-target="#exampleModalCenter">Change profile Photo</button>
-                        <button class="btn btn-primary mx-1" type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                        <button class="btn btn-primary " type="button"  data-toggle="modal"
                             data-target="#bannerModalCenter">Change cover Photo</button>
-                        <button class="btn btn-primary mx-1" type="button" class="btn btn-primary mx-1" data-toggle="modal"
+                        <button class="btn btn-primary " type="button"  data-toggle="modal"
                             data-target="#socialModalCenter">Add Socials</button>
                     </div>
                 @endif
