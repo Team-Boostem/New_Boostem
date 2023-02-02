@@ -312,8 +312,17 @@
                 width: 80vw ;
             }
         }
-        @media (max-width: 992px) {
-            
+        @media (max-width: 767px) {
+            .profile-img img {
+                width: 6rem;
+                height: 6rem;
+            }
+            .profile-img {
+                top: -3rem;
+            }
+            .profile-info{
+                padding-top: 4rem;
+            }
         }
         @media (max-width: 700px) {
             .bd-example-modal-lg{

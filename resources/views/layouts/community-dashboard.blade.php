@@ -52,6 +52,16 @@
 
             z-index: 999;
         }
+        @media (max-width: 992px) {
+           .navbar{
+            justify-content: space-between;
+            
+           } 
+           .navbar h1{
+            display: none;
+            
+           } 
+        }
     </style>
 </head>
 
