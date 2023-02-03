@@ -392,6 +392,10 @@
         .container {
             max-width: none;
         }
+        .layout-px-spacing{
+            padding-right: 0px !important;
+            padding-left: 0px !important;
+        }
     }
 
     .btn {
@@ -664,9 +668,8 @@
                     </div>
                     @endif
                     <div class="profile-info">
-                        <h3>{{ $user->name }}</h3>
-                        <p>{{ $user->email }}</p>
-                        <p>{{ $user->bio }}</p>
+                        <h3 class="mb-0" style="font-weight: 900;">{{ $user->name }}</h3>
+                        <h6 style="color: #8b8b8b;">{{ $user->bio }}</h6>
                         <p>{{ $user->about }}</p>
                     </div>
                 </div>
@@ -712,9 +715,9 @@
                     @endforeach
                 </div>
                 <div class="add-more-communityes">
-                    <a href="{{ route('create.community') }}">
-                        <button class="btn btn-edit">Add Community</button>
-                    </a>
+                    {{-- <a href=""> --}}
+                        <button type="button" class="btn btn-edit" style="cursor: not-allowed">Add Community</button>
+                    {{-- </a> --}}
                 </div>
             </div>
             <div class="boost-point-container">
