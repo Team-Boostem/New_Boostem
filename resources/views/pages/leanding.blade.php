@@ -152,7 +152,7 @@
 {{-- extend and yield content --}}
 @extends('layouts/community-dashboard')
 @section('content')
-    <div class="main-box">
+    {{-- <div class="main-box">
         <div id="search-status"></div>
         <div id="newsletter-status"></div>
         <div>
@@ -176,7 +176,5 @@
                 </div>
             @endif
         </div>
-
-
-    </div>
+    </div> --}}
 @endsection

@@ -128,9 +128,6 @@ class User extends Authenticatable implements MustVerifyEmail
             if (!$user->socials) {
                 $user->socials = '{}';
             }
-            if (!$user->interests) {
-                $user->interests = [];
-            }
         });
     }
     /**
