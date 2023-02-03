@@ -229,40 +229,23 @@
     .follow-container p {
         text-align: center;
     }
-
-    .skill {
+    .intrests{
         display: flex;
         align-items: center;
-        margin-bottom: 0.5rem;
+        justify-content: start;
+        flex-wrap: wrap;
     }
-
-    .skill-count {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%;
-        background-color: #64B5FF;
-        box-shadow: #919191 2px 2px 4px;
-        margin-right: 0.85rem;
+    .intrest-content-container{
+        margin: 0.2rem;
     }
-
-    .skill-count h4 {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: white;
-        padding: 0;
-        margin: 0;
+    .intrest-content{
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        background-color: #d0fff3;
+        font-size: 0.8rem;
+        font-weight: 500;
+        max-width: fit-content;
     }
-
-    .skills p {
-        margin: 0;
-        padding: 0;
-        font-size: 1rem;
-        font-weight: 600;
-    }
-
     .modal-content {
         background-color: white;
     }
@@ -674,46 +657,33 @@ new Tagify(input)
                 <div class="skill-intrest skills-container">
                     <h3 class="profile-h4">skills</h3>
                     <div class="skills">
+                        @if($skills == null)
+                        <button ctype="button" class="btn btn-primary " data-toggle="modal" data-target="#skillsModalCenter">Add Skills</button>
+                        @else 
+                        @foreach ($skills as $skill)
                         <div class="skill">
-                            <div class="skill-count">
-                                <h4>01</h4>
-                            </div>
-                            <p>this is my skill</p>
+                            <p>{{ $skill['value'] }}</p>
                         </div>
-                        <div class="skill">
-                            <div class="skill-count">
-                                <h4>02</h4>
-                            </div>
-                            <p>this is my skill</p>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-count">
-                                <h4>03</h4>
-                            </div>
-                            <p>this is my skill</p>
-                        </div>
+                        @endforeach   
+                        @endif
+                        
+                        
                     </div>
                 </div>
                 <div class="skill-intrest intrest-container">
                     <h3 class="profile-h4">Intrests</h3>
                     <div class="intrests">
-                        <div class="skill">
-                            <div class="skill-count">
-                                <h4>01</h4>
-                            </div>
-                            <p>this is my skill</p>
+                        <div class="intrest-content-container">
+                            <div class="intrest-content">this is my skill</div>
                         </div>
-                        <div class="skill">
-                            <div class="skill-count">
-                                <h4>02</h4>
-                            </div>
-                            <p>this is my skill</p>
+                        <div class="intrest-content-container">
+                            <div class="intrest-content">this is my skill</div>
                         </div>
-                        <div class="skill">
-                            <div class="skill-count">
-                                <h4>03</h4>
-                            </div>
-                            <p>this is my skill</p>
+                        <div class="intrest-content-container">
+                            <div class="intrest-content">this is my skill</div>
+                        </div>
+                        <div class="intrest-content-container">
+                            <div class="intrest-content">this is my skill</div>
                         </div>
                     </div>
                 </div>
@@ -1062,7 +1032,8 @@ new Tagify(input)
                 <form action="{{ route('profile.add.skills') }}" method="POST">
                     @csrf
                     <label for="skills">Add Skills</label>
-                    <input placeholder="Skills" name='skills' id="skills" value="">
+                    <input placeholder="Skills" name='skills' id="skills" @if($skills != null)
+                     value="{{ json_encode( $skills ) }}" @endif>
                     <button class="btn btn-primary mt-4" style="width: 100%;">Submit</button>
                 </form>
             </div>

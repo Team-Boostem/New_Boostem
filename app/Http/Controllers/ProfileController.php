@@ -17,10 +17,12 @@ class ProfileController extends Controller {
         if ( $user ) {
             // json decode $user->socials and save to $socials
             $socials = json_decode( $user->socials, true );
+            $skills = json_decode( $user->skills, true );
+            //dd( $skills );
             $pageViews = PageView::where( 'page', 'user/{username}' )->where( 'profile_id', $user->username )->get();
             $pageViewsCount = $pageViews->count();
             $communities = Community::where( 'creator', $user->user_id )->get();
-            $result = compact( 'user', 'socials', 'communities', 'pageViewsCount' );
+            $result = compact( 'user', 'socials', 'communities', 'pageViewsCount', 'skills' );
             if ( Auth::user()->user_id == $user->user_id ) {
                 return view( 'pages.profile.profile', )->with( $result );
             } else {
