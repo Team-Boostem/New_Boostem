@@ -147,8 +147,8 @@
     }
 
     .community-image-container img {
-        height: 3rem;
-        width: 3rem;
+        height: 2.8rem;
+        width: 2.8rem;
     }
 
     .profile-h4 {
@@ -393,6 +393,10 @@
             max-width: none;
         }
     }
+
+    .btn {
+        padding: 0.4rem 0.8rem;
+    }
 </style>
 @endpush
 
@@ -402,11 +406,10 @@
 <script src="{{ asset('public/cork/html/src/plugins/src/tagify/tagify.min.js') }}"></script>
 <script src="{{ asset('public/cork/html/src/plugins/src/tagify/tagify.min.js') }}"></script>
 <script>
-    // The DOM element you wish to replace with Tagify
-        var input = document.querySelector('input[name=skills]');
-
-        // initialize Tagify on the above input node reference
-        new Tagify(input)
+    var input = document.querySelector('input[name=skills]');
+        new Tagify(input);
+        var intrests = document.querySelector('input[name=intrests]');
+        new Tagify(intrests);
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -512,7 +515,7 @@
             });
         });
 </script>
-<script>
+{{-- <script>
     const newInput = document.querySelector('#add_intrest');
         const inputContainer = document.querySelector('#intrest-add-container');
         var i = document.getElementById("hidden_intrest").value;
@@ -529,7 +532,7 @@
                 e.target.parentElement.remove();
             }
         });
-</script>
+</script> --}}
 @endpush
 
 {{-- extend and yield content --}}
@@ -670,7 +673,7 @@
             </div>
             @if ($user->user_id == Auth::user()->user_id)
             <div class="edit-profile-options">
-                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#infoModalCenter">Edit
+                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#editModalCenter">Edit
                     profile</button>
                 <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#intrestModalCenter">Add
                     intrest</button>
@@ -741,29 +744,27 @@
                     <button ctype="button" class="btn btn-primary " data-toggle="modal"
                         data-target="#skillsModalCenter">Add Skills</button>
                     @else
-                        @foreach ($skills as $skill)
-                        <div class="intrest-content-container">
-                            <div class="intrest-content">{{ $skill['value'] }}</div>
-                        </div>
-                        @endforeach
+                    @foreach ($skills as $skill)
+                    <div class="intrest-content-container">
+                        <div class="intrest-content">{{ $skill['value'] }}</div>
+                    </div>
+                    @endforeach
                     @endif
                 </div>
             </div>
             <div class="skill-intrest intrest-container">
                 <h3 class="profile-h4">Intrests</h3>
-                <div class="intrests">
+                <div class="skills intrests">
+                    @if ($intrests == null)
+                    <button ctype="button" class="btn btn-primary " data-toggle="modal"
+                        data-target="#intrestModalCenter">Add Intrests</button>
+                    @else
+                    @foreach ($intrests as $intrest)
                     <div class="intrest-content-container">
-                        <div class="intrest-content">this is my skill</div>
+                        <div class="intrest-content">{{ $intrest['value'] }}</div>
                     </div>
-                    <div class="intrest-content-container">
-                        <div class="intrest-content">this is my skill</div>
-                    </div>
-                    <div class="intrest-content-container">
-                        <div class="intrest-content">this is my skill</div>
-                    </div>
-                    <div class="intrest-content-container">
-                        <div class="intrest-content">this is my skill</div>
-                    </div>
+                    @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -1055,16 +1056,10 @@
             <div class="modal-body">
                 <form action="{{ route('profile.add.intrest') }}" method="POST">
                     @csrf
-                    <div class="row" id="intrest-add-container">
-                        <div class="row">
-                            <input type="text" name="intrest[0]" placeholder="add intrest">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <input type="hidden" id="hidden_intrest" value="1">
-                        <button type="button" id="add_intrest">Add</button>
-                        <button>Submit</button>
-                    </div>
+                    <label for="skills">Add Intrests</label>
+                    <input placeholder="Intrests" name='intrests' id="intrests" @if ($intrests !=null)
+                        value="{{ json_encode($intrests) }}" @endif>
+                    <button class="btn btn-primary mt-4" style="width: 100%;">Submit</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -1091,6 +1086,54 @@
                     <label for="skills">Add Skills</label>
                     <input placeholder="Skills" name='skills' id="skills" @if ($skills !=null)
                         value="{{ json_encode($skills) }}" @endif>
+                    <button class="btn btn-primary mt-4" style="width: 100%;">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+            </div>
+        </div>
+    </div>
+</div>
+{{-- edit profile --}}
+<div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-social">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Skills</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('profile.edit') }}" method="POST">
+                    @csrf
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control p-2 px-4" id="exampleFormControlInput1"
+                            placeholder="Name" name="name"  value="{{ $user->name }}">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control p-2 px-4" placeholder="Contact" name="contact" value="{{ $user->contact }}">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="date" class="form-control p-2 px-4" placeholder="DOB" name="dob" value="{{ $user->dob }}">
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control p-2 px-4" id="exampleFormControlInput1"
+                            placeholder="College" name="college" value="{{ $user->college }}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control p-2 px-4" id="exampleFormControlInput1"
+                            placeholder="Bio" name="bio" value="{{ $user->bio }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">About You</label>
+                        <textarea class="form-control p-2 px-4" id="exampleFormControlTextarea1" rows="3" name="about">{{ $user->about }}</textarea>
+                    </div>
                     <button class="btn btn-primary mt-4" style="width: 100%;">Submit</button>
                 </form>
             </div>

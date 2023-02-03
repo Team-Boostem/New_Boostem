@@ -18,11 +18,12 @@ class ProfileController extends Controller {
             // json decode $user->socials and save to $socials
             $socials = json_decode( $user->socials, true );
             $skills = json_decode( $user->skills, true );
+            $intrests = json_decode( $user->interests, true );
             //dd( $skills );
             $pageViews = PageView::where( 'page', 'user/{username}' )->where( 'profile_id', $user->username )->get();
             $pageViewsCount = $pageViews->count();
             $communities = Community::where( 'creator', $user->user_id )->get();
-            $result = compact( 'user', 'socials', 'communities', 'pageViewsCount', 'skills' );
+            $result = compact( 'user', 'socials', 'communities', 'pageViewsCount', 'skills', 'intrests' );
             if ( Auth::user()->user_id == $user->user_id ) {
                 return view( 'pages.profile.profile', )->with( $result );
             } else {
@@ -85,31 +86,50 @@ class ProfileController extends Controller {
     }
 
     public function updateProfileSocials( Request $request ) {
-            $user = User::where( 'user_id', Auth::user()->user_id )->first();
-            $socialArr =[
-                'facebook' => $request->facebook,
-                'twitter' => $request->twitter,
-                'instagram' => $request->instagram,
-                'youtube' => $request->youtube,
-                'linkedin' => $request->linkedin,
-                'github' => $request->github,
-                'website' => $request->website,
-            ];
-            $user->socials = json_encode( $socialArr );
-            $user->update();
+        $user = User::where( 'user_id', Auth::user()->user_id )->first();
+        $socialArr = [
+            'facebook' => $request->facebook,
+            'twitter' => $request->twitter,
+            'instagram' => $request->instagram,
+            'youtube' => $request->youtube,
+            'linkedin' => $request->linkedin,
+            'github' => $request->github,
+            'website' => $request->website,
+        ];
+        $user->socials = json_encode( $socialArr );
+        $user->update();
 
-            return redirect()->back()->with( 'success', 'Socials Updated Successfully' );
+        return redirect()->back()->with( 'success', 'Socials Updated Successfully' );
     }
 
     public function updateProfileSkills( Request $request ) {
-            $user = User::where( 'user_id', Auth::user()->user_id )->first();
-            $s = $request->skills;
-            //dd( $s );
-            $user->skills = $s;
-            $user->update();
-
-            return redirect()->back()->with( 'success', 'Socials Updated Successfully' );
+        $user = User::where( 'user_id', Auth::user()->user_id )->first();
+        $s = $request->skills;
+        //dd( $s );
+        $user->skills = $s;
+        $user->update();
+        return redirect()->back()->with( 'success', 'Socials Updated Successfully' );
     }
 
-    
+    public function updateProfileIntrest( Request $request ) {
+        $user = User::where( 'user_id', Auth::user()->user_id )->first();
+        $i = $request->intrests;
+        //dd( $s );
+        $user->interests = $i;
+        $user->update();
+        return redirect()->back()->with( 'success', 'Socials Updated Successfully' );
+    }
+
+    public function updateProfileEdit( Request $request ) {
+        $user = User::where( 'user_id', Auth::user()->user_id )->first();
+        $user->name = $request->name;
+        $user->bio = $request->bio;
+        $user->contact = $request->contact;
+        $user->about = $request->about;
+        $user->dob = $request->dob;
+        $user->college = $request->college;
+        $user->update();
+        return redirect()->back()->with( 'success', 'Socials Updated Successfully' );
+    }
+
 }

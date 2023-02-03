@@ -81,6 +81,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'socials' => 'array',
         'skills' => 'array',
         'interests' => 'array',
+        'dob' => 'datetime',
     ];
 
     /**
@@ -100,10 +101,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return ucwords($value);
     }
-    public function getDobAttribute($value)
-    {
-        return date('d-m-Y', strtotime($value));
-    }
+    // public function getDobAttribute($value)
+    // {
+    //     return date('d-m-Y', strtotime($value));
+    // }
 
     public static function boot()
     {

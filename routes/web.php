@@ -53,6 +53,7 @@ Route::middleware([
     Route::post('/profile/update/socials', [ProfileController::class, 'updateProfileSocials'])->name('profile.add.socials');
     Route::post('/profile/update/intrest', [ProfileController::class, 'updateProfileIntrest'])->name('profile.add.intrest');
     Route::post('/profile/update/skills', [ProfileController::class, 'updateProfileSkills'])->name('profile.add.skills');
+    Route::post('/profile/update/edit', [ProfileController::class, 'updateProfileEdit'])->name('profile.edit');
 
     //blog routes
     Route::post('/blog/add_comment/{blog_slug}', [CommentController::class, 'addComment'])->name('comment.add');
