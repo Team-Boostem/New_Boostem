@@ -47,10 +47,12 @@ Route::middleware([
     Route::get('/community/team/view/{community_id}',[CommunityController::class, 'viewTeamCommunity'] )->name('view.team.community');
 
     //profile Routes
-    Route::get('/profile/{user_id}',[ProfileController::class, 'viewProfile'] )->name('profile');
-    Route::get('/profile/edit',[ProfileController::class, 'editProfile'] )->name('profile.edit');
-    Route::post('/profile/edit',[ProfileController::class, 'editProfilePost'] )->name('profile.edit');
-    Route::get('/profile/settings',[ProfileController::class, 'settingsProfile'] )->name('profile.settings');
+    Route::get('/profile/{username}',[ProfileController::class, 'viewProfile'] )->name('profile');
+    Route::post('/profile/update/img', [ProfileController::class, 'updateProfileImg'])->name('profile.update.img');
+    Route::post('/profile/update/banner', [ProfileController::class, 'updateProfileBanner'])->name('banner.update.img');
+    Route::post('/profile/update/socials', [ProfileController::class, 'updateProfileSocials'])->name('profile.add.socials');
+    Route::post('/profile/update/intrest', [ProfileController::class, 'updateProfileIntrest'])->name('profile.add.intrest');
+    Route::post('/profile/update/skills', [ProfileController::class, 'updateProfileSkills'])->name('profile.add.skills');
 
     //blog routes
     Route::post('/blog/add_comment/{blog_slug}', [CommentController::class, 'addComment'])->name('comment.add');
@@ -106,11 +108,7 @@ Route::post('/newsletter/save', [NotificationController::class, 'saveNewsletter'
 Route::post('/search', [SearchController::class, 'search'])->name('search');
 
 //image route
-Route::post('/profile/update/img', [ProfileController::class, 'updateProfileImg'])->name('profile.update.img');
-Route::post('/profile/update/banner', [ProfileController::class, 'updateProfileBanner'])->name('banner.update.img');
-Route::post('/profile/update/socials', [ProfileController::class, 'updateProfileSocials'])->name('profile.add.socials');
-Route::post('/profile/update/intrest', [ProfileController::class, 'updateProfileIntrest'])->name('profile.add.intrest');
-Route::post('/profile/update/skills', [ProfileController::class, 'updateProfileSkills'])->name('profile.add.skills');
+
 //subscribe route
 Route::get('/subscribe/{community_id}', [CommunityController::class, 'subscribe'])->name('subscribe');
 

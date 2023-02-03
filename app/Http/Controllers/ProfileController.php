@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller {
 
-    public function viewProfile( $user_id ) {
-        $user = User::where( 'user_id', $user_id )->first();
+    public function viewProfile( $username ) {
+        $user = User::where( 'username', $username )->first();
         if ( $user ) {
             // json decode $user->socials and save to $socials
             $socials = json_decode( $user->socials, true );
