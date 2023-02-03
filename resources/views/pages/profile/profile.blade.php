@@ -15,6 +15,9 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('public/cork/html/src/plugins/src/tagify/tagify.css')}}">
+    <link href="{{ asset('public/cork/html/src/assets/css/light/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/cork/html/src/plugins/css/light/tagify/custom-tagify.css')}}">
 @endpush
 
 {{-- push styles --}}
@@ -394,18 +397,28 @@
 
 {{-- push scripts --}}
 @push('scripts')
+<script src="{{ asset('public/cork/html/src/assets/js/scrollspyNav.js')}}"></script>
+<script src="{{ asset('public/cork/html/src/plugins/src/tagify/tagify.min.js')}}"></script>
+<script src="{{ asset('public/cork/html/src/plugins/src/tagify/tagify.min.js')}}"></script>
+<script>
+    // The DOM element you wish to replace with Tagify
+var input = document.querySelector('input[name=skills]');
+
+// initialize Tagify on the above input node reference
+new Tagify(input)
+</script>
 <script type="text/javascript">
     $(document).ready(function() {
         $image_crop = $('#image_demo').croppie({
             enableExif: true
             , viewport: {
                 width: 200
-                , height: 200
-                , type: 'circle'
+                , height: 200, 
+                // type: 'circle'
             }
             , boundary: {
-                width: 300
-                , height: 300
+                width: 250
+                , height: 250
             }
         });
         $('#upload_image').on('change', function() {
@@ -436,7 +449,8 @@
                             $('#uploaded_image').html(response)
 
                         } else {
-                            $('#uploaded_image').html(response)
+                            // $('#uploaded_image').html(response)
+                            location.reload();
                         }
                     }
                 });
@@ -489,7 +503,8 @@
                             $('#uploaded_image_banner').html(response)
 
                         } else {
-                            $('#uploaded_image_banner').html(response)
+                            // $('#uploaded_image_banner').html(response)
+                            location.reload();
                         }
                     }
                 });
@@ -538,7 +553,7 @@
                     @if ($socials != null)
                     <div class="social-container">
                         @if ($socials['instagram'])
-                        <a href="{{ $socials['instagram'] }}">
+                        <a href="{{ $socials['instagram'] }}" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-name="Layer 1" viewBox="0 0 128 128">
                                 <defs>
                                     <clipPath id="b">
@@ -596,7 +611,7 @@
                         </a>
                         @endif
                         @if ($socials['linkedin'])
-                        <a href="{{ $socials['linkedin'] }}">
+                        <a href="{{ $socials['linkedin'] }}" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 128 128">
                                 <circle cx="64" cy="64" r="64" fill="#0177b5" />
                                 <path fill="#fff" d="M92 32H36a4 4 0 0 0-4 4v56a4 4 0 0 0 4 4h56a4 4 0 0 0 4-4V36a4 4 0 0 0-4-4ZM52 86H42V56h10Zm-5-34a6 6 0 1 1 6-6 6 6 0 0 1-6 6Zm39 34H76V66c0-1.66-2.24-3-5-3-4 0-5 5.34-5 7v16H56V56h10v7c0-5 4.48-7 10-7a10 10 0 0 1 10 10Z" />
@@ -604,7 +619,7 @@
                         </a>
                         @endif
                         @if ($socials['youtube'])
-                        <a href="{{ $socials['youtube'] }}">
+                        <a href="{{ $socials['youtube'] }}" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 128 128">
                                 <circle cx="64" cy="64" r="64" fill="#e21a20" />
                                 <path fill="#fff" fill-rule="evenodd" d="M98.62 53.92c-.49-6.75-1.72-13.72-10.35-14.23a426.5 426.5 0 0 0-48.55 0c-8.63.5-9.86 7.48-10.35 14.23a135 135 0 0 0 0 20.16c.49 6.75 1.72 13.72 10.35 14.23a426.5 426.5 0 0 0 48.55 0c8.63-.5 9.86-7.48 10.35-14.23a135 135 0 0 0 0-20.16ZM57 73V53l19 10Z" />
@@ -612,7 +627,7 @@
                         </a>
                         @endif
                         @if ($socials['facebook'])
-                        <a href="{{ $socials['facebook'] }}">
+                        <a href="{{ $socials['facebook'] }}" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Ebene 1" viewBox="0 0 1024 1024">
                                 <path fill="#1877f2" d="M1024,512C1024,229.23016,794.76978,0,512,0S0,229.23016,0,512c0,255.554,187.231,467.37012,432,505.77777V660H302V512H432V399.2C432,270.87982,508.43854,200,625.38922,200,681.40765,200,740,210,740,210V336H675.43713C611.83508,336,592,375.46667,592,415.95728V512H734L711.3,660H592v357.77777C836.769,979.37012,1024,767.554,1024,512Z" />
                                 <path fill="#fff" d="M711.3,660,734,512H592V415.95728C592,375.46667,611.83508,336,675.43713,336H740V210s-58.59235-10-114.61078-10C508.43854,200,432,270.87982,432,399.2V512H302V660H432v357.77777a517.39619,517.39619,0,0,0,160,0V660Z" />
@@ -620,7 +635,7 @@
                         </a>
                         @endif
                         @if ($socials['twitter'])
-                        <a href="{{ $socials['twitter'] }}">
+                        <a href="{{ $socials['twitter'] }}" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 128 128">
                                 <circle cx="64" cy="64" r="64" fill="#38a8e0" />
                                 <path fill="#fff" d="M99 44.29a28.71 28.71 0 0 1-8.25 2.26 14.4 14.4 0 0 0 6.31-7.95 28.75 28.75 0 0 1-9.12 3.48 14.37 14.37 0 0 0-24.47 13.1 40.77 40.77 0 0 1-29.6-15 14.38 14.38 0 0 0 4.44 19.17 14.3 14.3 0 0 1-6.5-1.8v.18a14.37 14.37 0 0 0 11.52 14.09 14.39 14.39 0 0 1-6.49.25A14.38 14.38 0 0 0 50.26 82a28.81 28.81 0 0 1-17.84 6.15A29.14 29.14 0 0 1 29 88a40.65 40.65 0 0 0 22 6.45c26.42 0 40.86-21.88 40.86-40.86v-1.86A29.18 29.18 0 0 0 99 44.29Z" />
@@ -628,7 +643,7 @@
                         </a>
                         @endif
                         @if ($socials['github'])
-                        <a href="{{ $socials['github'] }}">
+                        <a href="{{ $socials['github'] }}" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
                                 <path d="M12,2.2467A10.00042,10.00042,0,0,0,8.83752,21.73419c.5.08752.6875-.21247.6875-.475,0-.23749-.01251-1.025-.01251-1.86249C7,19.85919,6.35,18.78423,6.15,18.22173A3.636,3.636,0,0,0,5.125,16.8092c-.35-.1875-.85-.65-.01251-.66248A2.00117,2.00117,0,0,1,6.65,17.17169a2.13742,2.13742,0,0,0,2.91248.825A2.10376,2.10376,0,0,1,10.2,16.65923c-2.225-.25-4.55-1.11254-4.55-4.9375a3.89187,3.89187,0,0,1,1.025-2.6875,3.59373,3.59373,0,0,1,.1-2.65s.83747-.26251,2.75,1.025a9.42747,9.42747,0,0,1,5,0c1.91248-1.3,2.75-1.025,2.75-1.025a3.59323,3.59323,0,0,1,.1,2.65,3.869,3.869,0,0,1,1.025,2.6875c0,3.83747-2.33752,4.6875-4.5625,4.9375a2.36814,2.36814,0,0,1,.675,1.85c0,1.33752-.01251,2.41248-.01251,2.75,0,.26251.1875.575.6875.475A10.0053,10.0053,0,0,0,12,2.2467Z" />
                             </svg>
@@ -758,7 +773,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-social">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Upload Profile</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -780,7 +795,7 @@
                                 <div id="uploaded_image" style="width:350px; margin-top:30px;"></div>
                             </div>
                             <div class="card-footer text-muted">
-                                <button class="crop_image">Crop & Upload Image</button>
+                                <button class="crop_image btn btn-primary">Crop & Upload Image</button>
                             </div>
                         </div>
                     </div>
@@ -798,7 +813,7 @@
     <div class="modal-dialog modal-dialog-centered " role="document">
         <div class="modal-content bd-example-modal-lg">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">banner</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Upload Banner</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -820,7 +835,7 @@
                                 <div id="uploaded_image_banner" style="width:6900px; margin-top:20px;"></div>
                             </div>
                             <div class="card-footer text-muted">
-                                <button class="crop_image_banner">Crop & Upload Image</button>
+                                <button class="crop_image_banner btn btn-primary">Crop & Upload Banner</button>
                             </div>
                         </div>
                     </div>
@@ -1012,7 +1027,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('profile.add.socials') }}" method="POST">
+                <form action="{{ route('profile.add.intrest') }}" method="POST">
                     @csrf
                     <div class="row" id="intrest-add-container">
                         <div class="row">
@@ -1024,6 +1039,31 @@
                         <button type="button" id="add_intrest">Add</button>
                         <button>Submit</button>
                     </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+            </div>
+        </div>
+    </div>
+</div>
+{{-- add skills model --}}
+<div class="modal fade" id="skillsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-social">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Skills</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('profile.add.skills') }}" method="POST">
+                    @csrf
+                    <label for="skills">Add Skills</label>
+                    <input placeholder="Skills" name='skills' id="skills" value="">
+                    <button class="btn btn-primary mt-4" style="width: 100%;">Submit</button>
                 </form>
             </div>
             <div class="modal-footer">

@@ -99,17 +99,15 @@ class ProfileController extends Controller {
             return redirect()->back()->with( 'success', 'Socials Updated Successfully' );
     }
 
-    public function editProfilePost( $username ) {
-        return view( 'pages/user', [
-            'user' => User::where( 'username', $username )->firstOrFail(),
-            'pageViews' => PageView::where( 'page', 'user/{username}' )->where( 'profile_id', $user->user_id )->orderBy( 'created_at', 'desc' )->get(),
-        ] );
+    public function updateProfileSkills( Request $request ) {
+            $user = User::where( 'user_id', Auth::user()->user_id )->first();
+            $s = $request->skills;
+            //dd( $s );
+            $user->skills = $s;
+            $user->update();
+
+            return redirect()->back()->with( 'success', 'Socials Updated Successfully' );
     }
 
-    public function settingsProfile( $username ) {
-        return view( 'pages/user', [
-            'user' => User::where( 'username', $username )->firstOrFail(),
-            'pageViews' => PageView::where( 'page', 'user/{username}' )->where( 'profile_id', $user->user_id )->orderBy( 'created_at', 'desc' )->get(),
-        ] );
-    }
+    
 }

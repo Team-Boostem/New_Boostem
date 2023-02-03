@@ -109,6 +109,8 @@ Route::post('/search', [SearchController::class, 'search'])->name('search');
 Route::post('/profile/update/img', [ProfileController::class, 'updateProfileImg'])->name('profile.update.img');
 Route::post('/profile/update/banner', [ProfileController::class, 'updateProfileBanner'])->name('banner.update.img');
 Route::post('/profile/update/socials', [ProfileController::class, 'updateProfileSocials'])->name('profile.add.socials');
+Route::post('/profile/update/intrest', [ProfileController::class, 'updateProfileIntrest'])->name('profile.add.intrest');
+Route::post('/profile/update/skills', [ProfileController::class, 'updateProfileSkills'])->name('profile.add.skills');
 //subscribe route
 Route::get('/subscribe/{community_id}', [CommunityController::class, 'subscribe'])->name('subscribe');
 
