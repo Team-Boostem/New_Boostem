@@ -17,7 +17,7 @@ function getUniqueUsername($username)
 {
     $user = User::where('username', $username)->first();
     if ($user) {
-        $username = $username . rand(1, 9);
+        $username = $username . rand(100, 999);
         return getUniqueUsername($username);
     } else {
         return $username;
@@ -92,6 +92,19 @@ class User extends Authenticatable implements MustVerifyEmail
         //'profile_photo_url',
     ];
 
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords($value);
+    }
+    public function getNameAttribute($value)
+    {
+        return ucwords($value);
+    }
+    public function getDobAttribute($value)
+    {
+        return date('d-m-Y', strtotime($value));
+    }
+
     public static function boot()
     {
         parent::boot();
@@ -99,7 +112,8 @@ class User extends Authenticatable implements MustVerifyEmail
             $user->user_id = (string) Str::uuid();
             if (!$user->username) {
                 $email = explode('@', $user->email);
-                $username = $email[0];
+                $res = $email[0];
+                $username = str_replace( array( '\'', '"',',' , ';', '<', '>','.' ), 'a', $res);
                 $user->username = getUniqueUsername($username);
             }
             if (!$user->profile_photo_path) {
