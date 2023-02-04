@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Forgot Password | Boostem</title>
+    <title>Email Varification | Boostem</title>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/icons/logo.png') }}">
@@ -49,10 +49,10 @@
                                 <div class="col-md-12 mb-3">
 
                                     <h2>Email Varification</h2>
-                                    <p>Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.</p>
+                                    <p>Before continuing, could you verify your email address by an email varification</p>
                                     @if (session('status') == 'verification-link-sent')
                                     <div class="alert alert-success" role="alert">
-                                        A new verification link has been sent to the email address you provided in your profile settings.
+                                        A verification link has been sent to the email address you provided in your profile.If you didn't receive the email, we will gladly send you another.
                                     </div>
                                     @endif
                                     @if ($errors->any())
@@ -67,7 +67,7 @@
                                     
                                     <div class="col-12">
                                         <div class="mb-4">
-                                            <button class="btn btn-secondary w-100">Resend Verification Email</button>
+                                            <button class="btn btn-secondary w-100">Send Verification Email</button>
                                         </div>
                                     </div>
                                     

@@ -679,7 +679,7 @@
                 <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#editModalCenter">Edit
                     profile</button>
                 <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#intrestModalCenter">Add
-                    intrest</button>
+                    interests</button>
                 <button ctype="button" class="btn btn-primary " data-toggle="modal" data-target="#skillsModalCenter">Add
                     Skills</button>
                 <button type="button" class="btn btn-primary " data-toggle="modal"
@@ -756,11 +756,11 @@
                 </div>
             </div>
             <div class="skill-intrest intrest-container">
-                <h3 class="profile-h4">Intrests</h3>
+                <h3 class="profile-h4">Interests</h3>
                 <div class="skills intrests">
                     @if ($intrests == null)
                     <button ctype="button" class="btn btn-primary " data-toggle="modal"
-                        data-target="#intrestModalCenter">Add Intrests</button>
+                        data-target="#intrestModalCenter">Add Interests</button>
                     @else
                     @foreach ($intrests as $intrest)
                     <div class="intrest-content-container">
@@ -978,10 +978,7 @@
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="website">
-                                    <svg xmlns="http://www.w3.org/2000/svg" data-name="Ebene 1" viewBox="0 0 1024 1024">
-                                        <path fill="#1da1f2"
-                                            d="M1024,190.4c-37.6,16.8-78.4,28-121.6,33.6,43.2-25.6,76-66.4,92-115.2-40.8,24-85.6,41.6-132.8,50.4-38.4-40.8-93.6-66.4-152-66.4-115.2,0-208,92.8-208,208,0,16.8,1.6,33.6,4.8,49.6C256,281.6,136,216,64,96c-17.6,30.4-28,66.4-28,104.8,0,72,36,136,92,173.6-33.6-1.6-65.6-10.4-93.6-25.6v2.4c0,100.8,72,185.6,168,205.6-17.6,4.8-36,7.2-55.2,7.2-13.6,0-27.2-1.6-40-4.8,27.2,82.4,104,141.6,196,142.4-70.4,55.2-160,88-256,88-16.8,0-33.6,0-50.4-1.6,92,58.4,200,93.6,316,93.6,379.2,0,586.4-316.8,586.4-586.4,0-9.6,0-19.2-0.8-28.8C960,269.6,992,230.4,1024,190.4Z" />
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                                 </span>
                             </div>
                             <input type="text" class="form-control" id="website" @if ($socials !=null)
@@ -1051,7 +1048,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-social">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">banner</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Interest</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1059,7 +1056,7 @@
             <div class="modal-body">
                 <form action="{{ route('profile.add.intrest') }}" method="POST">
                     @csrf
-                    <label for="skills">Add Intrests</label>
+                    <label for="skills">Add Interests</label>
                     <input placeholder="Intrests" name='intrests' id="intrests" @if ($intrests !=null)
                         value="{{ json_encode($intrests) }}" @endif>
                     <button class="btn btn-primary mt-4" style="width: 100%;">Submit</button>
