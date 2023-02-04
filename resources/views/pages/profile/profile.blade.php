@@ -199,15 +199,15 @@
     }
 
     .point-box {
-        width: 6rem;
+        width: 5rem;
         background-color: #cfe8ff;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        margin: 0 0.5rem;
+        margin: 0 0.4rem;
         border-radius: 8px;
-        padding: 0.8rem 0.4rem;
+        padding: 0.8rem 0.2rem;
         text-align: center
     }
 
