@@ -41,10 +41,10 @@ Route::middleware([
     Route::get('/dashboard',[HomeController::class, 'index'] )->name('dashboard');
 
     //community routes
-    Route::get('/community/view/{community_id}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
     Route::get('/community/create',[CommunityController::class, 'createCommunity'] )->name('create.community');
     Route::post('/community/create',[CommunityController::class, 'postCreateCommunity'] )->name('post.create.community');
-    Route::get('/community/team/view/{community_id}',[CommunityController::class, 'viewTeamCommunity'] )->name('view.team.community');
+    Route::get('/community/team/view/{username}',[CommunityController::class, 'viewTeamCommunity'] )->name('view.team.community');
+    Route::get('/community/view/{username}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
 
     //profile Routes
     Route::get('/profile/{username}',[ProfileController::class, 'viewProfile'] )->name('profile');
@@ -63,19 +63,19 @@ Route::middleware([
 });
 Route::group(['middleware' => ['protectedEdit','auth']], function () {
     //COMMUNITY EDIT ACCDESS PAGES
-    Route::get('/community/edit/{community_id}',[CommunityController::class, 'editCommunity'] )->name('edit.community');
-    Route::post('/community/edit/{community_id}',[CommunityController::class, 'postEditCommunity'] )->name('edit.community');
+    Route::get('/community/edit/{username}',[CommunityController::class, 'editCommunity'] )->name('edit.community');
+    Route::post('/community/edit/{username}',[CommunityController::class, 'postEditCommunity'] )->name('edit.community');
     //community create and update team
-    Route::get('/community/team/create/{community_id}',[CommunityController::class, 'createTeamCommunity'] )->name('create.team.community');
-    Route::post('/community/team/create/{community_id}',[CommunityController::class, 'createTeamCommunityPost'] )->name('create.team.community');
-    Route::get('/community/team/edit/{community_id}',[CommunityController::class, 'editTeamCommunity'] )->name('edit.team.community');
-    Route::post('/community/team/edit/{community_id}',[CommunityController::class, 'editTeamCommunityPost'] )->name('edit.team.community');
+    Route::get('/community/team/create/{username}',[CommunityController::class, 'createTeamCommunity'] )->name('create.team.community');
+    Route::post('/community/team/create/{username}',[CommunityController::class, 'createTeamCommunityPost'] )->name('create.team.community');
+    Route::get('/community/team/edit/{username}',[CommunityController::class, 'editTeamCommunity'] )->name('edit.team.community');
+    Route::post('/community/team/edit/{username}',[CommunityController::class, 'editTeamCommunityPost'] )->name('edit.team.community');
     //blog routes
-    Route::get('/blog/create/{community_id}', [BlogController::class, 'blogCreate'])->name('blog.create');
-    Route::post('/blog/create/{community_id}', [BlogController::class, 'blogCreatePost'])->name('blog.create');
-    Route::get('/blog/edit/{community_id}/{blog_slug}', [BlogController::class, 'blogEdit'])->name('blog.edit');
-    Route::post('/blog/edit/{community_id}/{blog_slug}', [BlogController::class, 'blogEditPost'])->name('blog.edit');
-    Route::get('/blog/delete/{community_id}/{blog_slug}', [BlogController::class, 'blogDelete'])->name('blog.delete');
+    Route::get('/blog/create/{username}', [BlogController::class, 'blogCreate'])->name('blog.create');
+    Route::post('/blog/create/{username}', [BlogController::class, 'blogCreatePost'])->name('blog.create');
+    Route::get('/blog/edit/{username}/{blog_slug}', [BlogController::class, 'blogEdit'])->name('blog.edit');
+    Route::post('/blog/edit/{username}/{blog_slug}', [BlogController::class, 'blogEditPost'])->name('blog.edit');
+    Route::get('/blog/delete/{username}/{blog_slug}', [BlogController::class, 'blogDelete'])->name('blog.delete');
 });
 
 //routes for google auth
@@ -95,8 +95,8 @@ Route::get('/blog', [BlogController::class, 'blogList'])->name('blog');
 Route::get('/blog/view/{blog_slug}', [BlogController::class, 'blogView'])->name('blog.view');
 
 //create event route
-Route::get('/event/create/{community_id}', [EventController::class, 'eventCreate'])->name('event.create');
-Route::post('/event/create/{community_id}', [EventController::class, 'eventCreatePost'])->name('event.create');
+Route::get('/event/create/{username}', [EventController::class, 'eventCreate'])->name('event.create');
+Route::post('/event/create/{username}', [EventController::class, 'eventCreatePost'])->name('event.create');
 Route::get('/event/view/{event_slug}', [EventController::class, 'event'])->name('event');
 Route::post('/event/view/{event_slug}', [EventController::class, 'eventPost'])->name('event');
 //EVEN table route
@@ -111,7 +111,7 @@ Route::post('/search', [SearchController::class, 'search'])->name('search');
 //image route
 
 //subscribe route
-Route::get('/subscribe/{community_id}', [CommunityController::class, 'subscribe'])->name('subscribe');
+Route::get('/subscribe/{username}', [CommunityController::class, 'subscribe'])->name('subscribe');
 
 
 

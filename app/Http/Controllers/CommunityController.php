@@ -13,9 +13,9 @@ use App\Models\Subscribe;
 
 class CommunityController extends Controller {
 
-    public function viewCommunity( $community_id ) {
+    public function viewCommunity( $username ) {
 
-        $community = Community::where( 'id', $community_id )->first();
+        $community = Community::where( 'username', $username )->first();
 
         if ( $community ) {
             $socials = $community->socials;
@@ -24,7 +24,7 @@ class CommunityController extends Controller {
             if ( Auth::user()->user_id == $community->creator ) {
                 return view( 'pages.community.admin-community-page', )->with( $result );
             } else {
-                page('community/{username}', $community->community_id);
+                page('community/{username}', $community->username);
                 return view( 'pages.community.community-page', )->with( $result );
             }
         } else {
@@ -86,24 +86,24 @@ class CommunityController extends Controller {
         return redirect( '/dashboard' );
     }
 
-    public function editCommunity( $community_id ) {
-        $model = Community::where( 'id', $community_id )->first();
-        if ( !is_null( $model ) ) {
-            $url = '/community/edit'.'/'.$community_id;
+    public function editCommunity( $username ) {
+        $community = Community::where( 'username', $username )->first();
+        if ( !is_null( $community ) ) {
+            $url = '/community/edit'.'/'.$username;
             $heading = 'Edit your community';
-            $socials = $model->socials;
-            $result = compact( 'model', 'heading', 'url', 'socials' );
+            $socials = $community->socials;
+            $result = compact( 'community', 'heading', 'url', 'socials' );
             return view( 'pages.community.create-community' )->with( $result );
         } else {
             return view( 'pages.error' );
         }
     }
 
-    public function postEditCommunity( $community_id, Request $request ) {
+    public function postEditCommunity( $username, Request $request ) {
         $request->validate( [
             'name'=>'required',
-            'username'=>'required|unique:communities,username,'.$community_id,
-            'email'=>'required|email|unique:communities,email,'.$community_id,
+            'username'=>'required|alpha|regex:/^\S*$/u|unique:communities,username'.$username,
+            'email'=>'required|email|unique:communities,email,'.$username,
             'description'=>'required',
         ] );
         $socials = [
@@ -113,7 +113,7 @@ class CommunityController extends Controller {
             'twitter' => $request->twitter,
         ];
         //get community from database where community_id is equal to $community_id
-        $community = Community::where( 'id', $community_id )->first();
+        $community = Community::where( 'username', $username )->first();
         //update community
         $community->name = $request->name;
         $community->username = $request->username;
@@ -127,7 +127,7 @@ class CommunityController extends Controller {
         $community->socials = $socials;
         $community->save();
         //redirect to community page
-        return redirect( '/community/view/'.$community_id );
+        return redirect( '/community/view/'.$username );
 
     }
 
