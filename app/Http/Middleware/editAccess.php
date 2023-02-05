@@ -19,8 +19,8 @@ class editAccess {
     public function handle( Request $request, Closure $next ) {
 
         //get the community id from the url
-        $community_id = $request->route( 'community_id' );
-        $community = Community::where( 'id', $community_id )->first();
+        $username = $request->route( 'username' );
+        $community = Community::where( 'username', $username )->first();
         if ( $community ) {
             if ( $community->creator == Auth::user()->user_id ) {
                 return $next( $request );

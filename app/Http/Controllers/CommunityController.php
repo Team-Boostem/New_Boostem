@@ -131,59 +131,6 @@ class CommunityController extends Controller {
 
     }
 
-    // view create edit TEAM in community..............
-
-    public function viewTeamCommunity( $community_id ) {
-
-        $team = TeamCommunity::where( 'community_id', $community_id )->first();
-        $community = Community::where( 'id', $community_id )->first();
-        if($community->creator == Auth::user()->user_id){
-            $access = true;
-        }else{
-            $access = false;
-        }
-        $result = compact( 'team','access' );
-        return view( 'pages.community.view-team', )->with( $result );
-    }
-
-    public function createTeamCommunity( $community_id ) {
-
-        $team = TeamCommunity::where( 'community_id', $community_id )->first();
-        $result = compact( 'team' );
-        return view( 'pages.community.create-team', )->with( $result );
-    }
-    public function createTeamCommunityPost( $community_id, Request $request ) {
-
-        $team = TeamCommunity::where( 'community_id', $community_id )->first();
-        $request->validate([
-            'team_details.*.title' => 'required',
-            'team_details.*.email' => 'required'
-        ]);
-        if($team){
-            $team->community_id = $community_id;
-            $team->team_details = $request->team_details;
-            $team->save();
-            return view( 'pages.community.community-page', );
-        } else{
-            $team = new TeamCommunity();
-            $team->community_id = $community_id;
-            $team->team_details = $request->team_details;
-            $team->save();
-            return view( 'pages.community.community-page', );
-        }
-
-        
-    }
-    public function editTeamCommunity( $username ) {
-
-        $team = TeamCommunity::where( 'username', $username )->first();
-        return view( 'pages.community.community-page', )->with( $result );
-    }
-    public function editTeamCommunityPost( $username ) {
-
-        $community = TeamCommunity::where( 'username', $username )->first();
-        return view( 'pages.community.community-page', )->with( $result );
-    }
     public function subscribe( $username ) {
         $community = Community::where( 'username', $username )->first();
         $subscribe = new Subscribe();
@@ -192,6 +139,4 @@ class CommunityController extends Controller {
         $subscribe->save();
         return redirect( '/community'.'/'.$username );
     }
-    
-
 }

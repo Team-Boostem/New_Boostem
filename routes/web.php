@@ -11,6 +11,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\SaveController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TeamCommunityController;
 
 
 /*
@@ -43,7 +44,7 @@ Route::middleware([
     //community routes
     Route::get('/community/create',[CommunityController::class, 'createCommunity'] )->name('create.community');
     Route::post('/community/create',[CommunityController::class, 'postCreateCommunity'] )->name('post.create.community');
-    Route::get('/community/team/view/{username}',[CommunityController::class, 'viewTeamCommunity'] )->name('view.team.community');
+    Route::get('/community/team/{username}',[CommunityController::class, 'viewTeamCommunity'] )->name('view.team.community');
     Route::get('/community/{username}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
 
     //profile Routes
@@ -62,14 +63,19 @@ Route::middleware([
     
 });
 Route::group(['middleware' => ['protectedEdit','auth']], function () {
+
     //COMMUNITY EDIT ACCDESS PAGES
     Route::get('/community/edit/{username}',[CommunityController::class, 'editCommunity'] )->name('edit.community');
     Route::post('/community/edit/{username}',[CommunityController::class, 'postEditCommunity'] )->name('edit.community');
+
     //community create and update team
-    Route::get('/community/team/create/{username}',[CommunityController::class, 'createTeamCommunity'] )->name('create.team.community');
-    Route::post('/community/team/create/{username}',[CommunityController::class, 'createTeamCommunityPost'] )->name('create.team.community');
-    Route::get('/community/team/edit/{username}',[CommunityController::class, 'editTeamCommunity'] )->name('edit.team.community');
-    Route::post('/community/team/edit/{username}',[CommunityController::class, 'editTeamCommunityPost'] )->name('edit.team.community');
+    Route::get('/community/team/list/{username}',[TeamCommunityController::class, 'listTeamCommunity'] )->name('list.team.community');
+    Route::get('/community/team/add/{username}',[TeamCommunityController::class, 'addTeamCommunity'] )->name('add.team.community');
+    Route::post('/community/team/add/{username}',[TeamCommunityController::class, 'addTeamCommunityPost'] )->name('add.team.community');
+    Route::get('/community/team/edit/{username}/{user}',[TeamCommunityController::class, 'editTeamCommunity'] )->name('edit.team.community');
+    Route::post('/community/team/edit/{username}/{user}',[TeamCommunityController::class, 'editTeamCommunityPost'] )->name('edit.team.community');
+    Route::post('/community/team/delete/{username}/{user}',[TeamCommunityController::class, 'deleteTeamCommunityPost'] )->name('delete.team.community');
+
     //blog routes
     Route::get('/blog/create/{username}', [BlogController::class, 'blogCreate'])->name('blog.create');
     Route::post('/blog/create/{username}', [BlogController::class, 'blogCreatePost'])->name('blog.create');
