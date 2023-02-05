@@ -44,7 +44,7 @@ Route::middleware([
     Route::get('/community/create',[CommunityController::class, 'createCommunity'] )->name('create.community');
     Route::post('/community/create',[CommunityController::class, 'postCreateCommunity'] )->name('post.create.community');
     Route::get('/community/team/view/{username}',[CommunityController::class, 'viewTeamCommunity'] )->name('view.team.community');
-    Route::get('/community/view/{username}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
+    Route::get('/community/{username}',[CommunityController::class, 'viewCommunity'] )->name('community.page');
 
     //profile Routes
     Route::get('/profile/{username}',[ProfileController::class, 'viewProfile'] )->name('profile');

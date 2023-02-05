@@ -22,7 +22,7 @@ class CommunityController extends Controller {
             $result = compact( 'community', 'socials' );
 
             if ( Auth::user()->user_id == $community->creator ) {
-                return view( 'pages.community.admin-community-page', )->with( $result );
+                return view( 'pages.community.community-page', )->with( $result );
             } else {
                 page('community/{username}', $community->username);
                 return view( 'pages.community.community-page', )->with( $result );
@@ -174,23 +174,23 @@ class CommunityController extends Controller {
 
         
     }
-    public function editTeamCommunity( $community_id ) {
+    public function editTeamCommunity( $username ) {
 
-        $team = TeamCommunity::where( 'community_id', $community_id )->first();
+        $team = TeamCommunity::where( 'username', $username )->first();
         return view( 'pages.community.community-page', )->with( $result );
     }
-    public function editTeamCommunityPost( $community_id ) {
+    public function editTeamCommunityPost( $username ) {
 
-        $community = TeamCommunity::where( 'community_id', $community_id )->first();
+        $community = TeamCommunity::where( 'username', $username )->first();
         return view( 'pages.community.community-page', )->with( $result );
     }
-    public function subscribe( $community_id ) {
-
-       $subscribe = new Subscribe();
-         $subscribe->community_id = $community_id;
-            $subscribe->user_id = Auth::user()->user_id;
-            $subscribe->save();
-            return redirect( '/community/view/'.$community_id );
+    public function subscribe( $username ) {
+        $community = Community::where( 'username', $username )->first();
+        $subscribe = new Subscribe();
+        $subscribe->community_id = $community->id;
+        $subscribe->user_id = Auth::user()->user_id;
+        $subscribe->save();
+        return redirect( '/community'.'/'.$username );
     }
     
 

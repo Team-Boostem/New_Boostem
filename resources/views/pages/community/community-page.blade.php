@@ -146,7 +146,7 @@
             <div class="banner-content">
                 <h2>{{ $community->name }}</h2>
                 <p>{{ $community->description }}</p>
-                <a href="{{ route('subscribe', [$community->id]) }}">
+                <a href="{{ route('subscribe', [$community->username]) }}">
                     <button class="btn btn-primary py-40" style="padding-left: 2rem;padding-right:2rem; ">subscribe</button>
                   </a>
                 @if($community->website)
