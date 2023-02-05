@@ -44,7 +44,7 @@ class CommunityController extends Controller {
         //dd( $request->all() );
         $request->validate( [
             'name'=>'required',
-            'username'=>'required|unique:communities,username',
+            'username'=>'required|alpha|regex:/^\S*$/u|unique:communities,username',
             'email'=>'required|email|unique:communities,email',
             'description'=>'required',
         ] );
