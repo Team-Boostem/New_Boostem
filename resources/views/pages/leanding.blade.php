@@ -207,10 +207,10 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block w-100" src="{{ asset('storage/user/banner/banner1.png') }}" alt="First slide">
+                <img class="d-block w-100" src="{{ asset('public/img/boostpoint.png') }}" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" src="{{ asset('storage/user/banner/banner1.png') }}" alt="Second slide">
+                <img class="d-block w-100" src="{{ asset('public/img/communityreg.png') }}" alt="Second slide">
               </div>
               <div class="carousel-item">
                 <img class="d-block w-100" src="{{ asset('storage/user/banner/banner1.png') }}" alt="Third slide">
