@@ -9,11 +9,11 @@ class TeamCommunityController extends Controller
     // view create edit TEAM in community..............
 
     public function viewTeamCommunity( $username ) {
-
+        return view( 'pages.community.list-team' );
     }
 
     public function listTeamCommunity( $username ) {
-
+        return view( 'pages.community.list-team' );
     }
 
     public function addTeamCommunity( $username ) {

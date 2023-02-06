@@ -1,6 +1,6 @@
 {{-- push title --}}
 @push('title')
-    <title>Community Team | Boostem</title>
+    <title>List Team | Boostem</title>
 @endpush
 
 {{-- push styles --}}
@@ -18,6 +18,6 @@
 @extends('layouts/community-dashboard')
 @section('content')
    <div class="main-box">
-  
+    list
    </div>
 @endsection

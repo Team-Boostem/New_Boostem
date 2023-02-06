@@ -1,6 +1,6 @@
 {{-- push title --}}
 @push('title')
-    <title>Community Team | Boostem</title>
+    <title>Edit Team | Boostem</title>
 @endpush
 
 {{-- push styles --}}
